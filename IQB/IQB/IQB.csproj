@@ -1,0 +1,600 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-win+net45+wp8+win81+wpa8</PackageTargetFallback>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release;GORILLA</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GORILLA|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Helper\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Helper\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Helper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="CustomControl\BindableRadioGroup.cs" />
+    <Compile Remove="CustomControl\CustomRadioButton.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Image\about.svg" />
+    <None Remove="Resources\Image\AboutInfoLocation.svg" />
+    <None Remove="Resources\Image\AboutWebsite.svg" />
+    <None Remove="Resources\Image\add-location.svg" />
+    <None Remove="Resources\Image\add.svg" />
+    <None Remove="Resources\Image\AddAppointment.svg" />
+    <None Remove="Resources\Image\AddEditService.svg" />
+    <None Remove="Resources\Image\addIcon.svg" />
+    <None Remove="Resources\Image\AddReservation.svg" />
+    <None Remove="Resources\Image\address-and--location.svg" />
+    <None Remove="Resources\Image\app-info.svg" />
+    <None Remove="Resources\Image\AppointmentSettings.svg" />
+    <None Remove="Resources\Image\arrow.svg" />
+    <None Remove="Resources\Image\Auto-join-queue.svg" />
+    <None Remove="Resources\Image\backNav.svg" />
+    <None Remove="Resources\Image\Barbers-On-Duty.svg" />
+    <None Remove="Resources\Image\birthday.svg" />
+    <None Remove="Resources\Image\calendar.svg" />
+    <None Remove="Resources\Image\Camera.svg" />
+    <None Remove="Resources\Image\Change-location.svg" />
+    <None Remove="Resources\Image\circle_add.svg" />
+    <None Remove="Resources\Image\contact.svg" />
+    <None Remove="Resources\Image\correct.svg" />
+    <None Remove="Resources\Image\correctPrimary.svg" />
+    <None Remove="Resources\Image\cross.svg" />
+    <None Remove="Resources\Image\DefaultUser.svg" />
+    <None Remove="Resources\Image\Delete-account.svg" />
+    <None Remove="Resources\Image\Delete.svg" />
+    <None Remove="Resources\Image\deleteIcon.svg" />
+    <None Remove="Resources\Image\DeletePhoto.svg" />
+    <None Remove="Resources\Image\DOB.svg" />
+    <None Remove="Resources\Image\Edit.svg" />
+    <None Remove="Resources\Image\editIcon.svg" />
+    <None Remove="Resources\Image\Estimated-wait-time.svg" />
+    <None Remove="Resources\Image\expand-button.svg" />
+    <None Remove="Resources\Image\facebook.svg" />
+    <None Remove="Resources\Image\FilledSearch.svg" />
+    <None Remove="Resources\Image\Filter.svg" />
+    <None Remove="Resources\Image\HBaraberOD.svg" />
+    <None Remove="Resources\Image\Help.svg" />
+    <None Remove="Resources\Image\HEstWaitTime.svg" />
+    <None Remove="Resources\Image\HNxtPosAvail.svg" />
+    <None Remove="Resources\Image\home.svg" />
+    <None Remove="Resources\Image\HQueuing.svg" />
+    <None Remove="Resources\Image\HSysStat.svg" />
+    <None Remove="Resources\Image\info.svg" />
+    <None Remove="Resources\Image\instagram.svg" />
+    <None Remove="Resources\Image\invoice.svg" />
+    <None Remove="Resources\Image\IQB.svg" />
+    <None Remove="Resources\Image\Join-group.svg" />
+    <None Remove="Resources\Image\JoinTick.svg" />
+    <None Remove="Resources\Image\JoinUntick.svg" />
+    <None Remove="Resources\Image\location.svg" />
+    <None Remove="Resources\Image\LocationAddress.svg" />
+    <None Remove="Resources\Image\LocationSalon.svg" />
+    <None Remove="Resources\Image\LoginBackground.svg" />
+    <None Remove="Resources\Image\Logout.svg" />
+    <None Remove="Resources\Image\long.svg" />
+    <None Remove="Resources\Image\mail.svg" />
+    <None Remove="Resources\Image\Manage-Salon-Text.svg" />
+    <None Remove="Resources\Image\Manage-Services.svg" />
+    <None Remove="Resources\Image\Manage-Staff.svg" />
+    <None Remove="Resources\Image\ManageAppointmentInner.svg" />
+    <None Remove="Resources\Image\ManageSalonInnerText.svg" />
+    <None Remove="Resources\Image\My-Customers.svg" />
+    <None Remove="Resources\Image\Next-position-available.svg" />
+    <None Remove="Resources\Image\Our Photos.svg" />
+    <None Remove="Resources\Image\ourPhotos.svg" />
+    <None Remove="Resources\Image\Phone-1.svg" />
+    <None Remove="Resources\Image\Phone-2.svg" />
+    <None Remove="Resources\Image\phone-email.svg" />
+    <None Remove="Resources\Image\phone.svg" />
+    <None Remove="Resources\Image\ProfileCake.svg" />
+    <None Remove="Resources\Image\ProfileCamera.svg" />
+    <None Remove="Resources\Image\ProfileContact.svg" />
+    <None Remove="Resources\Image\ProfileMail.svg" />
+    <None Remove="Resources\Image\ProfileMailAbout.svg" />
+    <None Remove="Resources\Image\Q List.svg" />
+    <None Remove="Resources\Image\Queuing.svg" />
+    <None Remove="Resources\Image\Q_status_clock.svg" />
+    <None Remove="Resources\Image\refresh.svg" />
+    <None Remove="Resources\Image\register.svg" />
+    <None Remove="Resources\Image\registration.svg" />
+    <None Remove="Resources\Image\ReportSettings.svg" />
+    <None Remove="Resources\Image\Reservation.svg" />
+    <None Remove="Resources\Image\roundArrow.svg" />
+    <None Remove="Resources\Image\Salon-info.svg" />
+    <None Remove="Resources\Image\SalonInfoContact.svg" />
+    <None Remove="Resources\Image\SalonInfoGallery.svg" />
+    <None Remove="Resources\Image\SalonInfoLocation.svg" />
+    <None Remove="Resources\Image\SalonInfoWebsite.svg" />
+    <None Remove="Resources\Image\SalonPlaceholder.svg" />
+    <None Remove="Resources\Image\SalonSettings.svg" />
+    <None Remove="Resources\Image\SalonTextRound.svg" />
+    <None Remove="Resources\Image\search.svg" />
+    <None Remove="Resources\Image\Select-barber.svg" />
+    <None Remove="Resources\Image\Settings.svg" />
+    <None Remove="Resources\Image\SmallArrow.svg" />
+    <None Remove="Resources\Image\System-Status.svg" />
+    <None Remove="Resources\Image\TakePhoto.svg" />
+    <None Remove="Resources\Image\Time.svg" />
+    <None Remove="Resources\Image\twitter.svg" />
+    <None Remove="Resources\Image\UploadFromGallery.svg" />
+    <None Remove="Resources\Image\website.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Image\AboutInfoLocation.svg" />
+    <EmbeddedResource Include="Resources\Image\AboutWebsite.svg" />
+    <EmbeddedResource Include="Resources\Image\AddAppointment.svg" />
+    <EmbeddedResource Include="Resources\Image\AddReservation.svg" />
+    <EmbeddedResource Include="Resources\Image\backNav.svg" />
+    <EmbeddedResource Include="Resources\Image\correct.svg" />
+    <EmbeddedResource Include="Resources\Image\correctPrimary.svg" />
+    <EmbeddedResource Include="Resources\Image\DefaultUser.svg" />
+    <EmbeddedResource Include="Resources\Image\DeletePhoto.svg" />
+    <EmbeddedResource Include="Resources\Image\FilledSearch.svg" />
+    <EmbeddedResource Include="Resources\Image\info.svg" />
+    <EmbeddedResource Include="Resources\Image\invoice.svg" />
+    <EmbeddedResource Include="Resources\Image\JoinTick.svg" />
+    <EmbeddedResource Include="Resources\Image\JoinUntick.svg" />
+    <EmbeddedResource Include="Resources\Image\ManageAppointmentInner.svg" />
+    <EmbeddedResource Include="Resources\Image\ManageSalonInnerText.svg" />
+    <EmbeddedResource Include="Resources\Image\ProfileMailAbout.svg" />
+    <EmbeddedResource Include="Resources\Image\Q_status_clock.svg" />
+    <EmbeddedResource Include="Resources\Image\refresh.svg" />
+    <EmbeddedResource Include="Resources\Image\ReportSettings.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonInfoGallery.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonPlaceholder.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonSettings.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Image\SalonTextRound.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Image\about.svg" />
+    <EmbeddedResource Include="Resources\Image\add-location.svg" />
+    <EmbeddedResource Include="Resources\Image\add.svg" />
+    <EmbeddedResource Include="Resources\Image\AddEditService.svg" />
+    <EmbeddedResource Include="Resources\Image\addIcon.svg" />
+    <EmbeddedResource Include="Resources\Image\address-and--location.svg" />
+    <EmbeddedResource Include="Resources\Image\app-info.svg" />
+    <EmbeddedResource Include="Resources\Image\AppointmentSettings.svg" />
+    <EmbeddedResource Include="Resources\Image\arrow.svg" />
+    <EmbeddedResource Include="Resources\Image\Auto-join-queue.svg" />
+    <EmbeddedResource Include="Resources\Image\Barbers-On-Duty.svg" />
+    <EmbeddedResource Include="Resources\Image\birthday.svg" />
+    <EmbeddedResource Include="Resources\Image\calendar.svg" />
+    <EmbeddedResource Include="Resources\Image\Camera.svg" />
+    <EmbeddedResource Include="Resources\Image\Change-location.svg" />
+    <EmbeddedResource Include="Resources\Image\circle_add.svg" />
+    <EmbeddedResource Include="Resources\Image\contact.svg" />
+    <EmbeddedResource Include="Resources\Image\cross.svg" />
+    <EmbeddedResource Include="Resources\Image\Delete-account.svg" />
+    <EmbeddedResource Include="Resources\Image\Delete.svg" />
+    <EmbeddedResource Include="Resources\Image\deleteIcon.svg" />
+    <EmbeddedResource Include="Resources\Image\DOB.svg" />
+    <EmbeddedResource Include="Resources\Image\Edit.svg" />
+    <EmbeddedResource Include="Resources\Image\editIcon.svg" />
+    <EmbeddedResource Include="Resources\Image\Estimated-wait-time.svg" />
+    <EmbeddedResource Include="Resources\Image\expand-button.svg" />
+    <EmbeddedResource Include="Resources\Image\facebook.svg" />
+    <EmbeddedResource Include="Resources\Image\Filter.svg" />
+    <EmbeddedResource Include="Resources\Image\HBaraberOD.svg" />
+    <EmbeddedResource Include="Resources\Image\Help.svg" />
+    <EmbeddedResource Include="Resources\Image\HEstWaitTime.svg" />
+    <EmbeddedResource Include="Resources\Image\HNxtPosAvail.svg" />
+    <EmbeddedResource Include="Resources\Image\home.svg" />
+    <EmbeddedResource Include="Resources\Image\HQueuing.svg" />
+    <EmbeddedResource Include="Resources\Image\HSysStat.svg" />
+    <EmbeddedResource Include="Resources\Image\instagram.svg" />
+    <EmbeddedResource Include="Resources\Image\Join-group.svg" />
+    <EmbeddedResource Include="Resources\Image\location.svg" />
+    <EmbeddedResource Include="Resources\Image\LocationAddress.svg" />
+    <EmbeddedResource Include="Resources\Image\LocationSalon.svg" />
+    <EmbeddedResource Include="Resources\Image\LoginBackground.svg" />
+    <EmbeddedResource Include="Resources\Image\Logout.svg" />
+    <EmbeddedResource Include="Resources\Image\long.svg" />
+    <EmbeddedResource Include="Resources\Image\mail.svg" />
+    <EmbeddedResource Include="Resources\Image\Manage-Salon-Text.svg" />
+    <EmbeddedResource Include="Resources\Image\Manage-Services.svg" />
+    <EmbeddedResource Include="Resources\Image\Manage-Staff.svg" />
+    <EmbeddedResource Include="Resources\Image\My-Customers.svg" />
+    <EmbeddedResource Include="Resources\Image\Next-position-available.svg" />
+    <EmbeddedResource Include="Resources\Image\Our Photos.svg" />
+    <EmbeddedResource Include="Resources\Image\ourPhotos.svg" />
+    <EmbeddedResource Include="Resources\Image\Phone-1.svg" />
+    <EmbeddedResource Include="Resources\Image\Phone-2.svg" />
+    <EmbeddedResource Include="Resources\Image\phone-email.svg" />
+    <EmbeddedResource Include="Resources\Image\phone.svg" />
+    <EmbeddedResource Include="Resources\Image\ProfileCake.svg" />
+    <EmbeddedResource Include="Resources\Image\ProfileCamera.svg" />
+    <EmbeddedResource Include="Resources\Image\ProfileContact.svg" />
+    <EmbeddedResource Include="Resources\Image\ProfileMail.svg" />
+    <EmbeddedResource Include="Resources\Image\Q List.svg" />
+    <EmbeddedResource Include="Resources\Image\Queuing.svg" />
+    <EmbeddedResource Include="Resources\Image\register.svg" />
+    <EmbeddedResource Include="Resources\Image\registration.svg" />
+    <EmbeddedResource Include="Resources\Image\Reservation.svg" />
+    <EmbeddedResource Include="Resources\Image\roundArrow.svg" />
+    <EmbeddedResource Include="Resources\Image\Salon-info.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonInfoContact.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonInfoLocation.svg" />
+    <EmbeddedResource Include="Resources\Image\SalonInfoWebsite.svg" />
+    <EmbeddedResource Include="Resources\Image\search.svg" />
+    <EmbeddedResource Include="Resources\Image\Select-barber.svg" />
+    <EmbeddedResource Include="Resources\Image\Settings.svg" />
+    <EmbeddedResource Include="Resources\Image\SmallArrow.svg" />
+    <EmbeddedResource Include="Resources\Image\System-Status.svg" />
+    <EmbeddedResource Include="Resources\Image\TakePhoto.svg" />
+    <EmbeddedResource Include="Resources\Image\Time.svg" />
+    <EmbeddedResource Include="Resources\Image\twitter.svg" />
+    <EmbeddedResource Include="Resources\Image\UploadFromGallery.svg" />
+    <EmbeddedResource Include="Resources\Image\website.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
+    <PackageReference Include="Ansuria.XFGloss" Version="1.1.3" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="Com.OneSignal" Version="3.10.2" />
+    <PackageReference Include="ContextViewCell" Version="1.0.4" />
+    <PackageReference Include="ExifLib.PCL" Version="1.0.1" />
+    <PackageReference Include="LiveXAML" Version="2.1.70" />
+    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
+    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="PayPal.Forms" Version="2.16.0" />
+    <PackageReference Include="PCLCrypto" Version="2.0.147" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.34" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="17.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="17.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.1.0.53" />
+    <PackageReference Include="TEditor" Version="1.0.3" />
+    <PackageReference Include="Validation" Version="2.4.18" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugin.TabView" Version="1.0.4" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.Auth" Version="1.7.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="3.6.0.344457" />
+    <PackageReference Include="XLabs.Core" Version="2.0.5782" />
+    <PackageReference Include="XLabs.Forms" Version="2.0.5782" />
+    <PackageReference Include="XLabs.IoC" Version="2.0.5782" />
+    <PackageReference Include="XLabs.Platform" Version="2.0.5782" />
+    <PackageReference Include="XLabs.Serialization" Version="2.0.5782" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CustomControl\FloatingMenu.xaml.cs">
+      <DependentUpon>FloatingMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Appointment\Admin\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Appointment\Admin\RegisterClient.xaml.cs">
+      <DependentUpon>RegisterClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LoginManagement\RegisterAdminSalon.xaml.cs">
+      <DependentUpon>RegisterAdminSalon.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LoginManagement\RegisterAdmin.xaml.cs">
+      <DependentUpon>RegisterAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SalonManagement\CreateSalon.xaml.cs">
+      <DependentUpon>CreateSalon.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="CustomControl\FloatingButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ApplicationManagement\AddressAndLocation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ApplicationManagement\Email.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Admin\AdminUpcomingAppointment.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Admin\AppointmentFilter.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Admin\AppointmentSettings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Admin\ManageAppointment.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Admin\ManageReservation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Customer\AppointmentDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Customer\CreateAppointment.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Customer\ManageAppointment.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Customer\SelectBarber.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Appointment\Customer\SelectService.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Customer\CustomerFilter.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Home\BarberServiceList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoginManagement\EditProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PhotoGallery\PhotoGalleryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PhotoGallery\ZoomImagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Report\ReportGraph.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Report\ReportGraphDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SalonManagement\ManageSalon.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\BarberDayOffPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TabPagers\MainTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TabPagers\SamplePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TabPagers\SettingsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomControl\FloatingButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="CustomControl\FloatingMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Resources\ColorDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Resources\CustomStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\AddStaffMember.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\AdminSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\CreateService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\ManageStaff.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\MyProfileBlank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\Popup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\SalonText.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\ServiceList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\StaffProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AdminManagement\UpdateService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\AddressAndLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\Email.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\MyProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\SalonInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\SalonList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\SalonRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ApplicationManagement\WelcomeScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\AppointmentFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\AppointmentSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\Clients.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\ManageAppointment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\ManageReservation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Admin\RegisterClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Customer\CreateAppointment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Customer\ManageAppointment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Customer\SelectBarber.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Appointment\Customer\SelectService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Customer\CustomerBookingHistory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Customer\CustomerFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Customer\CustomerList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Customer\CustomerMail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Customer\CustomerProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Home\BarberList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Home\BarberServiceList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Home\GroupJoin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Home\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Home\JoinQueuePopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\AccountActivation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\EditProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\ForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\Logout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\Register.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\RegisterAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginManagement\RegisterAdminSalon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MenuItems\MenuMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\QueueList\QueueingList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Report\ReportGraph.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Report\ReportGraphDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SalonManagement\CreateSalon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SalonManagement\ManageSalon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Settings\AppInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Settings\Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Settings\HelpScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Settings\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\AdminAppointmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\CustAppointmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\MainTabPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\QListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\TabPagers\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

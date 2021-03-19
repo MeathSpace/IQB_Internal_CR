@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:IQB.CustomControl;assembly=IQB"
+             x:Class="IQB.Views.Customer.CustomerBookingHistory"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout BackgroundColor="White" 
+                         Padding="0,0,0,0">
+                <Grid BackgroundColor="Black" Margin="0,0,0,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS">65</On>
+                            <On Platform="Android">35</On>
+                        </OnPlatform>
+                    </Grid.HeightRequest>
+                    <Image Source="CancelPositionNew.png"
+                           HorizontalOptions="FillAndExpand" 
+                           VerticalOptions="CenterAndExpand"
+                           Grid.Column="0" 
+                           HeightRequest="27"
+                           WidthRequest="27" 
+                           Margin="-26,0,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCustBookingHistoryClosed"
+                                                  NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Booking History"
+                           Grid.Column="1" 
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="StartAndExpand"
+                           TextColor="White"
+                           FontSize="20"
+                           Margin="15,0,0,0"></Label>
+                </Grid>
+                <BoxView BackgroundColor="#DCDCDC" 
+                         HeightRequest="5"></BoxView>
+                <!--<StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand" 
+                             Padding="10">-->
+                <Grid Padding="10"
+                      HorizontalOptions="FillAndExpand" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.35*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout WidthRequest="120">
+                        <!--<Label Text="Date (From)"
+                               TextColor="Black"
+                               FontSize="Micro"></Label>-->
+                        <customControls:MyDatePicker x:Name="fromDatePicker"
+                                                 HorizontalOptions="StartAndExpand"
+                                                 VerticalOptions="CenterAndExpand"
+                                                 HeightRequest="40"
+                                                     Format=""
+                                                 TextColor="Black"
+                                                     IsVisible="False">
+                            <customControls:MyDatePicker.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="iOS">120</On>
+                                    <On Platform="Android">140</On>
+                                </OnPlatform>
+                            </customControls:MyDatePicker.WidthRequest>
+                        </customControls:MyDatePicker>
+                        <Label x:Name="lblFromDate"
+                               TextColor="Black"
+                               FontSize="12"
+                               VerticalOptions="CenterAndExpand"
+                               HeightRequest="40"
+                               Margin="7,7,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="lblFromDate_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView BackgroundColor="Black"
+                                 HeightRequest="1"
+                                 Margin="0,-10,0,0"></BoxView>
+                    </StackLayout>
+                    <StackLayout WidthRequest="120" Grid.Column="1">
+                        <!--<Label Text="Date (To)"
+                               TextColor="Black"
+                               FontSize="Micro"></Label>-->
+                    <customControls:MyDatePicker x:Name="toDatePicker"
+                                                 HorizontalOptions="StartAndExpand"
+                                                 VerticalOptions="CenterAndExpand"
+                                                 NullableDate="{Binding toDate, Mode=TwoWay}"
+                                                 HeightRequest="40"
+                                                 TextColor="Black" IsVisible="False">
+                            <customControls:MyDatePicker.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="iOS">120</On>
+                                    <On Platform="Android">140</On>
+                                </OnPlatform>
+                            </customControls:MyDatePicker.WidthRequest>
+                        </customControls:MyDatePicker>
+                        <Label x:Name="lblToDate"
+                               TextColor="Black"
+                               FontSize="12"
+                               VerticalOptions="CenterAndExpand"
+                               HeightRequest="40"
+                                Margin="7,7,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="lblToDate_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView BackgroundColor="Black"
+                                 HeightRequest="1"
+                                 Margin="0,-10,0,0"></BoxView>
+                    </StackLayout>
+                    <Button Text="Go"
+                            Grid.Column="2"
+                            VerticalOptions="Center"
+                            TextColor="White"
+                            BackgroundColor="Black"
+                            FontSize="11"
+                            WidthRequest="80"
+                            HeightRequest="35"
+                            Command="{Binding CustomerHistoryByDate}"></Button>
+                <!--</StackLayout>-->
+                </Grid>
+                <BoxView BackgroundColor="#DCDCDC" 
+                         HeightRequest="1"></BoxView>
+                <StackLayout Orientation="Horizontal"
+                             Padding="10,0,0,0">
+                    <Label Text="Customer Name : "
+                           TextColor="Black"></Label>
+                    <Label Text="{Binding CustomerFirstName}"
+                           TextColor="Black"></Label>
+                    <Label Text="{Binding CustomerLastName}"
+                           TextColor="Black"></Label>
+                </StackLayout>
+                <BoxView BackgroundColor="#DCDCDC" 
+                         HeightRequest="1"></BoxView>
+                <ListView x:Name="lstCustomerHistory"
+                          SeparatorVisibility="None"
+                          HasUnevenRows="True"  
+                          VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"
+                          IsVisible="{Binding IsListVisible}"
+                          IsRefreshing="{Binding IsRefreshing}"
+                          ItemsSource="{Binding CustomerBookingHistoryList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="White"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="CenterAndExpand">
+                                    <StackLayout HeightRequest="65"
+                                                 WidthRequest="300"
+                                                 Padding="17">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Barber Name : " 
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                            <Label Text="{Binding BarberName}" 
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Service : " 
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                            <Label Text="{Binding ServiceName}" 
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Date of Booking : "
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                            <Label Text="{Binding DateOfBooking}" 
+                                                       TextColor="Black"
+                                                       FontSize="12"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <BoxView BackgroundColor="LightGray"
+                                             HeightRequest="1"></BoxView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Text="No records found.."
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding NoRecord}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"></Label>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

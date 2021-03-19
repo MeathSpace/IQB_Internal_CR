@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="{DynamicResource AppBackground}"
+             x:Class="IQB.Views.TabPagers.SettingsView">
+    <ContentView.Content>
+        <Grid RowSpacing="7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout  Grid.Row="0">
+                <tabView:SfTabView 
+                           x:Name="sfTabsStack"
+                           IsVisible="False"
+                           HeightRequest="48"
+                           BackgroundColor="Transparent"
+                           TabHeaderPosition="Top"
+                           VisibleHeaderCount="2"
+                           DisplayMode="Text"
+                           SelectionChanged="Handle_SelectionChanged">
+
+                    <tabView:SfTabView.SelectionIndicatorSettings>
+                        <tabView:SelectionIndicatorSettings
+                    Color="{DynamicResource AppPrimary}" 
+                    Position="Bottom" 
+                    StrokeThickness="2"/>
+                    </tabView:SfTabView.SelectionIndicatorSettings>
+
+                    <tabView:SfTabItem Title="Account Settings" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem Title="Admin Settings" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                    </tabView:SfTabItem>
+
+                </tabView:SfTabView>
+            </StackLayout>
+
+            <ListView ItemTapped="SettingsListViewItemTapped" SeparatorVisibility="None" BackgroundColor="Transparent" Grid.Row="1" RowHeight="90" x:Name="SettingsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout>
+
+                                <StackLayout Padding="20,15" Spacing="20" Orientation="Horizontal">
+
+                                    <Frame HasShadow="true" HeightRequest="44" WidthRequest="44" Padding="0" CornerRadius="22" BackgroundColor="{DynamicResource AppPrimary}">
+                                        <forms:SvgCachedImage Source="{Binding ImageSrc}" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <forms1:CachedImage.Transformations>
+                                                <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                            </forms1:CachedImage.Transformations>
+                                        </forms:SvgCachedImage>
+                                    </Frame>
+                                   
+                                    <Label TextColor="White" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" Text="{Binding Name}"/>
+
+                                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                        <forms1:CachedImage.Transformations>
+                                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                        </forms1:CachedImage.Transformations>
+                                    </forms:SvgCachedImage>
+
+                                </StackLayout>
+
+                                <BoxView BackgroundColor="{DynamicResource AppBorderColor}" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

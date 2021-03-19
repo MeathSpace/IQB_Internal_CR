@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.AdminManagement.ServiceList"
+             xmlns:behaviors="clr-namespace:IQB.ControlBehaviors"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             BackgroundColor="{DynamicResource AppBackground}"
+             Appearing="ContentPage_Appearing"
+             xmlns:converters="clr-namespace:IQB.Converters"
+             >
+
+  
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <ffimg:CachedImage.Transformations>
+                    <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </ffimg:CachedImage.Transformations>
+            </ffimageloadingsvg:SvgCachedImage>
+            <Label Text="{Binding LabelData}" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:AmountToCurrencyConverter x:Key="ValueAmountToCurrencyConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding PageAppearing,Mode=TwoWay}"></behaviors:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+     
+
+
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- <Grid Grid.ColumnSpan="5" Margin="25,20,25,0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+                <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                                  WidthRequest="14" HeightRequest="14"
+                                                  HorizontalOptions="Center" 
+                                                  VerticalOptions="Center">
+                    <ffimg:CachedImage.Transformations>
+                        <fftrans:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                    </ffimg:CachedImage.Transformations>
+                </ffimageloadingsvg:SvgCachedImage>
+                <custom:BorderlessEntry Placeholder="Filter by Service Name" Grid.Column="1"
+                                        Style="{DynamicResource SearchBarStyle}"
+                                        TextChanged="SearchBar_TextChanged"/>
+                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+            </Grid>-->
+            <!--<Label Grid.Row="0" Grid.ColumnSpan="5" 
+                   Style="{DynamicResource greyLabel}" Text="Swipe Left for more options"
+                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,10,0,0" />-->
+            <Frame x:Name="frmHintList"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="5" 
+                   BackgroundColor="{DynamicResource AppBackground}"
+                   BorderColor="{DynamicResource AppPrimary}" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" Padding="0"
+                   Margin="20,20,20,10" HeightRequest="40">
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{DynamicResource contentLabel}" Text="Swipe Left for more options"
+                           FontSize="Small"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,-20,0"/>
+                    <ffimageloadingsvg:SvgCachedImage x:Name="imgCloseHint" Grid.Column="1" WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.cross.svg"
+                                                              HorizontalOptions="Center" VerticalOptions="Center">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="imgCloseHint_Tapped"/>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </Grid>
+            </Frame> <!--Margin="20,10,20,50"-->
+            <ListView x:Name="ServiceList1" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5" Margin="20,10,20,50"
+                      RowHeight="80"
+                      SeparatorVisibility="None"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      ItemsSource="{Binding ServiceList}"
+                      BackgroundColor="{DynamicResource AppBackground}"
+                      IsPullToRefreshEnabled="True" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <context:SideActionBarCell x:Name="st" >
+                            <!--Main Content Starts-->
+                            <context:SideActionBarCell.Content>
+                                <Frame Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference ServiceList1}, Path=Width}" Padding="0">
+                                    <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="10">
+                                        <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          WidthRequest="22" 
+                                                                          HeightRequest="22"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center"/>
+
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="3" >
+                                         
+                                            <Grid VerticalOptions="Start" BackgroundColor="Transparent">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start">
+                                                    <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding ServiceName}"/>
+                                                </Grid>
+
+                                                <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="EndAndExpand">
+                                                    <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center" 
+                                           Text="{Binding ServicePrice, Converter={StaticResource ValueAmountToCurrencyConverter}}"/>
+                                                </Grid>
+
+
+
+
+                                            </Grid>
+
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                </Frame>
+                            </context:SideActionBarCell.Content>
+                            <!--Main Content Ends-->
+                            <!--Side Content Starts-->
+                            <context:SideActionBarCell.ContextTemplate>
+                                <DataTemplate>
+                                    <StackLayout Margin="0,5">
+                                        <Frame CornerRadius="5" Padding="0" VerticalOptions="FillAndExpand"
+                                                 HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource AppPrimary}">
+                                            <StackLayout Orientation="Horizontal" Spacing="20" Margin="20" >
+                                                <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.editIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <ffimg:CachedImage.Transformations>
+                                                        <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                    </ffimg:CachedImage.Transformations>
+                                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="EditService_Tapped" CommandParameter="{Binding ServiceID}"></TapGestureRecognizer>
+                                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                </ffimageloadingsvg:SvgCachedImage>
+                                                <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.deleteIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <ffimg:CachedImage.Transformations>
+                                                        <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                    </ffimg:CachedImage.Transformations>
+                                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding DeleteService}"></TapGestureRecognizer> <!--Tapped="DeleteService_Tapped"-->
+                                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                </ffimageloadingsvg:SvgCachedImage>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </context:SideActionBarCell.ContextTemplate>
+                            <!--Side Content Ends-->
+                        </context:SideActionBarCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--Margin="-25, 0, 20, 30"-->
+            <Frame Grid.Column="4" Grid.Row="2" Grid.RowSpan="6" Margin="-25, 0, 20, 15"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center" 
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   CornerRadius="30" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddService_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ffimg:CachedImage.Transformations>
+                        <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </ffimg:CachedImage.Transformations>
+                </ffimageloadingsvg:SvgCachedImage>
+            </Frame>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

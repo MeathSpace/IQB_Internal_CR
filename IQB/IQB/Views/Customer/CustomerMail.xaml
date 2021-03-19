@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Customer.CustomerMail"
+             xmlns:customControls="clr-namespace:IQB.CustomControl;assembly=IQB"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:converters="clr-namespace:IQB.Converters"
+             Disappearing="ContentPage_Disappearing"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             
+              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             
+             
+             BackgroundColor="{DynamicResource AppBackground}">
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Messaging" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateToVisibilityConverter x:Key="ValueToVisibilityConverterID"/>
+            <!--<Style x:Key="MyProfileTextboxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>-->
+            <Style x:Key="MyProfileTextboxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="TextColor" Value="{DynamicResource AppForeground}" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="{DynamicResource AppBackground}" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 0, 0, 0"
+                Android="0, 0, 0, 0"
+                WinPhone="20, 20, 20, 20" />
+    </ContentPage.Padding>
+    <!--<ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="" 
+                                          Command="{Binding PageAppearing,Mode=TwoWay}"></behaviors:EventToCommandBehavior>
+    </ContentPage.Behaviors>-->
+
+    <!--<ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">-->
+    <Grid Style="{DynamicResource baseGrid}" x:Name="gdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" HorizontalOptions="Center" Padding="20,0,20,10">
+
+
+            <Label Text="{Binding noofcustomer}" Style="{DynamicResource pagePrimaryHeadingLabel}"></Label>
+
+
+
+            <!--<Frame x:Name="frmNodata" 
+                  
+                   BackgroundColor="{DynamicResource AppBackground}"
+                   BorderColor="{DynamicResource AppPrimary}" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand"
+                   HeightRequest="40">
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{DynamicResource contentLabel}" Text="{Binding noofcustomer}"
+                           FontSize="Small"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                </Grid>
+            </Frame>-->
+            
+        </StackLayout>
+
+        <Grid Grid.Row="1" Padding="20,10,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="1"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="1"></RowDefinition>
+
+            </Grid.RowDefinitions>
+
+
+            <Label Text="Email Subject"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                           Grid.Row="0"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center" VerticalTextAlignment="Center"/>
+
+
+
+
+
+            <custom:BorderlessEntry Grid.Row="1" Placeholder="Email Subject" Text="{Binding Subject}" 
+                                        Style="{StaticResource RegisterTextboxStyle}" 
+                                        HorizontalOptions="Fill"
+                                            MinimumHeightRequest="40"
+                                            IsEnabled="True" >
+                <custom:BorderlessEntry.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                        <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                    </OnPlatform>
+                </custom:BorderlessEntry.FontFamily>
+
+            </custom:BorderlessEntry>
+
+
+
+
+            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>
+
+            <Label Text="Message"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                           Grid.Row="3"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center" VerticalTextAlignment="Center"/>
+
+
+
+
+            <StackLayout BackgroundColor="Black" Grid.Row="4" >
+                <StackLayout BackgroundColor="White" Padding="1">
+                    <Editor IsVisible="False" HeightRequest="310" WidthRequest="350" x:Name="Emaileditor" Focused="Emaileditor_Focused" Unfocused="Emaileditor_Unfocused" Text="{Binding MailBody}"></Editor>
+                    <customControls:WebViewer EvaluateJavascript="{Binding EvaluateJavascript, Mode=OneWayToSource}"
+                                                                  HeightRequest="310" WidthRequest="350" Source="{Binding BodyHtmlSource}"></customControls:WebViewer>
+                </StackLayout>
+            </StackLayout>
+
+
+
+
+            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="5"></BoxView>
+
+
+            <!--<Grid Grid.Row="6" Margin="-25,0" HorizontalOptions="FillAndExpand">
+
+                <Button 
+                        x:Name="btnAdd"
+                        Text="SEND EMAIL" 
+                        Command="{Binding SendMailCommand}"
+                       Style="{DynamicResource actionButtonPrimary}"/>
+            </Grid>-->
+        </Grid>
+
+        <Button Grid.Row="2" x:Name="btnAdd" VerticalOptions="EndAndExpand"
+                    Text="SEND EMAIL"
+                    HeightRequest="50"
+                    Command="{Binding SendMailCommand}"
+                    Style="{DynamicResource actionButtonPrimary}"/>
+
+    </Grid>
+    <!--</ScrollView>-->
+</ContentPage>

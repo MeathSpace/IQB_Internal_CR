@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.ApplicationManagement.About"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:sfrating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             BackgroundColor="{DynamicResource AppBackground}"
+             Appearing="About_OnAppearing">
+
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <ffimg:CachedImage.Transformations>
+                    <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </ffimg:CachedImage.Transformations>
+            </ffimageloadingsvg:SvgCachedImage>
+            <Label Text="About" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+          
+            <Grid Style="{DynamicResource baseGrid}" x:Name="gdMain">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" HorizontalOptions="Center" Padding="20,0">
+                    <controls:CircleImage Source="{Binding Salon_ImageName}"
+                          BorderThickness="2"
+                          BorderColor="{DynamicResource AppPrimary}"
+                          Aspect="AspectFill"
+                          HorizontalOptions="Start"
+                          Margin="10,10,10,10">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                    iOS="85"
+                    Android="85" />
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                    iOS="85"
+                    Android="85" />
+                        </controls:CircleImage.HeightRequest>
+                    </controls:CircleImage>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Padding="20,10,20,0">
+                    <Label Text="{Binding SalonName}" Style="{DynamicResource pageHeadingLabel}"></Label>
+                </StackLayout>
+                
+                <StackLayout Grid.Row="2" HorizontalOptions="Center" Padding="20,0,20,0">
+                    <Label Text="Ver.1.0.6" Style="{DynamicResource greyLabel}"></Label>
+                </StackLayout>
+
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ContentView Grid.Row="0" Grid.RowSpan="3" Padding="25,25,25,17">
+                        <Frame  CornerRadius="5" BackgroundColor="Transparent" BorderColor="{DynamicResource AppBorderColor}" >
+                        </Frame>
+                    </ContentView>
+
+                    <ContentView Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Frame  CornerRadius="5" HeightRequest="50" Padding="0" WidthRequest="180" BackgroundColor="{DynamicResource AppBackground}" BorderColor="{DynamicResource AppBorderColor}">
+                            <Label HorizontalOptions="CenterAndExpand" Text="Please Rate Us" TextColor="#FFFFFF" VerticalOptions="CenterAndExpand" />
+                        </Frame>
+                    </ContentView>
+
+                    <sfrating:SfRating Grid.Row="1" x:Name="RateSlider" ItemSize="25" Value="0" Margin="10,10" ItemSpacing="15"  HorizontalOptions="Center" VerticalOptions="Center">
+                        <sfrating:SfRating.RatingSettings>
+                            <sfrating:SfRatingSettings UnRatedFill="White" RatedFill="{DynamicResource AppPrimary}"/>
+                        </sfrating:SfRating.RatingSettings>
+                    </sfrating:SfRating>
+
+                    <Button x:Name="RateSalon"
+                        HorizontalOptions="CenterAndExpand"                             
+                            VerticalOptions="CenterAndExpand" 
+                            WidthRequest="85" 
+                            Grid.Row="2"
+                            HeightRequest="35"
+                            IsEnabled="{Binding IsEnabled}"                               
+                            Style="{DynamicResource actionButtonPrimary}"
+                            CornerRadius="3"
+                            Clicked="RateSalon_Clicked"
+                            Text="Submit"/>
+
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="1"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Padding="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.phone.svg">
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapGestureRecognizerTel"
+                                    NumberOfTapsRequired="1" />
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                        <ffimageloadingsvg:SvgCachedImage Grid.Column="2" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.mail.svg">
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnEmailClicked"
+                                    NumberOfTapsRequired="1" />
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1">
+                            <Label Text="{Binding TelephoneNo}" Style="{DynamicResource greyLabelBold}" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" 
+                                   Margin="0,0,5,0"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                                Tapped="OnTapGestureRecognizerTel"
+                                                NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.Phone-2.svg"
+                                                              HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Label Text="Email"
+                               Style="{DynamicResource greyLabelBold}"
+                               Grid.Row="1" Grid.Column="2"
+                               HorizontalOptions="Center" VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                            Tapped="OnEmailClicked"
+                                            NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView Style="{DynamicResource verticalLine}" Grid.Column="1" Grid.RowSpan="2"/>
+                    </Grid>
+                    <Grid Grid.Row="1" ColumnSpacing="20" Margin="20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <BoxView Style="{DynamicResource horizontalLine}"></BoxView>
+                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Column="1"></BoxView>
+                    </Grid>
+                    <Grid Padding="0,10" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.AboutWebsite.svg">
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapGestureRecognizerWeb"
+                                    NumberOfTapsRequired="1" />
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                        <Label Text="{Binding Link}"
+                               Style="{DynamicResource greyLabelBold}"
+                               Grid.Row="1"
+                               HorizontalOptions="Center" VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="CharacterWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerWeb"
+                                            NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+      
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

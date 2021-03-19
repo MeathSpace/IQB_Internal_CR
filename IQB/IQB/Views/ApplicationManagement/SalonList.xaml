@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="IQB.Views.ApplicationManagement.SalonList"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             BackgroundColor="{DynamicResource AppBackground}"
+             Title="Salon List"
+             Appearing="ContentPage_Appearing">
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid  BackgroundColor="{DynamicResource AppBackground}" Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.ColumnSpan="5" Margin="25,20,25,0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                                  WidthRequest="14" HeightRequest="14"
+                                                  HorizontalOptions="Center" 
+                                                  VerticalOptions="Center">
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <custom:BorderlessEntry Placeholder="Filter by Salon Name" Grid.Column="1"
+                                        Style="{DynamicResource SearchBarStyle}"
+                                        TextChanged="SearchBar_TextChanged"/>
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                </Grid>
+
+
+                <ListView x:Name="salonList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="20"
+                      RowHeight="80"
+                      SeparatorVisibility="None"
+                      BackgroundColor="{DynamicResource AppBackground}"
+                      IsPullToRefreshEnabled="True"
+                      ItemTapped="salonList_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid BackgroundColor="{DynamicResource AppBackground}">
+                                    <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference salonList}, Path=Width}" Padding="0">
+                                        <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="10">
+                                            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          WidthRequest="22" 
+                                                                          HeightRequest="22"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center"/>
+
+                                            <StackLayout VerticalOptions="Center" Spacing="3" Margin="5,0,0,0">
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding SalonName}"/>
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding FullAddress}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Frame Grid.Column="4" Grid.Row="1" Grid.RowSpan="6" Margin="-25, 0, 20, 30"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center" 
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   CornerRadius="30" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </Frame>
+            </Grid>
+
+
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

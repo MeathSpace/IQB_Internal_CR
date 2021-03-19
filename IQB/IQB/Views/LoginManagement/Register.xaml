@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.LoginManagement.Register"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:tvs="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid Style="{DynamicResource baseGrid}" x:Name="gdMain">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" Padding="20,20,20,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="Have an account?" Style="{DynamicResource greyLabel}"></Label>
+                        <Label Text="Login Now" Style="{DynamicResource primaryLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="OnLoginClicked" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Grid HorizontalOptions="Center" Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <BoxView VerticalOptions="Center" Style="{DynamicResource horizontalLine}"></BoxView>
+                        <Label HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" Text="or" Style="{DynamicResource greyLabel}"></Label>
+                        <BoxView VerticalOptions="Center" Grid.Column="2" Style="{DynamicResource horizontalLine}"></BoxView>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Grid.Row="1" HorizontalOptions="Center" Padding="20,0,20,0">
+                    <ffimageloadingsvg:SvgCachedImage WidthRequest="50" HeightRequest="50" Source="resource://IQB.Resources.Image.registration.svg">
+                        <!--<ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>-->
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <Label Text="Register Now" Style="{DynamicResource pageHeadingLabel}"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="2" Margin="20,10,20,0">
+                    <tvs:TabViewControl x:Name="tabView" Style="{DynamicResource baseTab}" SelectedTabIndex="{Binding TabIndex}">
+                        <tvs:TabViewControl.ItemSource>
+                            <tvs:TabItem HeaderText="For General">
+                                <ScrollView>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <BoxView Style="{DynamicResource horizontalLine}"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="First Name" Grid.Row="1"
+                                        x:Name="entryFirstName"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill"
+                                                            MinimumHeightRequest="40"
+                                        Text="{Binding FirstName}" 
+                                        TextChanged="entryFirstName_TextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:EmptyFieldValidatorBehavior x:Name="bhvFirstName" Message="Please enter a First Name"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>
+                                        <custom:BorderlessEntry x:Name="entryLastName" Grid.Row="3"
+                                        Placeholder="Last Name" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill"
+                                        Text="{Binding LastName}"
+                                        TextChanged="entryLastName_TextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:EmptyFieldValidatorBehavior x:Name="bhvLastName" Message="Please enter a Last Name"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="4"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="Email" Grid.Row="5" x:Name="entryEmail"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        Text="{Binding Email}"
+                                        HorizontalOptions="Fill"
+                                        TextChanged="EntryEmail_OnTextChanged">
+                                            <Entry.Behaviors>
+                                                <behavior:EmailValidatorBehavior x:Name="bhvIsValidEmail" Message="Please enter a valid Email Id"/>
+                                            </Entry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="6"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="Password" Grid.Row="7" x:Name="entryPassword"
+                                        IsPassword="true" 
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        Text="{Binding Password}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill"
+                                        TextChanged="EntryPassword_OnTextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:PasswordValidationBehavior x:Name="bhvValidPassword" Message="Please enter a valid Password"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="8"></BoxView>
+                                        <sync:SfCheckBox x:Name="isBarber"  Grid.Row="9" Text="I am also a barber" IsChecked="{Binding IsBarber}"
+                                                         TextColor="{DynamicResource AppForeground}"
+                                                         UncheckedColor="{DynamicResource AppPrimary}"
+                                                         CheckedColor="{DynamicResource AppPrimary}"
+                                                         FontSize="14" MinimumHeightRequest="40" Margin="0,20,0,10" VerticalOptions="Center" />
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="10"></BoxView>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="11"><!--Margin="0,10"-->
+                                            <!--<Switch x:Name="switchCanSendEmail"
+                                                HorizontalOptions="Start"/>-->
+
+
+                                            <sync:SfSwitch x:Name="switchCanSendEmail"  
+                                    AllowIndeterminateState="False" VisualType="Custom" HorizontalOptions="Start" VerticalOptions="Center">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup  x:Name="CommonStates">
+
+
+
+                                                        <VisualState x:Name="On">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="SwitchSettings">
+                                                                    <Setter.Value>
+                                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"
+                                  />
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Off">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="SwitchSettings">
+                                                                    <Setter.Value>
+                                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+
+                                                </VisualStateManager.VisualStateGroups>
+
+                                            </sync:SfSwitch>
+
+                                            <Label Text="Receive salon updates/offers"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="Small"
+                                           VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        
+                                        
+                                    </Grid>
+                                </ScrollView>
+                            </tvs:TabItem>
+                            <!--<tvs:TabItem x:Name="AdminTabSlide" HeaderText="For Admin">
+                                <ScrollView>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="1"></RowDefinition>
+                                            --><!--<RowDefinition Height="Auto"></RowDefinition>--><!--
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <BoxView Style="{DynamicResource horizontalLine}"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="First Name" Grid.Row="1"
+                                        x:Name="entryFirstNameAdmin"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill"
+                                        Text="{Binding FirstNameAdmin}" 
+                                        TextChanged="entryFirstName_TextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:EmptyFieldValidatorBehavior x:Name="bhvFirstNameAdmin" Message="Please enter a First Name"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>
+                                        <custom:BorderlessEntry x:Name="entryLastNameAdmin" Grid.Row="3"
+                                        Placeholder="Last Name" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill"
+                                        Text="{Binding LastNameAdmin}"
+                                        TextChanged="entryLastName_TextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:EmptyFieldValidatorBehavior x:Name="bhvLastNameAdmin" Message="Please enter a Last Name"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="4"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="Email" Grid.Row="5" x:Name="entryEmailAdmin"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        Text="{Binding EmailAdmin}"
+                                        HorizontalOptions="Fill"
+                                                                TextChanged="EntryEmail_OnTextChanged">
+                                            <Entry.Behaviors>
+                                                <behavior:EmailValidatorBehavior x:Name="bhvIsValidEmailAdmin" Message="Please enter a valid Email Id"/>
+                                            </Entry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="6"></BoxView>
+                                        <custom:BorderlessEntry Placeholder="Password" Grid.Row="7" x:Name="entryPasswordAdmin"
+                                        IsPassword="true" 
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        Text="{Binding PasswordAdmin}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill"
+                                                                TextChanged="EntryPassword_OnTextChanged">
+                                            <custom:BorderlessEntry.Behaviors>
+                                                <behavior:PasswordValidationBehavior x:Name="bhvValidPasswordAdmin" Message="Please enter a valid Password"/>
+                                            </custom:BorderlessEntry.Behaviors>
+                                        </custom:BorderlessEntry>
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="8"></BoxView>
+                                        <sync:SfCheckBox x:Name="isBarberAdmin"  Grid.Row="9" Text="I am also a barber" IsChecked="{Binding IsBarberAdmin}"
+                                                         TextColor="{DynamicResource AppForeground}"
+                                                         UncheckedColor="{DynamicResource AppPrimary}"
+                                                         CheckedColor="{DynamicResource AppPrimary}"
+                                                         FontSize="14" MinimumHeightRequest="40" Margin="0,20,0,10" VerticalOptions="Center" />
+                                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="10"></BoxView>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="11">--><!--Margin="0,10"-->
+                                            <!--<Switch x:Name="switchCanSendEmailAdmin"
+                                                HorizontalOptions="Start"/>--><!--
+                                            
+                                            
+                                            
+
+
+                                            <sync:SfSwitch x:Name="switchCanSendEmailAdmin"  
+                                    AllowIndeterminateState="False" VisualType="Custom" HorizontalOptions="Start" VerticalOptions="Center">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+
+                                                        <VisualState x:Name="On">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="SwitchSettings">
+                                                                    <Setter.Value>
+                                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Off">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="SwitchSettings">
+                                                                    <Setter.Value>
+                                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+
+                                                </VisualStateManager.VisualStateGroups>
+
+                                            </sync:SfSwitch>
+
+                                            <Label Text="Receive salon updates/offers"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="Small"
+                                           VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        
+                                        
+                                    </Grid>
+                                </ScrollView>
+                            </tvs:TabItem>-->
+                        </tvs:TabViewControl.ItemSource>
+                    </tvs:TabViewControl>
+                </StackLayout>
+                <Button Grid.Row="3" x:Name="btnRegister"
+                    Text="REGISTER"
+                    Clicked="RegisterUser" 
+                    IsEnabled="{Binding IsEnabled}"
+                    Style="{DynamicResource actionButtonPrimary}"/>
+            </Grid>
+            <Grid x:Name="gdPopupPolicy" Style="{DynamicResource baseGrid}" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="20,0,20,0" >
+                    <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="resource://IQB.Resources.Image.register.svg">
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <Label Text="Terms and Conditions" Margin="0,20,0,0" Style="{DynamicResource pageHeadingLabel}" FontSize="18"></Label>
+                </StackLayout>
+                <!--<ScrollView>-->
+                <StackLayout Grid.Row="1" Padding="20,20,20,0" VerticalOptions="Center">
+                    <ScrollView>
+                        <Label Text="I want to use the iQueueBarbers's app/website, which enables me to obtain access to my designated IQB, iQueueBarbers Limited company number 09336143 establishes direct contact between partners and customers and allow consumers to book barbering appointments thus I agree to have my data published on the iQueueBarbers's app/website to only be shared with my designated IQB. I agree to the terms and conditions of service provision through the iQueueBarbers's app/website as set out in the Terms and Conditions.&#x0a;&#x0a;I know that I may at any time withdraw my consent to the processing of my personal data, which does not affect the lawfulness of the processing that took place prior to that withdrawal."
+                               Style="{DynamicResource contentLabel}"
+                           FontSize="16"
+                               LineBreakMode="WordWrap"></Label>
+                    </ScrollView>
+                    <StackLayout Orientation="Horizontal" Margin="0,20">
+                        <!--SwitchOffColor="{DynamicResource grey_600}"
+                                                         SwitchOnColor="{DynamicResource grey_600}"
+                                                         SwitchThumbColor="{DynamicResource AppPrimary}"-->
+                        <!--<Switch x:Name="switchAgree" HorizontalOptions="Start"/>-->
+
+
+
+
+
+                        <sync:SfSwitch x:Name="switchAgree"  
+                                    AllowIndeterminateState="False" VisualType="Custom" HorizontalOptions="Start">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup  x:Name="CommonStates">
+
+
+
+                                    <VisualState x:Name="On">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"
+                                  />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState x:Name="Off">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+
+                            </VisualStateManager.VisualStateGroups>
+
+                        </sync:SfSwitch>
+
+
+                   
+                        <Label Text="I agree"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="16"
+                                           VerticalOptions="Center"/>
+                    </StackLayout>
+
+                </StackLayout>
+                <!--</ScrollView>-->
+                <Button Grid.Row="2" x:Name="btnOk" 
+                                Text="OK"                               
+                                Style="{DynamicResource actionButtonPrimary}"
+                                Clicked="btnOk_Clicked"></Button>
+            </Grid>
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--<Grid.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color"
+                iOS="White"
+                Android="#000000E8"/>
+                </Grid.BackgroundColor>-->
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage> 

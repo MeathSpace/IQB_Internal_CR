@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="IQB.Views.MenuItems.MenuMaster" MasterBehavior="Popover" BackgroundColor="#444D5E"
+                  xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+                  NavigationPage.HasNavigationBar="False">
+
+    <MasterDetailPage.Master>
+        <!--<ContentPage Title="Menu" BackgroundColor="White" Icon="hamburger_icon.png">-->
+        <ContentPage Title="&#9776;" BackgroundColor="White">
+            <StackLayout>
+                <!-- #444D5E
+             This StackLayout you can use for other
+             data that you want to have in your menu drawer
+        -->
+                <StackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Padding="0,20,0,20">
+                    <!--<ContentView HorizontalOptions="Start">-->
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" BackgroundColor="Transparent">
+                        <controls:CircleImage x:Name="imgUserImage" BorderThickness="2" BorderColor="Black" Aspect="AspectFill" HorizontalOptions="Center" Margin="0,20,0,0">
+                            <controls:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double"
+                  iOS="90"
+                  Android="90" />
+                            </controls:CircleImage.WidthRequest>
+                            <controls:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double"
+                  iOS="90"
+                  Android="90" />
+                            </controls:CircleImage.HeightRequest>
+                            <controls:CircleImage.Source>
+                                <UriImageSource Uri="{Binding ProfileImage}" 			                   
+			                    CachingEnabled="False"/>
+                            </controls:CircleImage.Source>
+                        </controls:CircleImage>
+                        <!--</ContentView>
+                    <ContentView>-->
+                    </StackLayout>
+                    <!--</ContentView>-->
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <!--<Label Text="HELLO" FontSize="18" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>-->
+                        <Label Text="{Binding UserName}" FontSize="17" VerticalOptions="CenterAndExpand" TextColor="Black" HorizontalOptions="CenterAndExpand">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label x:Name="lblSalonName" FontSize="14" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>                
+                <ListView x:Name="navigationDrawerList" VerticalOptions="FillAndExpand"
+                  RowHeight="60"
+                  SeparatorVisibility="None" SeparatorColor="Gray" 
+                  BackgroundColor="White"
+                  ItemsSource="{Binding MenuList}"
+                  ItemSelected="OnMenuItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!-- Main design for our menu items -->
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="{Binding MainBackgroundColor}">
+                                    <!--<Grid BackgroundColor="{Binding BorderBackgroundColor}" HeightRequest="1"/>-->
+                                    <StackLayout VerticalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     Padding="20,5,0,5"
+                                     Spacing="20"
+                                     BackgroundColor="{Binding MainBackgroundColor}">
+
+                                        <Image WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Source="{Binding MainIconSource}"></Image>
+
+                                        <Label Text="{Binding MainTitle}"
+                                                FontSize="Medium"
+                                                VerticalOptions="Center"
+                                                TextColor="{Binding MainTextColor}">
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                    </StackLayout>
+                                    <Grid BackgroundColor="{Binding BorderBackgroundColor}" HeightRequest="1"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackLayout BackgroundColor="White" VerticalOptions="End">
+                    <Image Source="closemenubtn.png" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="20,10,20,10" WidthRequest="40"
+                         HeightRequest="40">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                             Tapped="OnTapCloseMenuButton"
+                             NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

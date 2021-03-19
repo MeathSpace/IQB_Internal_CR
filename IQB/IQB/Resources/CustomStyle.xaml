@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:custom="clr-namespace:IQB.CustomControl;assembly=IQB"
+                    xmlns:tvs="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+                    xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+                    xmlns:calendar="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+                    xmlns:themes="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
+                    xmlns:syncfusionExt="clr-namespace:IQB.SyncfusionExt;assembly=IQB">
+    <ResourceDictionary.MergedDictionaries>
+        <themes:DarkTheme x:Name="DarkTheme" />
+        <schedule:SfScheduleStyles />
+        <calendar:SfCalendarStyles/>
+        <ResourceDictionary>
+            <!--PrimaryStyle-->
+            <Color x:Key="SyncPrimaryColor">#0DA5B7</Color>
+            <Color x:Key="SyncPrimaryLightColor">#0DA5B7</Color>
+            <Color x:Key="SyncPrimaryForegroundColor">#0DA5B7</Color>
+            <Color x:Key="SyncPrimaryLightForegroundColor">#0DA5B7</Color>
+            <!--DayViewStyle-->
+            <Color x:Key="SfScheduleDayViewNonWorkingHoursTimeSlotColor">#212121</Color>
+            <Color x:Key="SfScheduleDayViewNonWorkingHoursTimeSlotBorderColor">#0D1013</Color>
+            <Color x:Key="SfScheduleDayViewTimeSlotColor">#0D1013</Color>
+            <Color x:Key="SfScheduleDayViewTimeSlotBorderColor">#212121</Color>
+            <Color x:Key="SfScheduleDayViewVerticalLineColor">#212121</Color>
+            <Color x:Key="SfScheduleDayViewAllDayAppointmentLayoutColor">#0D1013</Color>
+            <!--HeaderStyle-->
+            <Color x:Key="SfScheduleHeaderBackgroundColor">#0D1013</Color>
+            <Color x:Key="SfScheduleHeaderTextColor">#FFFFFF</Color>
+            <!--ViewHeaderStyle-->
+            <Color x:Key="SfScheduleViewHeaderDayTextColor">#FFFFFF</Color>
+            <Color x:Key="SfScheduleViewHeaderBackgroundColor">#0D1013</Color>
+            <Color x:Key="SfScheduleViewHeaderDateTextColor">#FFFFFF</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--#region Grey-->
+    <Color x:Key="grey_50">#FAFAFA</Color>
+    <Color x:Key="grey_100">#F5F5F5</Color>
+    <Color x:Key="grey_200">#EEEEEE</Color>
+    <Color x:Key="grey_300">#E0E0E0</Color>
+    <Color x:Key="grey_400">#BDBDBD</Color>
+    <Color x:Key="grey_500">#9E9E9E</Color>
+    <Color x:Key="grey_600">#757575</Color>
+    <Color x:Key="grey_700">#616161</Color>
+    <Color x:Key="grey_800">#424242</Color>
+    <Color x:Key="grey_900">#212121</Color>
+    <!--#endregion-->
+
+    <!--#region App Theme-->
+    <Color x:Key="AppBackground">#0D1013</Color>
+    <Color x:Key="AppForeground">#FFFFFF</Color>
+    <Color x:Key="AppHintText">#878787</Color>
+    <Color x:Key="AppBorderColor">#424242</Color>
+    <Color x:Key="AppPrimary">#0DA5B7</Color>
+    <Color x:Key="MenuBackground">#15181c</Color>
+    <Color x:Key="ValidationBackground">#F44336</Color>
+    <!--#endregion-->
+
+    <!--#region Default Styles Starts-->
+    <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+        <On Platform="Android" Value="Lato-Bold.ttf#Lato" />
+        <On Platform="iOS" Value="Lato-Bold" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+        <On Platform="Android" Value="Lato-Regular.ttf#Lato" />
+        <On Platform="iOS" Value="Lato-Regular" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
+        <On Platform="Android" Value="Lato-Light.ttf#Lato" />
+        <On Platform="iOS" Value="Lato-Light" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="ExtraLightFont">
+        <On Platform="Android" Value="Lato-Hairline.ttf#Lato" />
+        <On Platform="iOS" Value="Lato-Hairline" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="TabIconFont">
+        <On Platform="Android" Value="TabIcon.ttf#TabIcon" />
+        <On Platform="iOS" Value="TabIcon" />
+    </OnPlatform>
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+    <Style TargetType="{x:Type custom:BorderlessEntry}">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Editor}">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFont}"></Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region Old Styles Starts-->
+    <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderColor" Value="Black" />
+        <Setter Property="BorderRadius" Value="5" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="TextColor" Value="Teal" />
+    </Style>
+    <Style TargetType="NavigationPage">
+        <!--<Setter Property="BarBackgroundColor" Value="#758094" />-->
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource AppBackground}" />
+        <Setter Property="BarTextColor" Value="White" />
+    </Style>
+    <Style x:Key="RegisterTextboxStyle" TargetType="Entry">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource AppHintText}"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="MinimumHeightRequest" Value="40"></Setter>
+        <Setter Property="Margin" Value="0,20,0,10"></Setter>
+    </Style>
+
+    <Style x:Key="EmailEditorTextboxStyle" TargetType="Editor">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="{StaticResource grey_900}"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource AppHintText}"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    
+    <Style x:Key="EditProfileTextboxStyle" TargetType="Entry">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource AppHintText}"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="MinimumHeightRequest" Value="30"></Setter>
+    </Style>
+    <Style x:Key="SearchBarStyle" TargetType="Entry">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource AppHintText}"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="MinimumHeightRequest" Value="14"></Setter>
+    </Style>
+    <Style x:Key="TextBorderstyle" TargetType="BoxView">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="Color" Value="Black" />
+        <Setter Property="HeightRequest" Value="1"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region LabelStyle-->
+    <Style TargetType="{x:Type Label}" x:Key="greyLabel">
+        <Setter Property="FontFamily" Value="{StaticResource LightFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource grey_700}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="greyLabelBold">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource grey_700}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="primaryLabel">
+        <Setter Property="FontFamily" Value="{StaticResource LightFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppPrimary}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="primaryLabelBold" BasedOn="{StaticResource primaryLabel}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="contentLabel">
+        <Setter Property="FontFamily" Value="{StaticResource LightFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="contentBoldLabel">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="listContentLabel">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="listgrayContentLabel">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppHintText}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" x:Key="listPrimaryContentLabel">
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="TextColor" Value="{StaticResource AppPrimary}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Label}" x:Key="pageHeadingLabel">
+        <Setter Property="TextColor" Value="{StaticResource AppForeground}"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type Label}" x:Key="pagePrimaryHeadingLabel">
+        <Setter Property="TextColor" Value="{StaticResource AppPrimary}"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region BoxViewStyle-->
+    <Style TargetType="{x:Type BoxView}" x:Key="horizontalLine">
+        <Setter Property="HeightRequest" Value="1"/>
+        <Setter Property="Color" Value="{DynamicResource AppBorderColor}"/>
+    </Style>
+    <Style TargetType="{x:Type BoxView}" x:Key="verticalLine">
+        <Setter Property="WidthRequest" Value="1"/>
+        <Setter Property="Color" Value="{DynamicResource AppBorderColor}"/>
+    </Style>
+
+    <Style TargetType="{x:Type BoxView}" x:Key="horizontalPrimaryLine">
+        <Setter Property="HeightRequest" Value="1"/>
+        <Setter Property="Color" Value="{DynamicResource AppPrimary}"/>
+    </Style>
+    <Style TargetType="{x:Type BoxView}" x:Key="verticalPrimaryLine">
+        <Setter Property="WidthRequest" Value="1"/>
+        <Setter Property="Color" Value="{DynamicResource AppPrimary}"/>
+    </Style>
+    
+    <!--#endregion-->
+    <!--#region ButtonStyle-->
+    <Style TargetType="{x:Type Button}" x:Key="actionButtonPrimary">
+        <Setter Property="BorderWidth" Value="0"/>
+        <Setter Property="BorderRadius" Value="0"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="TextColor" Value="{DynamicResource AppForeground}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource AppPrimary}"/>
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style TargetType="{x:Type Button}" x:Key="actionButtonCancel">
+        <Setter Property="BorderWidth" Value="0"/>
+        <Setter Property="BorderRadius" Value="0"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="TextColor" Value="{DynamicResource AppForeground}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource ValidationBackground}"/>
+        <Setter Property="FontFamily" Value="{StaticResource BoldFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region GridStyle-->
+    <Style TargetType="{x:Type Grid}" x:Key="baseGrid">
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="Padding">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,0,0,0" />
+                    <On Platform="iOS" Value="0,20,0,0"/>
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region TabViewControl Style-->
+    <Style TargetType="{x:Type tvs:TabViewControl}" x:Key="baseTab">
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource AppBackground}"/>
+        <Setter Property="HeaderBackgroundColor" Value="{DynamicResource AppBackground}"/>
+        <Setter Property="HeaderSelectionUnderlineColor" Value="{DynamicResource AppPrimary}"/>
+        <Setter Property="HeaderSelectionUnderlineThickness" Value="2"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region SfScheduleStyle-->
+    <!--<Style TargetType="{x:Type schedule:SfSchedule}">
+        <Setter Property="AppointmentStyle">
+            <Setter.Value>
+                <schedule:AppointmentStyle BorderWidth="20" BorderCornerRadius="0" BorderColor="{DynamicResource AppPrimary}"
+                                           FontSize = "14" FontFamily="{StaticResource BoldFont}" />
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+    <!--#endregion-->
+    <!--#region SfDatePickerStyle-->
+    <Style TargetType="{x:Type syncfusionExt:CustomDatePicker}">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="HeaderBackgroundColor" Value="Transparent"/>
+        <Setter Property="SelectedItemTextColor" Value="{DynamicResource AppPrimary}"/>
+        <Setter Property="ColumnHeaderBackgroundColor" Value="Transparent"/>
+        <Setter Property="ColumnHeaderTextColor" Value="{DynamicResource AppHintText}"/>
+        <Setter Property="UnSelectedItemTextColor" Value="{DynamicResource AppForeground}"/>
+        <Setter Property="ShowHeader" Value="false"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="BorderColor" Value="{DynamicResource AppBorderColor}"/>
+        <Setter Property="ShowColumnHeader" Value="true"/>
+        <Setter Property="ColumnHeaderHeight" Value="50"/>
+        <Setter Property="ShowFooter" Value="False"/>     
+        <Setter Property="PickerHeight" Value="180"/>
+        <Setter Property="ColumnHeaderFontSize" Value="14"/>
+        <Setter Property="SelectedItemFontSize" Value="16"/>
+        <Setter Property="UnSelectedItemFontSize" Value="16"/>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>

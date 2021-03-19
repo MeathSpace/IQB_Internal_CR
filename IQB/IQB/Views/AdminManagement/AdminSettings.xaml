@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.AdminManagement.AdminSettings" 
+             BackgroundColor="#DCDCDC"
+             Padding="0,0,0,0"
+             >
+    <ContentView.Content>
+        <Grid Margin="0,5,0,0" BackgroundColor="White" Padding="0,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackLayout Padding="15" Grid.Row="0" HeightRequest="100">
+
+                    <StackLayout Orientation="Horizontal">
+                        
+                        <Label Text="Manage Services" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageServicesTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="1" HeightRequest="100">
+
+                    <StackLayout Orientation="Horizontal">
+                       
+                        <Label Text="Manage Staff" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageStaffTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="2" HeightRequest="100">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="My Customers" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMyCustomersTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="3" HeightRequest="100">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Manage Salon Text" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSalonTextTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="4" HeightRequest="100">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Manage Salon" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageSalonTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="5" HeightRequest="100">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Manage Appointment" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageAppointmentTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="6" HeightRequest="100">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Manage Reservation" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageReservationTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="7" HeightRequest="110">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Manage Appointment Settings" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageAppointmentSettingsTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Padding="15" Grid.Row="8" HeightRequest="110">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Manage Reports" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnManageReportsTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="White"></Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

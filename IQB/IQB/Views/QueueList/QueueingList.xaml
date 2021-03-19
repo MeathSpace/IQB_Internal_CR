@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IQB.Views.QueueList.QueueingList"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <ContentView.Content>
+
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" Padding="15"
+                     BackgroundColor="Transparent"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"
+                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" 
+                     Orientation="Vertical">
+
+            <BoxView BackgroundColor="{DynamicResource AppHintText}" HeightRequest="1"/>
+
+            <StackLayout Padding="15,0" Orientation="Horizontal">
+                <StackLayout  VerticalOptions="Center" HorizontalOptions="StartAndExpand" Orientation="Vertical" BackgroundColor="Transparent">
+
+                    <Label Text="List Update" FontAttributes="Bold" FontSize="17" VerticalOptions="StartAndExpand" TextColor="{DynamicResource AppPrimary}" HorizontalOptions="StartAndExpand"/>
+
+                    <Label Text="{Binding LastRefreshed}" FontSize="16" VerticalOptions="EndAndExpand" TextColor="{DynamicResource AppHintText}"  HorizontalOptions="StartAndExpand"/>
+
+                </StackLayout>
+
+                <forms:SvgCachedImage  x:Name="ConnectImage" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Source="resource://IQB.Resources.Image.refresh.svg" WidthRequest="30" HeightRequest="30" IsEnabled="{Binding IsEnabled}">
+                    <forms:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="btnRefreshClicked" NumberOfTapsRequired="1" />
+                    </forms:SvgCachedImage.GestureRecognizers>
+                </forms:SvgCachedImage>
+
+
+                <!--<Image x:Name="ConnectImage" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" WidthRequest="24" Source="refresh.png"  IsEnabled="{Binding IsEnabled}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="btnRefreshClicked" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>-->
+                
+                
+            </StackLayout>
+
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
+
+                <ActivityIndicator x:Name="actInd"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                                   IsRunning="{Binding IsRunning}"
+                                   IsVisible="{Binding IsRunning}"
+                                   Color="{DynamicResource AppPrimary}" />
+
+                <StackLayout BackgroundColor="Black" x:Name="stckQueueList" Padding="5,5,5,10"/>
+
+            </StackLayout>
+
+            <!--<StackLayout x:Name="btnRefresh" Orientation="Horizontal" HeightRequest="40" BackgroundColor="{DynamicResource AppPrimary}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" WidthRequest="400" >
+                
+                <Label x:Name="ConnectLabel" Text="REFRESH LIST" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"  IsEnabled="{Binding IsEnabled}"/>
+
+                <Image x:Name="ConnectImage" WidthRequest="24" Source="refresh.png" VerticalOptions="Center" IsEnabled="{Binding IsEnabled}"/>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="btnRefreshClicked" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+            
+            </StackLayout>-->
+
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

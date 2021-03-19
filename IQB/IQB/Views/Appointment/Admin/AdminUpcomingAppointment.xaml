@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Appointment.Admin.AdminUpcomingAppointment"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+             Title="Appointments"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+
+            <Grid x:Name="gdMain" Margin="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="5" Margin="25,5,25,0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                                  WidthRequest="14" HeightRequest="14"
+                                                  HorizontalOptions="Center" 
+                                                  VerticalOptions="Center">
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <!--<custom:BorderlessEntry Placeholder="Filter by Appointment Name" Grid.Column="1"
+                                        Style="{DynamicResource SearchBarStyle}"
+                                        TextChanged="SearchBar_TextChanged"/>-->
+                    <!--<Picker x:Name="pickerStatus" Grid.Column="1" IsVisible="True" Title="Select a status" TitleColor="White" 
+                        SelectedIndexChanged="PickerStatus_SelectedIndexChanged" TextColor="White" />-->
+
+                    <Grid Grid.Column="1" MinimumHeightRequest="40" Margin="5,20" HorizontalOptions="Fill">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectStatus_Tapped"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Status" x:Name="lblStatus"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.expand-button.svg" Grid.Column="1">
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
+                        <Picker x:Name="pickerStatus" IsVisible="False" Title="Select a status" />
+
+                    </Grid>
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="5" Margin="25,20,25,0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid MinimumHeightRequest="40" Margin="0,5" HorizontalOptions="Start">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectStartDate_Tapped"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" HeightRequest="20" Source="resource://IQB.Resources.Image.calendar.svg" >
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                        <Label Text="From Date" x:Name="lblStartDate" Grid.Column="1"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid Grid.Column="1" MinimumHeightRequest="40" Margin="0,5" HorizontalOptions="Start">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectEndDate_Tapped"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" HeightRequest="20" Source="resource://IQB.Resources.Image.calendar.svg" HorizontalOptions="Start" >
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                        <Label Text="To Date" x:Name="lblEndDate"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center" Grid.Column="1"/>
+
+                    </Grid>
+                    <ffimageloadingsvg:SvgCachedImage WidthRequest="30" HeightRequest="30" Source="resource://IQB.Resources.Image.FilledSearch.svg" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                        <!--<ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>-->
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SearchButton_Tapped"/>
+
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1"></BoxView>
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.Column="1"></BoxView>
+                </Grid>
+
+                <Frame x:Name="frmHintList" 
+                   Grid.Row="2"
+                   Grid.ColumnSpan="5" 
+                   BackgroundColor="{DynamicResource AppBackground}"
+                   BorderColor="{DynamicResource AppPrimary}" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" Padding="0"
+                   Margin="20,20,20,10" HeightRequest="40">
+                    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="lblSwipe" IsVisible="True"     Style="{DynamicResource contentLabel}" Text="Swipe Left for more options"
+                           FontSize="Small"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,-20,0"/>
+                        <Label x:Name="lblNoRecord" IsVisible="False"  Style="{DynamicResource contentLabel}" Text="No Record Found"
+                           FontSize="Small"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,-20,0"/>
+                        <ffimageloadingsvg:SvgCachedImage x:Name="imgCloseHint" Grid.Column="1" WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.cross.svg"
+                                                              HorizontalOptions="Center" VerticalOptions="Center">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="imgCloseHint_Tapped"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </Grid>
+                </Frame>
+
+                <ListView x:Name="AppointmentList" Grid.Row="3" Grid.Column="0" Grid.RowSpan="6" 
+                          Grid.ColumnSpan="5" Margin="20,10,20,0"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      BackgroundColor="{DynamicResource AppBackground}"
+                      IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <context:SideActionBarCell x:Name="st">
+                                <!--Main Content Starts-->
+                                <context:SideActionBarCell.Content>
+                                    <Frame Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference AppointmentList}, Path=Width}" Padding="0">
+                                        <StackLayout BackgroundColor="#14181B"
+                                             Padding="10">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ViewAppointment_Tapped" CommandParameter="{Binding AppointmentID}"></TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
+                                            <!--<ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          WidthRequest="22" 
+                                                                          HeightRequest="22"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center"/>-->
+
+                                            <StackLayout VerticalOptions="Center"  Orientation="Horizontal" Spacing="20" >
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding Status}"/>
+                                                <!--<StackLayout Orientation="Horizontal" Spacing="0">-->
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding Date}"/>
+
+                                                <!--</StackLayout>-->
+                                            </StackLayout>
+
+
+                                            <ListView BackgroundColor="Transparent" InputTransparent="True" RowHeight="45" ItemsSource="{Binding Services}" SeparatorVisibility="None">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell>
+                                                            <Grid BackgroundColor="Transparent">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition/>
+                                                                    <ColumnDefinition/>
+
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Label Style="{DynamicResource listContentLabel}"
+                                                                       VerticalTextAlignment="Center"
+                                                                        Grid.Column="0"
+                                                                       Text="{Binding ServiceName, StringFormat='{0}:'}"/>
+
+                                                                <StackLayout  Grid.Column="1">
+                                                                    <Label TextColor="Gray"
+                                                                            HorizontalOptions="Center"
+                                                                           FontAttributes="Bold"
+                                                                           Text="{Binding BarberName}"/>
+                                                                    <StackLayout Orientation="Horizontal">
+
+
+                                                                        <Label Style="{DynamicResource listContentLabel}"
+                                                                       VerticalTextAlignment="Center"
+                                                                       FontAttributes="Italic"
+                                                                               
+                                                                       
+                                                                       Text="{Binding From, StringFormat=' {0} -'}"/>
+
+
+
+
+                                                                        <Label FontAttributes="Italic" 
+                                                                           Style="{DynamicResource listContentLabel}"
+                                                                       VerticalTextAlignment="Center"
+                                                                      
+                                                                       Text="{Binding To}"/>
+                                                                    </StackLayout>
+                                                                </StackLayout>
+
+                                                            </Grid>
+                                                            <!--<StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
+
+
+                                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                                                        
+                                           Text="{Binding ServiceName, StringFormat='{0}:'}}"/>
+
+                                                            <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                                                           FontAttributes="Italic"
+                                           Text="{Binding From, StringFormat='{0}-'}"/>
+
+                                                            <Label FontAttributes="Italic" Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding To}"/>
+
+                                                            </StackLayout>-->
+
+                                                        </ViewCell>
+
+
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </context:SideActionBarCell.Content>
+                                <!--Main Content Ends-->
+                                <!--Side Content Starts-->
+                                <context:SideActionBarCell.ContextTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Margin="0,5">
+                                            <Frame CornerRadius="5" Padding="0" VerticalOptions="FillAndExpand"
+                                                 HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource AppPrimary}">
+                                                <StackLayout Orientation="Horizontal" Spacing="20" Margin="20" >
+                                                    <!--<ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.editIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <ffimg:CachedImage.Transformations>
+                                                        <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                    </ffimg:CachedImage.Transformations>
+                                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="EditAppointment_Tapped" CommandParameter="{Binding SalonId}"></TapGestureRecognizer>
+                                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                </ffimageloadingsvg:SvgCachedImage>-->
+                                                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.deleteIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <ffimg:CachedImage.Transformations>
+                                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                        </ffimg:CachedImage.Transformations>
+                                                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="DeleteAppointment_Tapped" CommandParameter="{Binding AppointmentID}"></TapGestureRecognizer>
+                                                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                    </ffimageloadingsvg:SvgCachedImage>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </context:SideActionBarCell.ContextTemplate>
+                                <!--Side Content Ends-->
+                            </context:SideActionBarCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--<Frame Grid.Column="4" Grid.Row="3" Grid.RowSpan="6" Margin="-25, 0, 20, 15"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center" 
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   CornerRadius="30" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}" x:Name="frmAppoAdd">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddAppointment_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                        <ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </Frame>-->
+
+            </Grid>
+
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" 
+                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

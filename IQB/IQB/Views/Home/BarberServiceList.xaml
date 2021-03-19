@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Home.BarberServiceList"
+             xmlns:converters="clr-namespace:IQB.Converters"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:tvs="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <ContentPage.Content>
+            <Grid Style="{DynamicResource baseGrid}" x:Name="gdMain">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                 <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Select Service" TextColor="{DynamicResource AppForeground}" FontSize="18" FontAttributes="Bold" Margin="25,20,0,20" HorizontalOptions="Start" Grid.Column="0" />
+
+                        <Grid Padding="20" Grid.Column="1">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CrossIconTapped"/>
+                            </Grid.GestureRecognizers>
+                            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.cross.svg" HorizontalOptions="End"  WidthRequest="18" HeightRequest="18" >
+                                <ffimg:CachedImage.Transformations>
+                                    <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </ffimg:CachedImage.Transformations>
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                   
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+
+                        </Grid>
+                        
+                    </Grid>
+
+
+                    <Grid Grid.Row="1" Margin="15,15,15,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <controls:CircleImage x:Name="ProfileImageNew1" BorderThickness="1" BorderColor="WhiteSmoke" Aspect="AspectFill" HorizontalOptions="Start"  Source="{Binding SelectBarberImage}">
+                                <controls:CircleImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                     iOS="80"
+                                      Android="60" />
+                                </controls:CircleImage.WidthRequest>
+                                <controls:CircleImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                       iOS="80"
+                                      Android="60" />
+                                </controls:CircleImage.HeightRequest>
+                                <controls:CircleImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="PickPictureTapped"
+                                         NumberOfTapsRequired="1" />
+                                </controls:CircleImage.GestureRecognizers>
+                            </controls:CircleImage>
+
+
+
+                        </StackLayout>
+
+
+                        <Grid Grid.Column="1" Margin="15,15,15,0" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+
+                            </Grid.RowDefinitions>
+                            <Label x:Name="LabelFullName1" Grid.Row="0" Text="{Binding SelectBarberName}" FontAttributes="Bold" FontSize="18" TextColor="White" HorizontalOptions="StartAndExpand"/>
+                            <Label x:Name="LabelHistory" Grid.Row="1" Text="{Binding AutojoinEstimatedWaitTime}" FontAttributes="Bold" FontSize="12" TextColor="{DynamicResource AppHintText}" HorizontalOptions="StartAndExpand"/>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Frame BackgroundColor="#13343B"
+                                               BorderColor="#13343B" 
+                                               CornerRadius="3" Margin="15,10,15,0"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand" Padding="0"
+                                               HeightRequest="40" Grid.Row="2">
+                        <Grid VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+
+                            </Grid.RowDefinitions>
+                            <Label x:Name="LabelService"  Grid.Row="0" Text="Select Service" FontAttributes="Bold" FontSize="20" TextColor="White" Margin="10,0"  HorizontalOptions="StartAndExpand"/>
+                            <Label x:Name="LabelServiceCount" Grid.Row="1"  FontAttributes="Bold" FontSize="16" Margin="10,0" TextColor="{DynamicResource AppHintText}"  HorizontalOptions="StartAndExpand"/>
+
+                        </Grid>
+                    </Frame>
+
+
+                    <Frame x:Name="frmNoRecord" BackgroundColor="{DynamicResource AppBackground}"
+                                               BorderColor="{DynamicResource AppPrimary}" 
+                                               CornerRadius="5" Margin="15,15,15,0"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand" Padding="0"
+                                               HeightRequest="40"   Grid.Row="3"  IsVisible="False">
+                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Style="{DynamicResource contentLabel}" Text="No Record Found"
+                                                       FontSize="Small"
+                                                       HorizontalOptions="Center" VerticalOptions="Center"
+                                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,-20,0"/>
+
+                        </Grid>
+                    </Frame>
+
+
+
+                    <StackLayout Grid.Row="3">
+                        
+                   
+                    <ListView x:Name="ServiceListPopup"   
+                      RowHeight="100" Margin="15,0"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      BackgroundColor="Transparent"
+                      ItemTapped="ServiceListPopup_ItemTapped"
+                      IsRefreshing="{Binding IsRefreshing}"
+                     >
+                        
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid >
+                                        <Frame Padding="0" BackgroundColor="#14181B" WidthRequest="{Binding Source={x:Reference ServiceListPopup}, Path=Width}" >
+                                            <Grid Padding="10,10,7,0" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="1"/>
+
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid Grid.Row="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Style="{DynamicResource listContentLabel}" 
+                                                                       VerticalTextAlignment="Center"
+                                                                        Grid.Column="0" Margin="0, 3"
+                                                                       Text="{Binding ServiceName}"/>
+
+                                                        <!--<sync:SfCheckBox x:Name="selectService"  Grid.Column="1"  VerticalOptions="Center" UncheckedColor="{DynamicResource AppPrimary}" 
+                                                                 
+                                                                 IsChecked="{Binding IsServiceChecked,Mode=TwoWay}" HorizontalOptions="EndAndExpand"></sync:SfCheckBox>-->
+
+                                                    <ffimageloadingsvg:SvgCachedImage x:Name="tickimage" Source="{Binding SourceTickImage}" Grid.Column="1" Margin="0, 0,5,0" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="23" HeightRequest="23" >
+                                                      
+                                                    </ffimageloadingsvg:SvgCachedImage>
+
+
+
+                                                </Grid>
+
+                                                    <Grid Grid.Row="1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="1"/>
+                                                            <ColumnDefinition Width="*"/>
+
+                                                        </Grid.ColumnDefinitions>
+
+                                                    <Label  TextColor="{Binding LabelColor}"
+                                                                       VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"
+                                                                        Grid.Column="0" Margin="0, 3" FontSize="18"
+                                                                       Text="{Binding ServicePrice}"/>
+
+                                                        <BoxView Style="{DynamicResource verticalLine}" Grid.Column="1"></BoxView>
+
+                                                    <Label  TextColor="{Binding LabelColor}"
+                                                                       VerticalTextAlignment="Center" FontSize="16"
+                                                                        Grid.Column="2" Margin="5,0"
+                                                                       Text="{Binding ServiceEstimatedTime}"/>
+
+
+                                                    </Grid>
+
+
+                                                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                        
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+                
+                 <Button Grid.Row="1" x:Name="btnJoinQueue"
+                    Text="+JOIN QUEUE"
+                    Clicked="JoinQueue_Clicked" 
+                    HeightRequest="50"
+                    Style="{DynamicResource actionButtonPrimary}"/>
+
+
+              <Grid x:Name="indicator" Grid.Row ="0" Grid.RowSpan ="2" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+              </Grid>
+              
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

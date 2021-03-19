@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.AdminManagement.StaffProfile"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HeightRequest" Value="75" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
+            <Style x:Key="TextBoxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Margin" Value="0,-8,0,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid HeightRequest="75">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="CancelPosition.png"
+                       HeightRequest="26" 
+                       WidthRequest="26"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="7,0,0,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_CanceButton"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout HorizontalOptions="StartAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Grid.Column="1">
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="-25,0,0,0" />
+                            <On Platform="Android" Value="-5,0,0,0" />
+                        </OnPlatform>
+                    </StackLayout.Margin>
+                    <Label Text="{Binding PageHeading}" 
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand" 
+                           TextColor="Black" 
+                           FontAttributes="Bold" 
+                           FontSize="20"></Label>
+                </StackLayout>
+            </Grid>
+            <!--<StackLayout VerticalOptions="Start" Orientation="Vertical"  HorizontalOptions="CenterAndExpand" x:Name="panelProfileImage" IsVisible="{Binding IsVisibleProfileDetails}">-->
+            <controls:CircleImage x:Name="ProfileImages"
+                                  BorderThickness="2" 
+                                  BorderColor="WhiteSmoke"
+                                  Aspect="AspectFill" 
+                                  HorizontalOptions="Center"
+                                  IsEnabled="{Binding IsEnabled}" Source="{Binding ProfileImage}">
+                <controls:CircleImage.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="100"
+                                Android="100" />
+                </controls:CircleImage.WidthRequest>
+                <controls:CircleImage.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double"
+                                iOS="100"
+                                Android="100" />
+                </controls:CircleImage.HeightRequest>
+                <!--<controls:CircleImage.Source>
+                        <UriImageSource Uri="{Binding ProfileImageURI}" 			                   
+			                        CachingEnabled="False" />
+                    </controls:CircleImage.Source>-->
+                <controls:CircleImage.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" />
+                </controls:CircleImage.GestureRecognizers>
+            </controls:CircleImage>
+
+            <Image Source="upload_pics.png" WidthRequest="120" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                       Command="{Binding AddMemberPictureCommand}"
+                       NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <!--</StackLayout>-->
+            <!--<Label Text="Upload Profile Picture"
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0,10,0,0"></Label>-->
+            <Grid Padding="25" HeightRequest="200" WidthRequest="400" Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid HorizontalOptions="CenterAndExpand" HeightRequest="80" WidthRequest="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="lblProfile"
+                           Style="{StaticResource LabelStyle}"
+                           BackgroundColor="Black"
+                           Text="Profile"
+                           TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="lblServices" 
+                           Style="{StaticResource LabelStyle}"
+                           BackgroundColor="#DCDCDC"
+                           Grid.Column="1"
+                           Text="Services"
+                           TextColor="Black"
+                           Margin="-4,0,0,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Grid x:Name="gdProfile"
+                      BackgroundColor="Black"
+                      Grid.Row="1"
+                      HeightRequest="150" 
+                      Margin="0,-5,0,0"
+                      WidthRequest="352"
+                      Padding="1">
+                    <Grid HeightRequest="150" BackgroundColor="White" Padding="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="EndAndExpand">
+                            <StackLayout>
+                                <StackLayout.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">130</On>
+                                        <On Platform="Android">145</On>
+                                    </OnPlatform>
+                                </StackLayout.WidthRequest>
+                                <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding FirstName}">
+                                </Label>
+                                <BoxView Style="{StaticResource BoxViewStyle}"></BoxView>
+                            </StackLayout>
+                            <StackLayout>
+                                <StackLayout.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS">130</On>
+                                        <On Platform="Android">145</On>
+                                    </OnPlatform>
+                                </StackLayout.WidthRequest>
+                                <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding LastName}">
+                                </Label>
+                                <BoxView Style="{StaticResource BoxViewStyle}" Margin="0,-8,10,0"></BoxView>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1"
+                                 VerticalOptions="EndAndExpand">
+                            <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding PreferredName}">
+                            </Label>
+                            <BoxView Style="{StaticResource BoxViewStyle}"></BoxView>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2">
+                            <StackLayout VerticalOptions="EndAndExpand">
+                                <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding EmployeePasscode}">
+                                </Label>
+                                <BoxView Style="{StaticResource BoxViewStyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView Grid.Row="2" HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvAlphaNumeric}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvAlphaNumeric}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3">
+                            <StackLayout Grid.Row="3"
+                                 VerticalOptions="EndAndExpand">
+                                <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding EmailAddress}">
+                                </Label>
+                                <BoxView Style="{StaticResource BoxViewStyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView Grid.Row="2" HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvEmail}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvEmail}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                        </StackLayout>
+                        <StackLayout Grid.Row="4"
+                                 VerticalOptions="EndAndExpand">
+                            <Label HorizontalOptions="FillAndExpand"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       Text="{Binding Estimatedwaittime}">
+                            </Label>
+                            <BoxView Style="{StaticResource BoxViewStyle}"></BoxView>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gdServices"
+                      BackgroundColor="Black"
+                      Grid.Row="1"
+                      HeightRequest="122" 
+                      Margin="0,-5,0,-45"
+                      WidthRequest="352"
+                      Padding="1"
+                      IsVisible="False">
+                    <ListView x:Name="ServiceList"
+                              SeparatorVisibility="None"
+                              SeparatorColor="Black"
+                              WidthRequest="350" 
+                              BackgroundColor="White"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="FillAndExpand"
+                              HasUnevenRows="True" 
+                              IsRefreshing="{Binding IsRefreshing}"
+                              ItemsSource="{Binding BrResult}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="5" HeightRequest="55">
+                                        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">-->
+                                        <Grid Padding="0,0,10,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="{Binding ServiceName}" 
+                                                       HeightRequest="30"
+                                                       TextColor="Black"
+                                                       FontSize="12"></Label>
+                                            <!--<Button x:Name="ServiceButton" 
+                                                        Grid.Column="1"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        CommandParameter="{Binding .}" Clicked="ServiceName_Clicked"
+                                                        WidthRequest="75"
+                                                        HeightRequest="30"
+                                                        FontSize="8"
+                                                        TextColor="White"
+                                                        BackgroundColor="Transparent"
+                                                        Image="{Binding Status, Converter={StaticResource StringToImageConverterID}}">
+                                            </Button>-->
+                                            <Switch IsToggled="{Binding IsToggled}" Grid.Column="1" IsEnabled="{Binding SwitchIsEnabled}" xfg:SwitchGloss.OnTintColor="Black" xfg:SwitchCellGloss.ThumbOnTintColor="Black"></Switch>
+                                        </Grid>
+                                        <!--</StackLayout>-->
+                                        <StackLayout Orientation="Horizontal" Margin="0,-10,0,0">
+                                            <StackLayout Grid.Row="1">
+                                                <StackLayout.WidthRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double">
+                                                        <On Platform="iOS">120</On>
+                                                        <On Platform="Android">145</On>
+                                                    </OnPlatform>
+                                                </StackLayout.WidthRequest>
+                                                <custom:BorderlessEntry Placeholder="Price ($)"
+                                                                        PlaceholderColor="Black"
+                                                                        Style="{StaticResource TextBoxStyle}"
+                                                                        Text="{Binding Price}"
+                                                                        IsEnabled="False">
+                                                    <custom:BorderlessEntry.FontFamily>
+                                                        <OnPlatform x:TypeArguments="x:String">
+                                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                                        </OnPlatform>
+                                                    </custom:BorderlessEntry.FontFamily>
+                                                </custom:BorderlessEntry>
+                                                <BoxView Style="{StaticResource BoxViewStyle}">
+                                                    <BoxView.Margin>
+                                                        <OnPlatform x:TypeArguments="Thickness">
+                                                            <On Platform="iOS" Value="0,0,0,0" />
+                                                            <On Platform="Android" Value="0,-8,0,0" />
+                                                        </OnPlatform>
+                                                    </BoxView.Margin>
+                                                </BoxView>
+                                            </StackLayout>
+                                            <StackLayout Grid.Row="1" 
+                                                      Grid.Column="1">
+                                                <StackLayout.WidthRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double">
+                                                        <On Platform="iOS">120</On>
+                                                        <On Platform="Android">145</On>
+                                                    </OnPlatform>
+                                                </StackLayout.WidthRequest>
+                                                <Label Text="{Binding ServiceId}" IsVisible="False" x:Name="lblServiceID"></Label>
+                                                <custom:BorderlessEntry Placeholder="Default Estimated Time (Mins) "
+                                                                        PlaceholderColor="Gray"
+                                                                        Style="{StaticResource TextBoxStyle}"
+                                                                        Text="{Binding ServiceIdTime}">
+                                                    <custom:BorderlessEntry.FontFamily>
+                                                        <OnPlatform x:TypeArguments="x:String">
+                                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                                        </OnPlatform>
+                                                    </custom:BorderlessEntry.FontFamily>
+                                                    <!--<custom:BorderlessEntry.Margin>
+                                                            <OnPlatform x:TypeArguments="Thickness">
+                                                                <On Platform="Android" Value="0,-9,0,0" />
+                                                            </OnPlatform>
+                                                        </custom:BorderlessEntry.Margin>-->
+                                                </custom:BorderlessEntry>
+                                                <BoxView Style="{StaticResource BoxViewStyle}">
+                                                    <BoxView.Margin>
+                                                        <OnPlatform x:TypeArguments="Thickness">
+                                                            <On Platform="iOS" Value="0,0,0,0" />
+                                                            <On Platform="Android" Value="0,-8,0,0" />
+                                                        </OnPlatform>
+                                                    </BoxView.Margin>
+                                                </BoxView>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <BoxView BackgroundColor="Black" HeightRequest="1" Margin="-5,0,-5,0"></BoxView>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Label x:Name="ConnectLabel" 
+                   VerticalOptions="EndAndExpand" 
+                   HorizontalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   HeightRequest="35" 
+                   WidthRequest="400" 
+                   Text="{Binding TextValue}" 
+                   FontAttributes="Bold" 
+                   TextColor="White"
+                   BackgroundColor="Black"
+                   Margin="0,0,0,1">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                          Command="{Binding AddMemberCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

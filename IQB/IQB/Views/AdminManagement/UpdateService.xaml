@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.AdminManagement.UpdateService"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:converters="clr-namespace:IQB.Converters"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:customControls="clr-namespace:IQB.CustomControl;assembly=IQB"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="{DynamicResource AppBackground}"
+             
+             >
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid Style="{DynamicResource baseGrid}">
+
+                <Grid Style="{DynamicResource baseGrid}" x:Name="gdMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" HorizontalOptions="Center" Padding="20,0,20,10">
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="50" HeightRequest="50" Source="resource://IQB.Resources.Image.AddEditService.svg">
+
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                        <Label Text="Update Service" Style="{DynamicResource pageHeadingLabel}"></Label>
+                    </StackLayout>
+
+                    <Grid Grid.Row="1" Padding="20,10,20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="1"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="1"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <Label Text="Service Name"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                           Grid.Row="0"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center" VerticalTextAlignment="Center"/>
+
+                        <Label x:Name="Serviceid" Grid.Row="1" Text="{Binding ServiceId}" IsVisible="False"/>
+                        <custom:BorderlessEntry Grid.Row="1" Placeholder="Service Name" Text="{Binding ServiceName}"  
+                                            Style="{StaticResource RegisterTextboxStyle}"
+                                            HorizontalOptions="Fill"
+                                            MinimumHeightRequest="40"
+                                            IsEnabled="True" >
+                            <custom:BorderlessEntry.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </custom:BorderlessEntry.FontFamily>
+                            <!--<custom:BorderlessEntry.Behaviors>
+                                <behavior:SpecialCharacterBehavior x:Name="bhvServiceName" />
+                            </custom:BorderlessEntry.Behaviors>-->
+                        </custom:BorderlessEntry>
+
+
+
+
+
+                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>
+
+                        <Label Text="Price"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                           Grid.Row="3"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center" VerticalTextAlignment="Center"/>
+
+
+
+                        <!--<custom:BorderlessEntry Placeholder="Price" Grid.Row="4" 
+                                            Text="{Binding ServicePrice}"
+                                            Keyboard="Telephone" Style="{StaticResource RegisterTextboxStyle}" HorizontalOptions="Fill"
+                                            MinimumHeightRequest="40"
+                                            IsEnabled="True">
+                        <custom:BorderlessEntry.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                            </OnPlatform>
+                        </custom:BorderlessEntry.FontFamily>
+                        <custom:BorderlessEntry.Behaviors>
+                                <behavior:PhoneNumberBehavior x:Name="bhvMobileNo" />
+                            </custom:BorderlessEntry.Behaviors>
+                    </custom:BorderlessEntry>-->
+
+
+                        <numeric:SfNumericUpDown BorderColor="{DynamicResource AppBackground}"  Value="{Binding ServicePrice}" Grid.Row="4" x:Name="entrySerPrice" MaximumDecimalDigits="2" HeightRequest="35" WidthRequest="50" MinimumHeightRequest="50" TextColor="White" AllowNull="false" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+								FormatString="n" Watermark="Pound"  SpinButtonAlignment="Both" ValueChanged="entrySerPrice_ValueChanged" TextAlignment="Center" >
+
+                            <numeric:SfNumericUpDown.IncrementButtonSettings>
+                                <numeric:UpDownButtonSettings ButtonFontColor="White"/>
+                            </numeric:SfNumericUpDown.IncrementButtonSettings>
+
+                            <numeric:SfNumericUpDown.DecrementButtonSettings>
+                                <numeric:UpDownButtonSettings ButtonFontColor="White"/>
+                            </numeric:SfNumericUpDown.DecrementButtonSettings>
+
+                        </numeric:SfNumericUpDown>
+
+
+
+
+                        <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="5"></BoxView>
+
+
+
+
+                        <Button 
+                        x:Name="btnAdd"
+                        Text="UPDATE" 
+                        HeightRequest="50"
+                        Grid.Row="6"
+                        Margin="0,20"
+                        CornerRadius="3"        
+                       Command="{Binding UpdateServiceCommand}"
+                        IsEnabled="{Binding IsEnabled}"                             
+                        Style="{DynamicResource actionButtonPrimary}"/>
+
+
+
+                    </Grid>
+
+
+
+                </Grid>
+
+                <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+                </Grid>
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

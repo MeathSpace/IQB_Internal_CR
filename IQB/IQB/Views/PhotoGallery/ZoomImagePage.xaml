@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource AppBackground}"
+              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="IQB.Views.PhotoGallery.ZoomImagePage">
+    <ContentPage.Content>
+       
+        <Grid RowSpacing="0" BackgroundColor="Transparent">
+          
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="Images" Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                <forms:SvgCachedImage Margin="0,35,20,0" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand" Source="resource://IQB.Resources.Image.cross.svg" WidthRequest="23" HeightRequest="23">
+                   
+                    <forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>
+              
+                    <forms:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CrossIcontapped"/>
+                    </forms:SvgCachedImage.GestureRecognizers>
+
+                </forms:SvgCachedImage>
+              
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

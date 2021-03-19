@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Login"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             BackgroundColor="{DynamicResource AppBackground}">
+
+    <ContentPage.Content>
+
+        <Grid Style="{DynamicResource baseGrid}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <!--<ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.LoginBackground.svg" Aspect="AspectFill" />-->
+            <Grid  x:Name="gdMain">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" HorizontalOptions="Center" Padding="20,20,20,0">
+                    <!--Source="{Binding Salon_ImageName}"-->
+                    <controls:CircleImage x:Name="SalonImage" 
+                                          BorderThickness="2"
+                                          BorderColor="{DynamicResource AppPrimary}"
+                                          Aspect="AspectFill" 
+                                          HorizontalOptions="Start" 
+                                          Margin="10,10,10,10">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        iOS="85"
+                                        Android="85" />
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        iOS="85"
+                                        Android="85" />
+                        </controls:CircleImage.HeightRequest>
+                    </controls:CircleImage>
+                </StackLayout>
+                <StackLayout Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Padding="20,10,20,0">
+                    <Label Text="{Binding SalonName}" Style="{DynamicResource pageHeadingLabel}"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="2" HorizontalOptions="Center" Padding="20,0,20,0">
+                    <Label Text="Enter your user ID &amp; password to login" Style="{DynamicResource greyLabel}"></Label>
+                </StackLayout>
+                <ScrollView Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Center" Padding="20,20,20,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <custom:BorderlessEntry Placeholder="Username/Email"
+                                        x:Name="entryEmail"                                        
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill" 
+                                        MinimumHeightRequest="40"
+                                        Text="{Binding UserEmail}"
+                                        IsEnabled="{Binding IsEnabled}">
+                                <Entry.Behaviors>
+                                    <behavior:EmailValidatorBehavior x:Name="bhvUserName" Message="Please enter a Username/Email"/>
+                                </Entry.Behaviors>
+                            </custom:BorderlessEntry>
+
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1"></BoxView>
+                            <custom:BorderlessEntry x:Name="entryPass" 
+                                                Placeholder="Password" 
+                                                IsPassword="true" 
+                                                Text="{Binding UserPass}" 
+                                                Grid.Row="2"
+                                                Style="{DynamicResource RegisterTextboxStyle}"
+                                                HorizontalOptions="Fill"
+                                                IsEnabled="{Binding IsEnabled}">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvPassword" Message="Please enter a Password"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="3"></BoxView>
+                            <Grid Grid.Row="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <sync:SfSwitch x:Name="sw_RememberMe"  
+                                    IsOn="{Binding IsToggled}" 
+                                  VisualType="Custom" HorizontalOptions="Start" VerticalOptions="Center" 
+                                        >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup  x:Name="CommonStates">
+
+
+
+                                            <VisualState x:Name="On">
+                                                <VisualState.Setters>
+                                                    <Setter Property="SwitchSettings">
+                                                        <Setter.Value>
+                                                            <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"
+                                  />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Off">
+                                                <VisualState.Setters>
+                                                    <Setter Property="SwitchSettings">
+                                                        <Setter.Value>
+                                                            <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                           
+
+
+                                        </VisualStateGroup>
+
+                                    </VisualStateManager.VisualStateGroups>
+
+                                </sync:SfSwitch>
+                                <Label Grid.Column="1" Text="Remember my login"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" Text="Forgot Password" Style="{DynamicResource primaryLabel}" HorizontalOptions="End" VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerForgot"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <Button Grid.Row="5" Margin="0,40"
+                                x:Name="btnLogin"
+                                Text="LOGIN" 
+                                HeightRequest="50"
+                                Clicked="btnLogin_Clicked" 
+                                IsEnabled="{Binding IsEnabled}"                               
+                                Style="{DynamicResource actionButtonPrimary}"
+                                CornerRadius="3"/>
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="6">
+                                <Label Text="Change Location" Style="{DynamicResource primaryLabel}" HorizontalOptions="EndAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChooseSalon_Tapped">
+                                        </TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="|" Style="{DynamicResource primaryLabel}" HorizontalOptions="Center"/>
+
+                                <Label Text="Help" Style="{DynamicResource primaryLabel}" HorizontalOptions="Start">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  
+                                            Tapped="OnHelpClicked"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+                <Grid Grid.Row="4" BackgroundColor="{StaticResource AppBackground}">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Don't have an account yet?" Style="{DynamicResource greyLabel}"/>
+                        <Label Text="Register now" Style="{DynamicResource contentBoldLabel}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapGestureRecognizerTapped"
+                                    NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

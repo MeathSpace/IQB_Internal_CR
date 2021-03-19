@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Settings.Settings"
+             BackgroundColor="#DCDCDC"
+             Padding="0,0,0,0">
+             <!--Title="Settings"-->
+
+    <ContentView.Content>
+        <!--<Grid x:Name="controlGrid" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Start" BackgroundColor="White">-->
+            <!--<Grid.RowDefinitions>
+                --><!--<RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />--><!--
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>-->
+
+            <Grid Margin="0,0,0,0" BackgroundColor="White" Padding="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+            <Grid HeightRequest="600">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackLayout Padding="10,0,10,0" Grid.Row="0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAppInfoTapped"
+                        NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="info.png" HeightRequest="30" WidthRequest="30"></Image>
+                        <Label Text="App Info" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0" Grid.Row="1">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDeleteApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="delete.png" HeightRequest="30" WidthRequest="30"></Image>
+                        <!--<Image Source="info.png" HeightRequest="30" WidthRequest="30"></Image>-->
+                        <Label Text="Delete Account" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0" Grid.Row="2">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnResetApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="reset.png" HeightRequest="30" WidthRequest="30"></Image>
+                        <!--<Image Source="info.png" HeightRequest="30" WidthRequest="30"></Image>-->
+                        <Label Text="Change Location" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0" Grid.Row="3">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSalonInfoTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="info2.png" HeightRequest="30" WidthRequest="30"></Image>
+                        <!--<Image Source="info.png" HeightRequest="30" WidthRequest="30"></Image>-->
+                        <Label Text="Salon Info" TextColor="Black" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" WidthRequest="350"></Label>
+                        <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="End"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#000000" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="White"></Grid>
+        </Grid>
+
+            <!--<StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#837d3c">
+            </StackLayout>-->
+            
+                <!--<StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Padding="10,10,0,10">
+                    <Image Source="info.png" HeightRequest="30" WidthRequest="30">
+                    </Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAppInfoTapped"
+                        NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,10,0,10">
+                    <Label Text="App Info" TextColor="Black" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Start">
+                    </Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAppInfoTapped"
+                        NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="0,10,0,10">
+                    <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAppInfoTapped"
+                        NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <BoxView HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="#000000" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
+
+                <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Padding="10,10,0,10">
+                    <Image Source="delete.png" HeightRequest="30" WidthRequest="30"></Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDeleteApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,10,0,10">
+                    <Label Text="Delete Account" TextColor="Black" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Start"></Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDeleteApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="0,10,0,10">
+                    <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDeleteApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+            <BoxView HeightRequest="1" Grid.Row="3" Grid.ColumnSpan="3" BackgroundColor="#000000" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
+
+
+                <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Padding="10,0,0,0">
+                    <Image Source="reset.png" HeightRequest="30" WidthRequest="30">
+                    </Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnResetApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,10,0,10">
+                    <Label Text="Change Location" TextColor="Black" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Start"></Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnResetApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="0,10,0,10">
+                    <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnResetApplicationTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            <BoxView HeightRequest="1" Grid.Row="5" Grid.ColumnSpan="3" BackgroundColor="#000000" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
+
+
+                <StackLayout Orientation="Vertical" Grid.Row="6" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Padding="10,0,0,0">
+                    <Image Source="info2.png" HeightRequest="30" WidthRequest="30">
+                    </Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSalonInfoTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,10,0,10">
+                    <Label Text="Salon Info" TextColor="Black" HorizontalOptions="FillAndExpand"  HorizontalTextAlignment="Start"></Label>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSalonInfoTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="6" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Padding="0,10,0,10">
+                    --><!--<Label Text=">" TextColor="#AFB8CB" HorizontalOptions="Center"  HorizontalTextAlignment="Center"></Label>--><!--
+                    <Image Source="gray_arrow2.png" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSalonInfoTapped"
+                      NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>-->
+                <!--<BoxView HeightRequest="1" Grid.Row="7" Grid.ColumnSpan="3" BackgroundColor="#D7DEEE" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>-->
+           
+        <!--</Grid>-->
+    </ContentView.Content>
+</ContentView>

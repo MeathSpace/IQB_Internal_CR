@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+              BackgroundColor="{DynamicResource AppBackground}"
+             x:Class="IQB.Views.Report.ReportGraphDetail"
+                xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             Title="Report Graph">
+   
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Daily" Order="Secondary" Clicked="OnToolbarItemClicked"/>
+        <ToolbarItem Text="Weekly" Order="Secondary" Clicked="OnToolbarItemClicked"/>
+        <ToolbarItem Text="Monthly" Order="Secondary" Clicked="OnToolbarItemClicked"/>
+    </ContentPage.ToolbarItems>-->
+    
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="0,0,0,0" />
+                    <On Platform="iOS" Value="0,20,0,0"/>
+                </OnPlatform>
+            </Grid.Margin>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="95"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <tabView:SfTabView 
+                           x:Name="SfReportTabContainer"
+                           Grid.Row="0"
+                            HeightRequest="48"
+                            BackgroundColor="Transparent"
+                            TabHeaderPosition="Top"
+                            VisibleHeaderCount="3"
+                            DisplayMode="Text"
+                SelectionChanged="Handle_SelectionChanged">
+
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings
+                    Color="{StaticResource AppPrimary}" 
+                    Position="Bottom" 
+                    StrokeThickness="2"/>
+                </tabView:SfTabView.SelectionIndicatorSettings>
+
+                <tabView:SfTabItem Title="Daily" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem Title="Weekly" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem Title="Monthly" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                </tabView:SfTabItem>
+
+            </tabView:SfTabView>
+
+            <Grid Padding="15,7" Grid.Row="1" RowSpacing="0">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Grid.Row="0" Grid.Column="0" Style="{DynamicResource primaryLabelBold}" VerticalOptions="Center" TextColor="Gray" Text="Start Date"/>
+
+                <Label  Grid.Row="0" Grid.Column="2" Style="{DynamicResource primaryLabelBold}" VerticalOptions="Center" HorizontalOptions="End" TextColor="Gray" Text="End Date" />
+
+                <DatePicker Grid.Row="1" FontSize="14" Grid.Column="0" BackgroundColor="Transparent" DateSelected="DateChanged" x:Name="StartDatePicker" TextColor="White" VerticalOptions="Center"/>
+
+                <DatePicker Grid.Row="1" FontSize="14" Grid.Column="2" BackgroundColor="Transparent" x:Name="EndDatePicker" DateSelected="DateChanged" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"/>
+
+                <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="{DynamicResource AppPrimary}" WidthRequest="1"/>
+
+            </Grid>
+
+            <chart:SfChart BackgroundColor="{DynamicResource AppBackground}"  Grid.Row="2" x:Name="MySyncChart">
+
+                <chart:SfChart.ChartBehaviors>
+                    <chart:ChartZoomPanBehavior EnablePanning="True" EnableZooming="False" ZoomMode="X"/>
+                </chart:SfChart.ChartBehaviors>
+                
+                <chart:SfChart.PrimaryAxis>
+
+                    <chart:CategoryAxis AutoScrollingDelta="4" Interval="1" LabelPlacement="OnTicks" ShowMajorGridLines="False" AutoScrollingMode="Start">
+
+                        <!--<chart:CategoryAxis.Title>
+
+                            <chart:ChartAxisTitle TextColor="{DynamicResource AppForeground}" Text="Name"></chart:ChartAxisTitle>
+
+                        </chart:CategoryAxis.Title>-->
+
+                        <chart:CategoryAxis.LabelStyle>
+
+                            <chart:ChartAxisLabelStyle WrappedLabelAlignment="Center" MaxWidth="100" TextColor="{DynamicResource AppHintText}" Font="Bold,10"/>
+
+                        </chart:CategoryAxis.LabelStyle>
+
+                    </chart:CategoryAxis>
+
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+
+                    <chart:NumericalAxis RangePadding="Normal">
+
+                        <chart:NumericalAxis.Title>
+
+                            <chart:ChartAxisTitle x:Name="ChartTitle" TextColor="{DynamicResource AppForeground}" ></chart:ChartAxisTitle>
+
+                        </chart:NumericalAxis.Title>
+
+                    </chart:NumericalAxis>
+
+                </chart:SfChart.SecondaryAxis>
+
+                <chart:SfChart.Series>
+
+                    <chart:ColumnSeries x:Name="FirstColSeries" EnableAnimation = "true" AnimationDuration="0.8"  EnableTooltip="True" ItemsSource="{Binding Response}" XBindingPath="xN" YBindingPath="y">
+
+                        <!--<chart:ColumnSeries.ColorModel>
+                            <chart:ChartColorModel Palette="Custom">
+                                <chart:ChartColorModel.CustomGradientColors>
+                                    <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5, 0">
+                                        <chart:ChartGradientColor.GradientStops>
+                                            <chart:ChartGradientStop Color="#FFE7C7" Offset= "0"/>
+                                            <chart:ChartGradientStop Color="#FCB69F" Offset= "1"/>
+                                        </chart:ChartGradientColor.GradientStops>
+                                    </chart:ChartGradientColor>
+                                    <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5, 0">
+                                        <chart:ChartGradientColor.GradientStops>
+                                            <chart:ChartGradientStop Color="#DCFA97" Offset= "0"/>
+                                            <chart:ChartGradientStop Color="#96E6A1" Offset= "1"/>
+                                        </chart:ChartGradientColor.GradientStops>
+                                    </chart:ChartGradientColor>
+                                    <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5, 0">
+                                        <chart:ChartGradientColor.GradientStops>
+                                            <chart:ChartGradientStop Color="#DDD6F3" Offset= "0"/>
+                                            <chart:ChartGradientStop Color="#FAACA8" Offset= "1"/>
+                                        </chart:ChartGradientColor.GradientStops>
+                                    </chart:ChartGradientColor>
+                                    <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5, 0">
+                                        <chart:ChartGradientColor.GradientStops>
+                                            <chart:ChartGradientStop Color="#A8EAEE" Offset= "0"/>
+                                            <chart:ChartGradientStop Color="#7BB0F9" Offset= "1"/>
+                                        </chart:ChartGradientColor.GradientStops>
+                                    </chart:ChartGradientColor>
+                                </chart:ChartColorModel.CustomGradientColors>
+                            </chart:ChartColorModel>
+                        </chart:ColumnSeries.ColorModel>-->
+
+                    </chart:ColumnSeries>
+
+                </chart:SfChart.Series>
+
+
+                <!--<chart:SfChart.ColorModel>
+                    <chart:ChartColorModel Palette="Custom">
+                        <chart:ChartColorModel.CustomGradientColors>
+                            <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5,0">
+                                <chart:ChartGradientColor.GradientStops>
+                                    <chart:ChartGradientStop Color="Red" Offset= "0"/>
+                                    <chart:ChartGradientStop Color="Green" Offset= "1"/>
+                                </chart:ChartGradientColor.GradientStops>
+                            </chart:ChartGradientColor>
+                        </chart:ChartColorModel.CustomGradientColors>
+                    </chart:ChartColorModel>
+                </chart:SfChart.ColorModel>-->
+
+
+                <chart:SfChart.Title>
+
+                    <chart:ChartTitle TextAlignment="Start" BorderColor="AntiqueWhite" BorderWidth="5" BackgroundColor="Blue" TextColor="White" Text="Chart"/>
+
+                </chart:SfChart.Title>
+
+                <chart:SfChart.Legend>
+
+                    <chart:ChartLegend/>
+
+                </chart:SfChart.Legend>
+
+            </chart:SfChart>
+
+        </Grid>
+    
+    </ContentPage.Content>
+
+</ContentPage>

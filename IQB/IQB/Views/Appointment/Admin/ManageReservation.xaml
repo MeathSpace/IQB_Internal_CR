@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:picker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionExt="clr-namespace:IQB.SyncfusionExt;assembly=IQB"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:customControl="clr-namespace:IQB.CustomControl;assembly=IQB"
+             xmlns:controlBehaviors="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             x:Class="IQB.Views.Appointment.Admin.ManageReservation"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!--<forms:SvgCachedImage Source="resource://IQB.Resources.Image.Reservation.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+            </forms:SvgCachedImage>-->
+            <Label Text="Create Reservation" x:Name="PageHeadingLabel" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid x:Name="gdMain">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--<StackLayout HorizontalOptions="Center" Padding="20,10,20,0">
+                    <forms:SvgCachedImage WidthRequest="50" HeightRequest="50" Source="resource://IQB.Resources.Image.registration.svg">
+                        -->
+                <!--<ffimg:CachedImage.Transformations>
+                            <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                        </ffimg:CachedImage.Transformations>-->
+                <!--
+                    </forms:SvgCachedImage>
+                    <Label Text="Reservation" Style="{DynamicResource pageHeadingLabel}"></Label>
+                </StackLayout>-->
+                <tabView:SfTabView 
+                           x:Name="SfProfileTabContainer"
+                           IsVisible="False"
+                    SelectedIndex="0"
+                           Grid.Row="0"
+                            HeightRequest="48"
+                            BackgroundColor="Transparent"
+                            TabHeaderPosition="Top"
+                            VisibleHeaderCount="2"
+                            DisplayMode="Text"
+                SelectionChanged="Handle_SelectionChanged">
+
+                    <tabView:SfTabView.SelectionIndicatorSettings>
+                        <tabView:SelectionIndicatorSettings
+                    Color="{StaticResource AppPrimary}" 
+                    Position="Bottom" 
+                    StrokeThickness="2"/>
+                    </tabView:SfTabView.SelectionIndicatorSettings>
+
+                    <tabView:SfTabItem Title="For Salon" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem x:Name="BarberTab" Title="Select Barber" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                    </tabView:SfTabItem>
+
+                </tabView:SfTabView>
+                <ScrollView Grid.Row="1">
+                    <Grid Margin="25,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout>
+                            <Label Text="Reservation Date:"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center"/>
+                            <!--<BoxView Style="{DynamicResource horizontalLine}"></BoxView>-->
+                            <!--#region DatePicker-->
+                            <syncfusionExt:CustomDatePicker x:Name="picker" ItemHeight="45">
+                                <syncfusionExt:CustomDatePicker.Behaviors>
+                                    <syncfusionExt:SfPickerBehavior />
+                                </syncfusionExt:CustomDatePicker.Behaviors>
+                            </syncfusionExt:CustomDatePicker>
+                            <!--#endregion-->
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Margin="0,20,0,10">
+                            <Label Text="Reservation Time:"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center"/>
+                            <!--<BoxView Style="{DynamicResource horizontalLine}"></BoxView>-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="StartDateGrid" MinimumHeightRequest="40" Margin="5,20" HorizontalOptions="Fill">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectStartTime_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Start Time" x:Name="lblStartTime"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                                    <forms:SvgCachedImage x:Name="StartTimeButton"   WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.expand-button.svg" Grid.Column="1">
+                                        <forms1:CachedImage.Transformations>
+                                            <transformations:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                                        </forms1:CachedImage.Transformations>
+                                    </forms:SvgCachedImage>
+                                </Grid>
+                                <Grid x:Name="EndDateGrid" Grid.Column="1" MinimumHeightRequest="40" Margin="5,20" HorizontalOptions="Fill">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectEndTime_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="End Time" x:Name="lblEndTime"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                                    <forms:SvgCachedImage x:Name="EndTimeButton"  WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.expand-button.svg" Grid.Column="1">
+                                        <forms1:CachedImage.Transformations>
+                                            <transformations:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                                        </forms1:CachedImage.Transformations>
+                                    </forms:SvgCachedImage>
+                                </Grid>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1"></BoxView>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.Column="1"></BoxView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Margin="0,10,0,10">
+                            <Label Text="Reason:"
+                                   TextColor="{DynamicResource AppForeground}"
+                                   FontSize="14"
+                                   FontFamily="{DynamicResource BoldFont}"
+                                   VerticalOptions="Center"/>
+                            <!--<BoxView Style="{DynamicResource horizontalLine}"></BoxView>-->
+                            <!--#region Editor-->
+                            <customControl:BorderlessEntry Placeholder="Reason for Reservation"
+                                                    x:Name="entryReasonForReservation"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                            </customControl:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}"></BoxView>
+                            <!--#endregion-->
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+                <Button Grid.Row="2" x:Name="btnReserve"
+                    Text="RESERVE"
+                    Style="{DynamicResource actionButtonPrimary}"
+                    Clicked="BtnReserve_OnClicked"/>
+            </Grid>
+
+            <Grid x:Name="BarberGrid" IsVisible="False" BackgroundColor="{DynamicResource AppBackground}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView ItemTapped="BarberSelectListviewTapped" SeparatorVisibility="None" BackgroundColor="Transparent" RowHeight="90" x:Name="BarberListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout>
+
+                                    <StackLayout Padding="20,15" Spacing="20" Orientation="Horizontal">
+
+
+                                        <controls:CircleImage  WidthRequest="{OnPlatform iOS=30, Default=40}"
+                                                               HeightRequest="{OnPlatform iOS=30, Default=40}"
+                                                               Source="{Binding BarberPic}"
+                                                               Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                        <!--<Frame HasShadow="true" HeightRequest="44" WidthRequest="44" Padding="0" CornerRadius="22" BackgroundColor="{DynamicResource AppPrimary}">
+                                            <forms:SvgCachedImage Source="{Binding BarberPic}" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <forms1:CachedImage.Transformations>
+                                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                </forms1:CachedImage.Transformations>
+                                            </forms:SvgCachedImage>
+                                        </Frame>-->
+
+                                        <Label TextColor="White" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" Text="{Binding BarberName}"/>
+
+                                        <forms:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                            <forms1:CachedImage.Transformations>
+                                                <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                            </forms1:CachedImage.Transformations>
+                                        </forms:SvgCachedImage>
+
+                                    </StackLayout>
+
+                                    <BoxView BackgroundColor="{DynamicResource AppBorderColor}" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

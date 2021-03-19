@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Settings.AppInfo"                          
+             Title="App Information"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}" BackgroundColor="{DynamicResource AppBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="AppInfoView" 
+                      ItemsSource="{Binding Employees}" 
+                      Margin="20" 
+                      HasUnevenRows="true"
+                      SeparatorVisibility="None"
+                      Grid.Row="0" 
+                      Grid.Column="0" 
+                      Grid.RowSpan="6" 
+                      Grid.ColumnSpan="5"
+                      BackgroundColor="{DynamicResource AppBackground}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource AppBackground}">
+                                <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" Padding="0">
+                                    <StackLayout BackgroundColor="#14181B"
+                                                 Orientation="Horizontal" 
+                                                 Padding="10">
+
+                                        <StackLayout VerticalOptions="Center" Spacing="3" Margin="5,0,0,0" Padding="0,10,0,10">
+                                            <Label Style="{DynamicResource primaryLabel}" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding HeaderTitle}" Margin="0 0 10 0"/>
+                                            <Label Style="{DynamicResource contentLabel}" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Details}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+    </ContentPage.Content>
+    <!--<ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="#DCDCDC">
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="55" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        --><!--<StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="White">
+                        </StackLayout>
+                        <Image Source="register.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>--><!--
+                        <Label Text="Register"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="Register form allows you to create an account so you can remotely join the queue to place a position at your local barber shop, once registered you will be sent an activation code which you will need it to activate your account."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Forgot Password"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="When you have forgotten your password, just provide your email address and we will send your password, this information will then be sent back to the email address that you have provided."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Join Queue"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="This screen displays the total number of people queuing, estimated waiting time, total number of barbers on duty and also the next available position! If you join the queue on this screen using the 'Auto Join' option, you will then be automatically assigned to 'Any Barber' that means you don't have any barber preferences or you can select your favourite barber.This screen updates every second so you get instant updates on your position. Once there are any changes on your position you will get a notification with your new position. &#x0a;Note: Always arrive 15 mins before your turn to avoid losing your place in the queue!!!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Queuing List"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="This screen allows you to view the full queuing list and you can also view where you are in the list when you have joined the queue. If you have either joined the queue by yourself or joined the queue within a group, your names will then be highlighted."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Cancel Position"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="If for any reason you know that you will not make for your appointment, you can cancel your turn, but if you do, you WILL NOT be able to re-join the queue on the same day!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Select Barber"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="On this screen you can see how many people are queuing for each barber, and you can also choose the barber you prefer to have your appointment with. Once you join the queue through this screen you still get instant notifications on your position!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="My Profile"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="You can edit your account information as well as adding new fields to your account e.g. profile picture, mobile number and date of birth."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,3">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Settings"  TextColor="Black" BackgroundColor="White"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,2,10,0" FontAttributes="Bold" FontSize="14">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" FontSize="12" Text="This screen allows you to view app information, delete your account, and reset App back to default."></Label>
+                    </Grid>
+                </StackLayout>
+                --><!--<StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="JoinQueue.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="Join Queue"  TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="This screen displays the total number of people queuing, estimated waiting time, total number of barbers on duty and also the next available position! If you join the queue on this screen using the 'Auto Join' option, you will then be automatically assigned to 'Any Barber' that means you don't have any barber preferences or you can select your favourite barber.This screen updates every second so you get instant updates on your position. Once there are any changes on your position you will get a notification with your new position. &#x0a;Note: Always arrive 15 mins before your turn to avoid losing your place in the queue!!!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="QueuingList.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="Queuing List"  TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="This screen allows you to view the full queuing list and you can also view where you are in the list when you have joined the queue. If you have either joined the queue by yourself or joined the queue within a group, your names will then be highlighted."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="CancelPosition.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="Cancel Position" TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="If for any reason you know that you will not make for your appointment, you can cancel your turn, but if you do, you WILL NOT be able to re-join the queue on the same day!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="SelectBarber.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="Select Barber"  TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="On this screen you can see how many people are queuing for each barber, and you can also choose the barber you prefer to have your appointment with. Once you join the queue through this screen you still get instant notifications on your position!"></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="My_Profile.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="My Profile"  TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="You can edit your account information as well as adding new fields to your account e.g. profile picture, mobile number and date of birth."></Label>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Transparent" Margin="0,0,0,10">
+                    <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Start" BackgroundColor="White" Margin="0,1,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="0" BackgroundColor="#64718b">
+                        </StackLayout>
+                        <Image Source="Settings_icon.png" HeightRequest="15" WidthRequest="15" Grid.Row="0" Grid.Column="1" BackgroundColor="#64718b"></Image>
+                        <Label Text="Settings"  TextColor="Black" BackgroundColor="#64718b" VerticalTextAlignment="Center"  Grid.Row="0" Grid.Column="2"></Label>
+                        <Label TextColor="Black" BackgroundColor="White" Margin="10,10,10,10" Grid.ColumnSpan="3"  Grid.Row="1" Grid.Column="0" Text="This screen allows you to view app information, delete your account, and reset App back to default."></Label>
+                    </Grid>
+                </StackLayout>--><!--                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>-->
+</ContentPage>

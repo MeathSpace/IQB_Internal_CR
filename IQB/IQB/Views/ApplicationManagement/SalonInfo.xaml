@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.ApplicationManagement.SalonInfo"
+              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:sfrating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             BackgroundColor="{DynamicResource AppBackground}"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             >
+
+
+    <NavigationPage.TitleView>
+
+        <Grid RowSpacing="0" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Salon Info" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="16"/>
+
+            <StackLayout Grid.Row="0" Padding="10" Grid.Column="1">
+                <forms:SvgCachedImage  WidthRequest="18" HeightRequest="18" Source="resource://IQB.Resources.Image.Help.svg">
+                    <forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>
+                </forms:SvgCachedImage>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="NavigateToHelp"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+
+        </Grid>
+    </NavigationPage.TitleView>
+    <Grid Style="{DynamicResource baseGrid}">
+        <Grid  x:Name="gdMain1" Margin="0">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="gdMain">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" HorizontalOptions="Center" Padding="20,20,20,0">
+                            <!--Source="{Binding Salon_ImageName}"-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120"/>
+                                </Grid.RowDefinitions>
+
+                                <!--<ActivityIndicator Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" IsRunning="True"  HeightRequest="50" WidthRequest="50"/>-->
+
+                                <busyindicator:SfBusyIndicator x:Name="busyindicator" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"
+                                       AnimationType="SingleCircle"
+                                       ViewBoxWidth = "70" 
+                                       ViewBoxHeight="70" 
+                                       BackgroundColor="Transparent"
+                                       TextColor="{DynamicResource AppPrimary}" />
+
+                                <controls:CircleImage x:Name="SalonMainImage"  Grid.Row="0" 
+                          BorderThickness="2"
+                          BorderColor="{DynamicResource AppPrimary}"
+                          Aspect="AspectFill"
+                          HorizontalOptions="Center"
+                          >
+                                    <controls:CircleImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double"
+                                     iOS="120"
+                                      Android="100" />
+                                    </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double"
+                                       iOS="120"
+                                      Android="100" />
+                                    </controls:CircleImage.HeightRequest>
+                                </controls:CircleImage>
+
+
+                            </Grid>
+                           
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Padding="20,10,20,0">
+                            <Label Text="{Binding SalonName}" Style="{DynamicResource pageHeadingLabel}"></Label>
+                        </StackLayout>
+
+                        <Grid Grid.Row="2" Padding="0,7" x:Name="RateContainer">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ContentView Grid.Row="0" Grid.RowSpan="3" Padding="25,25,25,17">
+                                <Frame  CornerRadius="5" BackgroundColor="Transparent" BorderColor="{DynamicResource AppBorderColor}" >
+                                </Frame>
+                            </ContentView>
+
+                            <ContentView Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Frame  CornerRadius="5" HeightRequest="50" Padding="0" WidthRequest="180" BackgroundColor="{DynamicResource AppBackground}" BorderColor="{DynamicResource AppBorderColor}">
+                                    <Label HorizontalOptions="CenterAndExpand" Text="Please Rate Us" TextColor="#FFFFFF" VerticalOptions="CenterAndExpand" />
+                                </Frame>
+                            </ContentView>
+
+                            <sfrating:SfRating Grid.Row="1" x:Name="RateSlider" ItemSize="25" Value="0" Margin="10,10" ItemSpacing="15"  HorizontalOptions="Center" VerticalOptions="Center">
+                                <sfrating:SfRating.RatingSettings>
+                                    <sfrating:SfRatingSettings UnRatedFill="White" RatedFill="{DynamicResource AppPrimary}"/>
+                                </sfrating:SfRating.RatingSettings>
+                            </sfrating:SfRating>
+
+                            <Button x:Name="RateSalon"
+                        HorizontalOptions="CenterAndExpand"                             
+                            VerticalOptions="CenterAndExpand" 
+                            WidthRequest="85" 
+                            Grid.Row="2"
+                            HeightRequest="35"
+                            IsEnabled="{Binding IsEnabled}"                               
+                            Style="{DynamicResource actionButtonPrimary}"
+                            CornerRadius="3"
+                            Clicked="RateSalon_Clicked"
+                            Text="Submit"/>
+
+                        </Grid>
+
+                        <!--<StackLayout Grid.Row="2" HorizontalOptions="Center" Padding="20,0,20,0">
+                    <Label Text="Ver.1.0.6" Style="{DynamicResource greyLabel}"></Label>
+                </StackLayout>-->
+
+
+                        <StackLayout Padding="0,7" Margin="25,0" Grid.Row="3" x:Name="BarberListContainer">
+
+                            <Label Text="Barbers" FontSize="16"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White" />
+                            <sync:SfListView x:Name="BarbersListView"
+                                         Orientation="Horizontal"
+                                         ItemSpacing="3,0"
+                                 IsScrollBarVisible="False"
+                                         ItemSize="110" 
+                                         HeightRequest="50" ItemTapped="BarbersListView_ItemTapped">
+                                <sync:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame WidthRequest="100"  BackgroundColor="{DynamicResource AppPrimary}"  CornerRadius="5" Padding="0" BorderColor="{DynamicResource AppBorderColor}" >
+                                            <Grid RowSpacing="0" Padding="7,0" VerticalOptions="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <controls:CircleImage Grid.Row="0" Grid.Column="0" Source="{Binding BarberImage}" VerticalOptions="Center" BorderColor="White" BorderThickness="2"  Aspect="AspectFill">
+                                                    <controls:CircleImage.WidthRequest>
+                                                        <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30" />
+                                                    </controls:CircleImage.WidthRequest>
+                                                    <controls:CircleImage.HeightRequest>
+                                                        <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30"/>
+                                                    </controls:CircleImage.HeightRequest>
+                                                </controls:CircleImage>
+
+                                                <Label  Text="{Binding BarberName}"
+                                                FontSize="14" LineBreakMode="WordWrap"
+                                        Grid.Row="0" Grid.Column="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="White"/>
+
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </sync:SfListView.ItemTemplate>
+                            </sync:SfListView>
+                        </StackLayout>
+
+
+                        <!--<StackLayout Grid.Row="4" HorizontalOptions="Center" Padding="20,20,20,0">
+                        <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.SalonInfoLocation.svg" WidthRequest="50" HeightRequest="50"/>
+                        <StackLayout Orientation="Vertical" Margin="10 0 20 0">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Label Text="{Binding address}" Style="{DynamicResource greyLabelBold}"/>
+                                <Label Text="," Style="{DynamicResource greyLabelBold}"/>
+                                <Label Text="{Binding city}" Style="{DynamicResource greyLabelBold}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Label Text="{Binding state}" Style="{DynamicResource greyLabelBold}"/>
+                                <Label Text="" Style="{DynamicResource greyLabelBold}"/>
+                                <Label Text="{Binding PostalCode}" Style="{DynamicResource greyLabelBold}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>-->
+                        <Grid Grid.Row="4" Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ffimageloadingsvg:SvgCachedImage WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.SalonInfoGallery.svg" >
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerImage"
+                                            NumberOfTapsRequired="1" />
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="2" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.SalonInfoLocation.svg" />
+                                <Label Text="Image Gallery"
+                               Style="{DynamicResource greyLabelBold}"
+                               Grid.Row="1"
+                               HorizontalOptions="Center" VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="CharacterWrap">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerImage"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="2">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Label LineBreakMode="WordWrap" Style="{DynamicResource greyLabelBold}" HorizontalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding address}" />
+                                                    <Span Text="," />
+                                                    <Span Text="{Binding city}" />
+                                                    <Span Text="&#10;" />
+                                                    <Span Text="{Binding state}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding PostalCode}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="{Binding state}" Style="{DynamicResource greyLabelBold}"/>
+                                    <Label Text="" Style="{DynamicResource greyLabelBold}"/>
+                                    <Label Text="{Binding PostalCode}" Style="{DynamicResource greyLabelBold}"/>
+                                </StackLayout>-->
+                                </StackLayout>
+                                <BoxView Style="{DynamicResource verticalLine}" Grid.Column="1" Grid.RowSpan="2"/>
+                                <BoxView Style="{DynamicResource horizontalLine}" Margin="10,10,5,0" Grid.Row="2"></BoxView>
+                                <BoxView Style="{DynamicResource horizontalLine}" Margin="5,10,10,0" Grid.Row="2" Grid.Column="2"></BoxView>
+                            </Grid>
+
+                        </Grid>
+                        <Grid Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--<BoxView Style="{DynamicResource horizontalLine}"></BoxView>-->
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ffimageloadingsvg:SvgCachedImage WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.SalonInfoContact.svg">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerTel"
+                                            NumberOfTapsRequired="1" />
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="2" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.SalonInfoWebsite.svg">
+                                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerWeb"
+                                            NumberOfTapsRequired="1" />
+                                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1">
+                                    <Label Text="{Binding TelephoneNo}" Style="{DynamicResource greyLabelBold}" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" 
+                                   Margin="0,0,5,0"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Tapped="OnTapGestureRecognizerTel"
+                                                NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.Phone-2.svg"
+                                                              HorizontalOptions="Center" VerticalOptions="Center" />
+                                </StackLayout>
+                                <Label Text="{Binding Link}"
+                               Style="{DynamicResource greyLabelBold}"
+                               Grid.Row="1" Grid.Column="2"
+                               HorizontalOptions="Center" VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="CharacterWrap">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapGestureRecognizerWeb"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <BoxView Style="{DynamicResource verticalLine}" Grid.Column="1" Grid.RowSpan="2"/>
+                            </Grid>
+                            <!--<BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2"></BoxView>-->
+                        </Grid>
+
+                        <Grid Margin="25,10" Grid.Row="6">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#38A1F3" Padding="0,10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadTwitterLinkTapped"/>
+                                </Grid.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.twitter.svg">
+                                        <ffimg:CachedImage.Transformations>
+                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                        </ffimg:CachedImage.Transformations>
+                                    </ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="Twitter"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#4267B2" Padding="0,10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadFacebookLinkTapped"/>
+                                </Grid.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.facebook.svg">
+                                        <ffimg:CachedImage.Transformations>
+                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                        </ffimg:CachedImage.Transformations>
+                                    </ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="Facebook"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#C536A2" Padding="0,10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadInstagramLinkTapped"/>
+                                </Grid.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.instagram.svg">
+                                        <ffimg:CachedImage.Transformations>
+                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                        </ffimg:CachedImage.Transformations>
+                                    </ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="Instagram"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ScrollView>
+                <Button Grid.Row="1" x:Name="btnConnect"
+                    Text="CONNECT" 
+                    HeightRequest="50"
+                    IsVisible="{Binding IsConnectShowed}"
+                    Clicked="btnConnect_OnClick"
+                    Style="{DynamicResource actionButtonPrimary}" VerticalOptions="End"/>
+            </Grid>
+
+            <Grid x:Name="BarberSerVicesPopUp" 
+                  IsVisible="False" 
+                  Padding="30"
+                  BackgroundColor="{DynamicResource AppBackground}"
+                  HorizontalOptions="CenterAndExpand" 
+                  VerticalOptions="CenterAndExpand">
+
+                <StackLayout Padding="10">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Barber Services" TextColor="White" FontSize="14"></Label>
+                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.cross.svg"
+                                      HeightRequest="18" WidthRequest="18" >
+                                <forms1:CachedImage.Transformations>
+                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </forms1:CachedImage.Transformations>
+                            </forms:SvgCachedImage>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BarberServicesCancelTapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ListView x:Name="BarberServicesListView"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  SeparatorVisibility="None"
+                                  RowHeight="80"
+                                  BackgroundColor="{DynamicResource AppBackground}"
+                                  ItemSelected="ServiceListPopup_ItemSelected"
+                                  IsRefreshing="{Binding IsRefreshing}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <StackLayout Padding="10" HeightRequest="80">
+
+                                        <Label TextColor="White" Text="{Binding ServiceName}" HorizontalOptions="StartAndExpand"/>
+
+                                        <StackLayout HeightRequest="35" Spacing="15" Orientation="Horizontal">
+
+                                            <Label WidthRequest="80" VerticalOptions="CenterAndExpand" TextColor="Gray" Text="{Binding ServicePrice}"/>
+
+                                            <BoxView Margin="5" WidthRequest="1" BackgroundColor="Gray" HeightRequest="30"/>
+
+                                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.HEstWaitTime.svg" HeightRequest="30" WidthRequest="30" />
+
+                                            <Label VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" TextColor="White" Text="{Binding ServiceEstimatedTime}"/>
+
+                                        </StackLayout>
+
+                                        <BoxView HeightRequest="1" BackgroundColor="Gray" VerticalOptions="EndAndExpand"/>
+
+                                    </StackLayout>
+
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackLayout x:Name="spNoService" IsVisible="False" BackgroundColor="Transparent" Padding="10">
+                        <Label HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Text="No available services found" 
+                           TextColor="Gray">
+                        </Label>
+                    </StackLayout>
+
+                </StackLayout>
+
+
+
+            </Grid>
+        </Grid>
+        <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>

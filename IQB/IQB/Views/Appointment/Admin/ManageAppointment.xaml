@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:calendar="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:customControl="clr-namespace:IQB.CustomControl;assembly=IQB"
+             x:Class="IQB.Views.Appointment.Admin.ManageAppointment"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <!--<NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.Filter.svg" HorizontalOptions="End" Margin="0,0,18,0" Grid.Column="1" WidthRequest="18" HeightRequest="18">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+                <forms:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Filter_OnTapped"/>
+                </forms:SvgCachedImage.GestureRecognizers>
+            </forms:SvgCachedImage>
+            <Label Text="IQB Appointments" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>-->
+    <ContentView.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+
+            <Grid x:Name="gdMain" Margin="10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+
+                <schedule:SfSchedule x:Name="schedule"
+                                 Grid.Row="0" Grid.RowSpan="2" Margin="20,10,20,0"
+                                 ScheduleView="DayView" ShowAppointmentsInline="True" AllowAppointmentDrag="False"
+                                 BackgroundColor="{DynamicResource AppBackground}" 
+                                 CellTapped="Schedule_OnCellTapped" 
+                                 HeaderTapped="Schedule_OnHeaderTapped"
+                                 ViewHeaderTapped="Schedule_OnViewHeaderTapped" TimeIntervalHeight="160">
+                    <schedule:SfSchedule.AppointmentStyle>
+                        <schedule:AppointmentStyle BorderWidth="14" BorderCornerRadius="0" BorderColor="Transparent"
+                                                   FontSize = "14" FontFamily="{DynamicResource BoldFont}" />
+                    </schedule:SfSchedule.AppointmentStyle>
+                    <schedule:SfSchedule.AppointmentMapping>
+                        <schedule:ScheduleAppointmentMapping
+                        SubjectMapping="AppointmentSubject" 
+                        ColorMapping="AppointmentColor"
+                        StartTimeMapping="AppointmentStartTime"
+                        EndTimeMapping="AppointmentEndTime"
+                        RecurrenceIdMapping="AppointmentId">
+                        </schedule:ScheduleAppointmentMapping>
+                    </schedule:SfSchedule.AppointmentMapping>
+                </schedule:SfSchedule>
+
+                <Frame Grid.Row="1"
+                   Margin="0,0,15,20" 
+                   HorizontalOptions="EndAndExpand" 
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+
+                    <forms:SvgCachedImage x:Name="SelectBookingsFrame" Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OpenBookingOptionsTapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+
+                </Frame>
+
+
+                <StackLayout x:Name="SelectServicesStack" IsVisible="False" Spacing="7" Padding="0,0,15,10" VerticalOptions="EndAndExpand" HorizontalOptions="End" Grid.Row="0">
+
+                    <StackLayout Opacity="0" x:Name="AddReservationStack" HorizontalOptions="End" HeightRequest="50" Spacing="10" Orientation="Horizontal">
+
+                        <Button x:Name="AddReserBtn" InputTransparent="True" CornerRadius="25" Margin="0,7" Padding="15,0" TextColor="White" BackgroundColor="#282828" Text="Reserve Slots"/>
+
+                        <Frame Grid.Row="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="#282828">
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.AddReservation.svg" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                <forms1:CachedImage.Transformations>
+                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </forms1:CachedImage.Transformations>
+                            </forms:SvgCachedImage>
+                        </Frame>
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddReservation_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Opacity="0" x:Name="AddAppointmentStack" HorizontalOptions="End" HeightRequest="50" Spacing="10" Orientation="Horizontal">
+                        <Button x:Name="AddApptBtn" InputTransparent="True" CornerRadius="25" Margin="0,7" Padding="15,0" TextColor="White" BackgroundColor="#282828" Text="Book Appointment"/>
+                        <Frame Grid.Row="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="#282828">
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.AddAppointment.svg" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                <forms1:CachedImage.Transformations>
+                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </forms1:CachedImage.Transformations>
+                            </forms:SvgCachedImage>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddAppointment_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Opacity="0" x:Name="UpcomingAppointmentStack" HorizontalOptions="End" HeightRequest="50" Spacing="10" Orientation="Horizontal">
+                        <Button x:Name="UpcomAppBtn" InputTransparent="True" CornerRadius="25" Margin="0,7" Padding="15,0" TextColor="White" BackgroundColor="#282828" Text="Upcoming Appointments"/>
+
+                        <Frame Grid.Row="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="#282828">
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.Auto-join-queue.svg" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                <forms1:CachedImage.Transformations>
+                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </forms1:CachedImage.Transformations>
+                            </forms:SvgCachedImage>
+                        </Frame>
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="UpcomingAppointmentFilter_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </Grid>
+
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

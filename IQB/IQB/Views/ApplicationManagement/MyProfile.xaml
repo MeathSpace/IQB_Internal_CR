@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.ApplicationManagement.MyProfile"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="Black"
+             xmlns:converters="clr-namespace:IQB.Converters"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             Appearing="ProfilePageAppearing"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             Title="My Profile">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+            <converters:DateToVisibilityConverter x:Key="ValueToVisibilityConverterID"/>
+            <Style x:Key="MyProfileTextboxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+
+        <StackLayout Spacing="17" Padding="0,0,23,0" Orientation="Horizontal">
+
+            <Label Text="Profile" FontAttributes="Bold" FontSize="17" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Start" />
+
+            <StackLayout x:Name="UpdateStack" Padding="10,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand">
+            <forms:SvgCachedImage  Source="resource://IQB.Resources.Image.Edit.svg" WidthRequest="22" HeightRequest="22">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+                <!--<forms:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="UpdateIconTapped"/>
+                    </forms:SvgCachedImage.GestureRecognizers>-->
+            </forms:SvgCachedImage>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UpdateIconTapped"/>
+                </StackLayout.GestureRecognizers>
+                
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                <forms:SvgCachedImage  Source="resource://IQB.Resources.Image.Logout.svg" WidthRequest="18" HeightRequest="18">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+                <!--<forms:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LogoutIconTapped"/>
+                    </forms:SvgCachedImage.GestureRecognizers>-->
+            </forms:SvgCachedImage>
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LogoutIconTapped"/>
+            </StackLayout.GestureRecognizers>
+
+        </StackLayout>
+
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <tabView:SfTabView 
+                           x:Name="SfProfileTabContainer"
+                           IsVisible="False"
+                           Grid.Row="0"
+                            HeightRequest="48"
+                            BackgroundColor="Transparent"
+                            TabHeaderPosition="Top"
+                            VisibleHeaderCount="2"
+                            DisplayMode="Text"
+                SelectionChanged="Handle_SelectionChanged">
+
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings
+                    Color="{StaticResource AppPrimary}" 
+                    Position="Bottom" 
+                    StrokeThickness="2"/>
+                </tabView:SfTabView.SelectionIndicatorSettings>
+
+                <tabView:SfTabItem Title="My Profile" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                </tabView:SfTabItem>
+
+                <tabView:SfTabItem Title="Barber Profile" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="15"
+                               SelectionColor ="White"
+                               >
+                </tabView:SfTabItem>
+
+            </tabView:SfTabView>
+
+            <ScrollView Grid.Row="1" x:Name="MainScrollView">
+                
+                <StackLayout Spacing="32" Padding="50,10">
+
+                    <Grid HeightRequest="130" WidthRequest="130" Padding="0" >
+
+                        <StackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120"/>
+                                </Grid.RowDefinitions>
+
+                                    <!--<ActivityIndicator Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" IsRunning="True"  HeightRequest="50" WidthRequest="50"/>-->
+
+                                <busyindicator:SfBusyIndicator x:Name="busyindicator" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"
+                                       AnimationType="SingleCircle"
+                                       ViewBoxWidth = "70" 
+                                       ViewBoxHeight="70" 
+                                       BackgroundColor="Transparent"
+                                       TextColor="{DynamicResource AppPrimary}" />
+                                
+                                <controls:CircleImage Grid.Row="0" x:Name="ProfileImageNew" IsVisible="True" BorderThickness="1" BorderColor="WhiteSmoke" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <controls:CircleImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                     iOS="120"
+                                      Android="100" />
+                                </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                       iOS="120"
+                                      Android="100" />
+                                </controls:CircleImage.HeightRequest>
+                                    <controls:CircleImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="PickPictureTapped"
+                                         NumberOfTapsRequired="1" />
+                                </controls:CircleImage.GestureRecognizers>
+                                </controls:CircleImage>
+
+                            </Grid>
+                            
+                        </StackLayout>
+
+                        <forms:SvgCachedImage Source="resource://IQB.Resources.Image.ProfileCamera.svg" Margin="80,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" HeightRequest="35" WidthRequest="35" >
+                            <!--<forms1:CachedImage.Transformations>
+                                <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </forms1:CachedImage.Transformations>-->
+                            <forms:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PickPictureTapped" NumberOfTapsRequired="1"/>
+                            </forms:SvgCachedImage.GestureRecognizers>
+                        </forms:SvgCachedImage>
+
+                    </Grid>
+
+
+                    <StackLayout x:Name="LinkSwitchStack" Padding="-25,0" IsVisible="False" Orientation="Horizontal">
+
+                        <Label VerticalOptions="Center" HorizontalOptions="Start" Text="Link email with barber profile" TextColor="{DynamicResource AppPrimary}"/>
+
+                        <!--<Switch x:Name="BarberLinkSwitch" Toggled="BarberLinkSwitchToggled" VerticalOptions="Center" HorizontalOptions="EndAndExpand"   />-->
+
+                        <sync:SfSwitch x:Name="BarberLinkSwitch" 
+                                    AllowIndeterminateState="False" StateChanging="BarberLinkSwitchToggled"  VisualType="Custom" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup  x:Name="CommonStates">
+
+
+
+                                    <VisualState x:Name="On">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"
+                                  />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState x:Name="Off">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+
+                            </VisualStateManager.VisualStateGroups>
+
+                        </sync:SfSwitch>
+
+                    </StackLayout>
+
+                    <Label x:Name="LabelFullName" FontAttributes="Bold" FontSize="16" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+
+                    <forms:SvgCachedImage x:Name="CakeOrEstImage" Source="resource://IQB.Resources.Image.ProfileCake.svg"  HorizontalOptions="CenterAndExpand" HeightRequest="60" WidthRequest="60" >
+                        <!--<forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>-->
+                    </forms:SvgCachedImage>
+
+                    <Label x:Name="LabelDoBorEst" FontSize="16" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+
+                    <forms:SvgCachedImage x:Name="EmailIcon" Source="resource://IQB.Resources.Image.ProfileContact.svg" HorizontalOptions="CenterAndExpand" HeightRequest="60" WidthRequest="60">
+                        <!--<forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>-->
+                    </forms:SvgCachedImage>
+
+                    <Label x:Name="MobileOrPassCode" FontSize="16" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+
+                    <Label x:Name="LabelEmail" FontSize="16" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+
+                </StackLayout>
+                
+            </ScrollView>
+
+            <Grid x:Name="indicator" BackgroundColor="Transparent" Grid.Row="0" Grid.RowSpan="2" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+
+        </Grid>
+        
+        <!--Not working coe below-->
+            <!--<StackLayout IsVisible="False" Grid.Row="1" BackgroundColor="White" Margin="0,-12,0,0">
+
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                    <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" Margin="0,5,0,120" BackgroundColor="White">
+
+                        <ActivityIndicator x:Name="actInd"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                             IsRunning="{Binding IsProfileApiRunning}"
+                             IsVisible="{Binding IsProfileApiRunning}"
+                             Color="Red" />
+
+                        --><!--<StackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand" x:Name="panelProfileImage" IsVisible="{Binding IsVisibleProfileDetails}">
+                            <controls:CircleImage x:Name="ProfileImage" BorderThickness="2" BorderColor="WhiteSmoke" Aspect="AspectFill" HorizontalOptions="Start"  IsEnabled="{Binding IsEnabled}" Margin="10,10,10,10">
+                                <controls:CircleImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                     iOS="100"
+                                      Android="100" />
+                                </controls:CircleImage.WidthRequest>
+                                <controls:CircleImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                       iOS="100"
+                                      Android="100" />
+                                </controls:CircleImage.HeightRequest>
+                                <controls:CircleImage.Source>
+                                    <UriImageSource Uri="{Binding ProfileImage}" 			                   
+			                    CachingEnabled="False" />
+                                </controls:CircleImage.Source>
+                                <controls:CircleImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="PickPictureTapped"
+                                         NumberOfTapsRequired="1" />
+                                </controls:CircleImage.GestureRecognizers>
+                            </controls:CircleImage>
+                            <Image Source="upload_pics.png" WidthRequest="120" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                    Tapped="PickPictureTapped"
+                                    NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </StackLayout>--><!--
+
+                        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsVisibleProfileDetails}" Padding="20,0,20,0">
+                            <StackLayout Padding="0,0,0,5">
+                                <custom:BorderlessEntry Placeholder="First Name" Text="{Binding FirstName}" PlaceholderColor="#DCDCDC" Style="{StaticResource MyProfileTextboxStyle}" IsEnabled="{Binding IsEnabled}">
+                                    <custom:BorderlessEntry.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </custom:BorderlessEntry.FontFamily>
+                                    <custom:BorderlessEntry.Behaviors>
+                                        <behavior:SpecialCharacterBehavior x:Name="bhvFirstName" />
+                                    </custom:BorderlessEntry.Behaviors>
+                                </custom:BorderlessEntry>
+
+                                <BoxView Style="{StaticResource TextBorderstyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvFirstName}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvFirstName}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                            <StackLayout Padding="0,0,0,5">
+                                <custom:BorderlessEntry Placeholder="Last Name" Text="{Binding LastName}" PlaceholderColor="#DCDCDC"  Style="{StaticResource MyProfileTextboxStyle}" IsEnabled="{Binding IsEnabled}">
+                                    <custom:BorderlessEntry.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </custom:BorderlessEntry.FontFamily>
+                                    <custom:BorderlessEntry.Behaviors>
+                                        <behavior:SpecialCharacterBehavior x:Name="bhvLastName" />
+                                    </custom:BorderlessEntry.Behaviors>
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{StaticResource TextBorderstyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvLastName}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvLastName}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                            <StackLayout Padding="0,0,0,5">
+                                <custom:BorderlessEntry Placeholder="Password" Text="{Binding Password}" PlaceholderColor="#DCDCDC" Style="{StaticResource MyProfileTextboxStyle}" IsPassword="True" IsEnabled="{Binding IsEnabled}">
+                                    <custom:BorderlessEntry.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </custom:BorderlessEntry.FontFamily>
+                                    <custom:BorderlessEntry.Behaviors>
+                                        <behavior:PasswordValidationBehaviorProfile x:Name="bhvPassword" />
+                                    </custom:BorderlessEntry.Behaviors>
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{StaticResource TextBorderstyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvPassword}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvPassword}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                            <StackLayout Padding="0,0,0,5">
+                                <custom:BorderlessEntry Placeholder="Mobile Number" Text="{Binding MobileNo}" PlaceholderColor="#DCDCDC" Keyboard="Telephone" Style="{StaticResource MyProfileTextboxStyle}" IsEnabled="{Binding IsEnabled}">
+                                    <custom:BorderlessEntry.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </custom:BorderlessEntry.FontFamily>
+                                    <custom:BorderlessEntry.Behaviors>
+                                        <behavior:PhoneNumberBehavior x:Name="bhvMobileNo" />
+                                    </custom:BorderlessEntry.Behaviors>
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{StaticResource TextBorderstyle}"></BoxView>
+                            </StackLayout>
+                            <ContentView HorizontalOptions="FillAndExpand" IsVisible="{Binding Source={x:Reference bhvMobileNo}, Path=IsShow}">
+                                <Label Text="{Binding Source={x:Reference bhvMobileNo}, Path=Message}" TextColor="Red" FontSize="12">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                            <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                            </ContentView>
+                            <ContentView Padding="0,0,0,4">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" IsVisible="{Binding isDateVisible}">
+                                        <customControls:MyDatePicker
+                                            x:Name="myDatePicker"
+                                            WidthRequest="120"
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            NullableDate="{Binding DOB, Mode=TwoWay}"
+                                            IsCleared="{Binding IsClearClicked, Mode=TwoWay}"
+                                            IsEnabled="{Binding IsEnabled}"
+                                            HeightRequest="40"
+                                            Margin="2,0,0,0" 
+                                            TextColor="#000000">
+                                        </customControls:MyDatePicker>
+                                        <Image Source="clear.png" 
+                                               WidthRequest="20" 
+                                               HeightRequest="20" 
+                                               HorizontalOptions="End" 
+                                               Margin="0,0,10,0"
+                                               IsVisible="{Binding DOB,Converter={StaticResource ValueToVisibilityConverterID}}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ClearDate"></TapGestureRecognizer>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                    <StackLayout>
+
+                                        <Label x:Name="lblDOB" 
+                                               Text="Date of Birth"
+                                           TextColor="Black"
+                                           FontSize="14"
+                                           IsVisible="{Binding DOBvisible}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="lblDOB_Tapped"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <BoxView Style="{StaticResource TextBorderstyle}"></BoxView>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ContentView>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </ScrollView>
+
+                <StackLayout Orientation="Horizontal" Margin="20,5,0,0">
+                    <Switch x:Name="switchCanSendEmail" 
+                            Margin="0,-2,0,0" 
+                            IsToggled="{Binding EmailEnabled}"
+                            xfg:SwitchCellGloss.ThumbOnTintColor="Black"
+                            xfg:SwitchGloss.OnTintColor="Black"></Switch>
+                    <Label Text="Receive salon updates/offers"
+                           TextColor="Black"
+                           FontSize="Small"
+                           VerticalOptions="Center"></Label>
+                </StackLayout>
+
+                <StackLayout VerticalOptions="End">
+                    <Image Source="updateButton.png"
+                           IsVisible="{Binding isUpdateVisible}"
+                           VerticalOptions="CenterAndExpand">
+                        <Image.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="-40,0,-40,0" />
+                                <On Platform="Android" Value="-20,0,-20,0"/>
+                            </OnPlatform>
+                        </Image.Margin>
+                    </Image>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="UpdateProfile"
+                                              NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+
+                </StackLayout>
+
+            </StackLayout>-->
+
+        
+    </ContentPage.Content>
+</ContentPage>

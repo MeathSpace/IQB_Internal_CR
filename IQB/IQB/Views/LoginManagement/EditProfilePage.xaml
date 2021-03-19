@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Black"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="IQB.Views.LoginManagement.EditProfilePage"
+             Padding="0,20,0,0"
+              >
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <DatePicker x:Name="EditProfileDatePicker" IsVisible="False" DateSelected="DOBSelected"/>
+
+            <StackLayout Grid.Row="0" Padding="30,10" Orientation="Horizontal">
+                <Label FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Text="Edit Profile"/>
+
+                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.cross.svg"
+                                      HeightRequest="20" WidthRequest="20" >
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                        <!--<forms:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="CrossIconTapped"/>
+                        </forms:SvgCachedImage.GestureRecognizers>-->
+                    </forms:SvgCachedImage>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CrossIconTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>
+
+
+            </StackLayout>
+
+            <ScrollView Padding="30,20" Grid.Row="1">
+
+                <StackLayout>
+
+                    <StackLayout x:Name="CustomerEditProfile" Spacing="20">
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Full Name"/>
+
+                        <custom:BorderlessEntry Placeholder="Full Name"
+                                                HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding FullName, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Date of Birth"/>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <custom:BorderlessEntry Placeholder="Date of Birth"
+                                                HorizontalOptions="FillAndExpand"
+                                                 x:Name="DOBEntry"
+                                                 IsEnabled="False"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                       >
+                            </custom:BorderlessEntry>
+
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.calendar.svg"
+                                      HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                <forms1:CachedImage.Transformations>
+                                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                </forms1:CachedImage.Transformations>
+                            </forms:SvgCachedImage>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DobFocusTapped"/>
+                            </StackLayout.GestureRecognizers>
+                            
+                        </StackLayout>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Phone Number"/>
+
+                        <custom:BorderlessEntry Placeholder="Phone Number"
+                                                HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding MobileNo, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Mail Address"/>
+
+                        <custom:BorderlessEntry Placeholder="Email Address"
+                                                HorizontalOptions="FillAndExpand"
+                                                 IsEnabled="False"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding Email, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Password"/>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <custom:BorderlessEntry x:Name="PasswordEntry" Placeholder="Password"
+                                        IsPassword="True"
+                                                    Unfocused="PasswordEntryUnfocussed"
+                                        HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding Password, Mode=TwoWay}" 
+                                       >
+                            </custom:BorderlessEntry>
+
+                            <Label Text="Change Password" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="{DynamicResource AppPrimary}">
+
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ChangePasswordTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label VerticalOptions="Center" HorizontalOptions="Start" Text="Recieve salon updates/offers" TextColor="{DynamicResource AppPrimary}"/>
+
+                            <!--<Switch x:Name="switchCanSendEmail" VerticalOptions="Center" HorizontalOptions="EndAndExpand"   />-->
+
+
+
+                            <sync:SfSwitch x:Name="switchCanSendEmail"  
+                                    AllowIndeterminateState="False" 
+                                    IsEnabled="True" VisualType="Custom"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                                        >
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup  x:Name="CommonStates">
+
+
+
+                                        <VisualState x:Name="On">
+                                            <VisualState.Setters>
+                                                <Setter Property="SwitchSettings">
+                                                    <Setter.Value>
+                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OnState" 
+                                 ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppForeground}" 
+                                TrackBorderColor="{DynamicResource AppPrimary}" TrackColor="{DynamicResource AppPrimary}"
+                                  />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <VisualState x:Name="Off">
+                                            <VisualState.Setters>
+                                                <Setter Property="SwitchSettings">
+                                                    <Setter.Value>
+                                                        <sync:DefaultSwitchSettings x:TypeArguments="sync:OffState" 
+                                ThumbBorderColor="{DynamicResource AppPrimary}" ThumbColor="{DynamicResource AppPrimary}" 
+                                TrackBorderColor="{DynamicResource AppHintText}" TrackColor="{DynamicResource AppHintText}"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+
+
+
+                                    </VisualStateGroup>
+
+                                </VisualStateManager.VisualStateGroups>
+
+                            </sync:SfSwitch>
+
+
+
+
+
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout IsVisible="False" x:Name="BarberEditProfile" Spacing="20">
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Full Name"/>
+
+                        <custom:BorderlessEntry Placeholder="Full Name"
+                                                HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding BarberFullName, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Preffered Name"/>
+
+                        <custom:BorderlessEntry Placeholder="Preffered Name"
+                                                HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding BarberPrefferedName, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="PassCode"/>
+
+                        <custom:BorderlessEntry Placeholder="Passcode"
+                                                HorizontalOptions="FillAndExpand"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding BarberPassCode, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Mail Address"/>
+
+                        <custom:BorderlessEntry Placeholder="Email Address"
+                                            IsEnabled="False"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding BarberEmailId, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                        <Label TextColor="{DynamicResource AppPrimary}" Text="Estimated Wait Time"/>
+
+                        <custom:BorderlessEntry Placeholder="Estimated Wait Time"
+                                            IsEnabled="False"
+                                        Style="{DynamicResource EditProfileTextboxStyle}"
+                                        Text="{Binding BarberEstimatedTime, Mode=TwoWay}" 
+                                       >
+                        </custom:BorderlessEntry>
+
+                        <BoxView HeightRequest="1" Margin="0,5,0,10" BackgroundColor="{DynamicResource AppPrimary}"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+
+            <StackLayout Grid.Row="2" BackgroundColor="{StaticResource AppPrimary}">
+                <Label Text="Update" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="UpdateProfileClicked"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+        </Grid>
+
+        <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+        </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

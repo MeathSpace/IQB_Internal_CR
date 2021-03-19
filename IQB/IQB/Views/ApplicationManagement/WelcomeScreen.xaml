@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.ApplicationManagement.WelcomeScreen"
+             xmlns:local="clr-namespace:IQB"
+             xmlns:custom="clr-namespace:IQB.CustomControl.GooglePlacesSearch;assembly=IQB"
+             xmlns:custom1="clr-namespace:IQB.CustomControl"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             BackgroundColor="{DynamicResource AppBackground}">
+
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid x:Name="gdMain" Margin="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" Padding="20,20,20,0">
+                        <!--Orientation="Vertical"-->
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <!--Orientation="Vertical"-->
+                            <Label Text="Welcome" HorizontalOptions="Center" VerticalOptions="Center" Style="{DynamicResource pageHeadingLabel}" Margin="0,50,0,10"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+                            <Label Text="Please search by location" Style="{DynamicResource greyLabel}" FontSize="16" HorizontalOptions="Center"></Label>
+
+                            <Label Text="Type either the city or town" Style="{DynamicResource greyLabel}" FontSize="12" HorizontalOptions="Center"></Label>
+
+                            <Grid Margin="0,20,0,0" Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                                  WidthRequest="14" HeightRequest="14"
+                                                  HorizontalOptions="Center" 
+                                                  VerticalOptions="Center">
+                                    <ffimg:CachedImage.Transformations>
+                                        <fftrans:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                                    </ffimg:CachedImage.Transformations>
+                                </ffimageloadingsvg:SvgCachedImage>
+
+                                <custom:PlacesBar x:Name="search_bar" Placeholder="Search" Grid.Column="1" Style="{DynamicResource SearchBarStyle}"/>
+
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                            </Grid>
+
+                            <ActivityIndicator x:Name="spinner" 
+                                       IsRunning="false" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20"
+				                       AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" 
+                                       AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                       IsVisible="False" 
+                                       Color="Black"/>
+
+                            <AbsoluteLayout HeightRequest="300" 
+                                    x:Name="SearchResult" 
+                                    IsVisible="false">
+                                <ListView x:Name="results_list"
+                                  RowHeight="50"
+                                  SeparatorVisibility="None"
+                                  BackgroundColor="{DynamicResource AppBackground}"
+                                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                                  AbsoluteLayout.LayoutFlags="SizeProportional"
+                                  IsPullToRefreshEnabled="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid BackgroundColor="{DynamicResource AppBackground}">
+                                                    <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference results_list}, Path=Width}" Padding="0">
+                                                        <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="10">
+                                                            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          WidthRequest="22" 
+                                                                          HeightRequest="22"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center"/>
+
+                                                            <StackLayout VerticalOptions="Center" Spacing="3" Margin="5,0,0,0">
+                                                                <Label Style="{DynamicResource listContentLabel}"
+                                                               VerticalTextAlignment="Center"
+                                                               Text="{Binding Description}"/>
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Frame>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <!--<ListView x:Name="results_list" 
+                                  IsVisible="false" 
+                                  BackgroundColor="Transparent"
+				                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                                  AbsoluteLayout.LayoutFlags="SizeProportional" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Description}" TextColor="White"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>-->
+                            </AbsoluteLayout>
+
+                            <Label x:Name="lblMessage" 
+                           Text="" 
+                           TextColor="Black" 
+                           FontSize="12" 
+                           IsVisible="false" 
+                           VerticalTextAlignment="Center" 
+                           HorizontalTextAlignment="Center" />
+
+                            <Button Margin="0,40"
+                                x:Name="btnSearch"
+                                Text="SEARCH" 
+                                HeightRequest="50"
+                                Clicked="btnSearch_Clicked" 
+                                IsEnabled="{Binding IsEnabled}"                               
+                                Style="{DynamicResource actionButtonPrimary}"
+                                CornerRadius="3"/>
+
+                        </StackLayout>
+                        <!--<Frame VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="DashboardFrame">-->
+                        <!--<StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                    <ContentView HorizontalOptions="Center">
+                        <Label Text="Please search by location" TextColor="Black" FontSize="16">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                    </ContentView>
+                    <ContentView HorizontalOptions="Center" Padding="0,0,0,20">
+                        <Label Text="Type either the city or town" TextColor="Black" FontSize="12">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                    </ContentView>
+                    -->
+                        <!--<ContentView Padding="0,10,0,0">-->
+                        <!--<Entry x:Name="entrySalonCode" Placeholder="Salon code" PlaceholderColor="White"  Style="{StaticResource DashboardTextboxStyle}">
+                            <Entry.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Entry.FontFamily>
+                        </Entry>-->
+                        <!--</ContentView>-->
+                        <!--
+                    
+                    <custom:PlacesBar x:Name="search_bar" Placeholder="Search" Opacity="1" PlaceholderColor="Gray" TextColor="Gray" BackgroundColor="Transparent" HeightRequest="40"/>
+                    <BoxView Style="{StaticResource TextBorderstyle}">
+                        <BoxView.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="0,-17,0,0" />
+                                <On Platform="iOS" Value="0,-20,0,0"/>
+
+                            </OnPlatform>
+                        </BoxView.Margin>
+                    </BoxView>
+                    <ActivityIndicator x:Name="spinner" IsRunning="false" HeightRequest="20" WidthRequest="20"
+				AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" IsVisible="False" Color="Black"/>
+                    <AbsoluteLayout HeightRequest="200" x:Name="SearchResult" IsVisible="false">
+                        <ListView x:Name="results_list" IsVisible="false" BackgroundColor="Transparent"
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Description}" TextColor="Black"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </AbsoluteLayout>
+                    <Label x:Name="lblMessage" Text="" TextColor="Black" FontSize="12" IsVisible="false" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                   
+                    <Button x:Name="btnSearch" BackgroundColor="#000000" FontAttributes="Bold" Text="Search" TextColor="White" Clicked="btnSearch_Clicked">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <OnPlatform.iOS>Helvetica-Bold</OnPlatform.iOS>
+                                <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label x:Name="lblHelp" Text="Help" TextColor="Black" FontSize="15" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="OnHelpClicked"
+                            NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                    <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                      
+                    </StackLayout>
+                </StackLayout>-->
+                    </StackLayout>
+
+                </ScrollView>
+            </Grid>
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Appointment.Admin.Clients"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:behaviors="clr-namespace:IQB.ControlBehaviors"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Name="MyNotifyPage"
+             Appearing="MyNotifyPage_Appearing"    
+             BackgroundColor="{DynamicResource AppBackground}" Title="Choose a client">
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+            </forms:SvgCachedImage>
+            <Label Text="Choose a client" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="Appearing" 
+                                          Command="{Binding PageAppearing,Mode=TwoWay}"></behaviors:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid BackgroundColor="{DynamicResource AppBackground}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.ColumnSpan="5" Margin="25,20,25,0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                          WidthRequest="14" HeightRequest="14"
+                                          HorizontalOptions="Center" 
+                                          VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                    <custom:BorderlessEntry Placeholder="Filter by Name" Grid.Column="1"
+                                            Style="{DynamicResource SearchBarStyle}"
+                                            TextChanged="SearchBar_TextChanged" />
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                </Grid>
+                <Grid Grid.Row="1" Grid.ColumnSpan="5" Margin="20,20,20,0" Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource AppBackground}">
+                    <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="WalkInClientTapped" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                        <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="20">
+                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center" Margin="-10,0,0,0">
+                                <forms:SvgCachedImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="35"
+                                                Android="30" />
+                                </forms:SvgCachedImage.WidthRequest>
+                                <forms:SvgCachedImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="35"
+                                                Android="30"/>
+                                </forms:SvgCachedImage.HeightRequest>
+                            </forms:SvgCachedImage>
+                            <Label Style="{DynamicResource listContentLabel}"
+                                   Margin="5,0,0,0"
+                                   VerticalTextAlignment="Center"
+                                   Text="Walk-in Client"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+                <ListView x:Name="lstCustomer" Grid.Row="2" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5" Margin="20,-5,20,20"
+                      RowHeight="80"
+                      SeparatorVisibility="None"
+                      BackgroundColor="{DynamicResource AppBackground}"
+                      ItemsSource="{Binding MoreCustomerList}"
+                      IsVisible="{Binding IsListVisible}"
+                      ItemAppearing="lstCustomer_ItemAppearing"
+                      ItemSelected="lstCustomer_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid BackgroundColor="{DynamicResource AppBackground}">
+                                    <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference lstCustomer}, Path=Width}" Padding="0">
+                                        <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="10">
+                                            <!--<forms:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg"
+                                                                          WidthRequest="22" 
+                                                                          HeightRequest="22"
+                                                                          HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center"/>-->
+                                            <controls:CircleImage Source="{Binding CustomerImage}" 
+                                                                  Aspect="AspectFill"
+                                                                  BorderColor="{DynamicResource AppPrimary}" 
+                                                                  BorderThickness="2" 
+                                                                  HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center">
+                                                <controls:CircleImage.WidthRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30" />
+                                                </controls:CircleImage.WidthRequest>
+                                                <controls:CircleImage.HeightRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30"/>
+                                                </controls:CircleImage.HeightRequest>
+                                            </controls:CircleImage>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="3" Margin="5,0,0,0">
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding CustomerFirstName}"/>
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding CustomerLastName}" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Frame Grid.Column="4" Grid.Row="3" Grid.RowSpan="6" Margin="-25, 0, 20, 30"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center" 
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   CornerRadius="30" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="RegisterClient_Tapped"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                </Frame>
+            </Grid>
+            <ActivityIndicator x:Name="actInd"
+                               IsRunning="{Binding IsProfileApiRunning}"
+                               IsVisible="{Binding IsProfileApiRunning}"
+                               MinimumHeightRequest="30"
+                               MinimumWidthRequest="30"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

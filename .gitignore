@@ -1,0 +1,6 @@
+bin
+obj
+*.suo
+/.vs
+*.csproj.user
+/IQB/IQB.Android/IQB.Android.csproj.user

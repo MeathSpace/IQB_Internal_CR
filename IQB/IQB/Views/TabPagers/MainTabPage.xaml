@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="IQB.Views.TabPagers.MainTabPage"
+             BackgroundColor="Black"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+
+    <ContentPage.Resources>
+        
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" 
+                        x:Key="fonts" 
+                        iOS="TabIcon" 
+                        Android="TabIcon.ttf" />
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        
+        <Grid RowSpacing="0" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<forms:SvgCachedImage Grid.Row="0" Margin="5" Grid.Column="0" WidthRequest="40" HeightRequest="40" Source="resource://IQB.Resources.Image.DefaultUser.svg">
+                <forms:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToProfile"/>
+                </forms:SvgCachedImage.GestureRecognizers>
+            </forms:SvgCachedImage>
+
+            <controls:CircleImage Grid.Row="0" Margin="5" Grid.Column="0" WidthRequest="40" HeightRequest="40" x:Name="ProfileImg" Aspect="Fill">
+                <controls:CircleImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToProfile"/>
+                </controls:CircleImage.GestureRecognizers>
+            </controls:CircleImage>-->
+            <forms:SvgCachedImage Margin="10,0,5,0" Grid.Row="0" Grid.Column="0" WidthRequest="{OnPlatform iOS=30, Default=40}" HeightRequest="{OnPlatform iOS=30, Default=40}" Source="resource://IQB.Resources.Image.DefaultUser.svg" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+                <forms:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToProfile"/>
+                </forms:SvgCachedImage.GestureRecognizers>
+            </forms:SvgCachedImage>
+
+            <controls:CircleImage Margin="10,0,5,0" Grid.Row="0" Grid.Column="0" WidthRequest="{OnPlatform iOS=30, Default=40}" HeightRequest="{OnPlatform iOS=30, Default=40}" x:Name="ProfileImg" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center">
+                <controls:CircleImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToProfile"/>
+                </controls:CircleImage.GestureRecognizers>
+            </controls:CircleImage>
+            <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="1">
+                <Label x:Name="UserNameLabel" TextColor="{DynamicResource AppForeground}" FontSize="16" FontAttributes="Bold"  VerticalTextAlignment="Center" />
+                <Label x:Name="UserDetailLabel" TextColor="Gray" FontSize="10" VerticalTextAlignment="Center" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToProfile"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout Grid.Row="0" Spacing="7" Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+
+                <!--<Image Source="helpwhite" WidthRequest="25" HeightRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="HelpIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image Source="logoutwhite" WidthRequest="25" HeightRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LogoutIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>-->
+
+                <StackLayout Padding="5,12">
+               
+                    <forms:SvgCachedImage IsVisible="False" x:Name="FilterIcon" Source="resource://IQB.Resources.Image.Filter.svg" WidthRequest="18" HeightRequest="18">
+                    <forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>
+                    
+                </forms:SvgCachedImage>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="FilterIconTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Padding="5,15">
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.info.svg" WidthRequest="18" HeightRequest="18">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                        
+                    </forms:SvgCachedImage>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="HelpIconTapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Padding="5,15,10,15">
+                
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.Logout.svg" WidthRequest="18" HeightRequest="18">
+                    <forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>
+                   
+                    </forms:SvgCachedImage>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LogoutIconTapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                </StackLayout>
+                
+            </StackLayout>
+            
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" BackgroundColor="Gray">
+                <Label Text="Your Header goes here"/>
+            </StackLayout>-->
+            <!--Grid.Row="1"-->
+            
+            <tabView:SfTabView   x:Name="SfTabContainer"
+                             BackgroundColor="Black"
+                             TabHeaderPosition="Bottom"
+                            SelectionChanged="Handle_SelectionChanged"
+                            VisibleHeaderCount="4"
+                            DisplayMode="ImageWithText">
+
+            <tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SelectionIndicatorSettings
+                    Color="{DynamicResource AppPrimary}" 
+                    Position="Bottom" 
+                    StrokeThickness="2"/>
+            </tabView:SfTabView.SelectionIndicatorSettings>
+
+
+            <tabView:SfTabItem Title="Home" 
+                               TitleFontAttributes="Bold" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="11"
+                               FontIconFontSize="18"
+                               IconFont="H"
+                               FontIconFontColor="Gray"
+                               FontIconFontFamily="{StaticResource fonts}"
+                               SelectionColor="{DynamicResource AppPrimary}">
+
+                <tabView:SfTabItem.Content>
+                    <ContentView x:Name="HomeTabContentView"/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Title="Settings"
+                               TitleFontAttributes="Bold" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="11"
+                               FontIconFontSize="18"
+                               IconFont="S"
+                               FontIconFontFamily="{StaticResource fonts}"
+                               SelectionColor="{DynamicResource AppPrimary}"
+                               FontIconFontColor="Gray">
+                <tabView:SfTabItem.Content>
+                    <ContentView x:Name="SettingsTabContentView"/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Title="Q List"
+                               TitleFontAttributes="Bold" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="11"
+                               FontIconFontSize="18"
+                               IconFont="Q"
+                               FontIconFontFamily="{StaticResource fonts}"
+                               SelectionColor="{DynamicResource AppPrimary}"
+                               FontIconFontColor="Gray">
+                <tabView:SfTabItem.Content>
+                    <ContentView x:Name="QListTabContentView"/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <!--<tabView:SfTabItem Title="About"
+                               TitleFontAttributes="Bold" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="12"
+                               FontIconFontSize="18"
+                               IconFont="A"
+                               FontIconFontFamily="{StaticResource fonts}"
+                               SelectionColor="{DynamicResource AppPrimary}"
+                               FontIconFontColor="{DynamicResource AppPrimary}">
+                <tabView:SfTabItem.Content>
+                    <ContentView x:Name="AboutTabContentView"/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>-->
+
+            <tabView:SfTabItem Title="Appointments"
+                               TitleFontAttributes="Bold" 
+                               TitleFontColor="Gray" 
+                               TitleFontSize="11"
+                               FontIconFontSize="18"
+                               IconFont="C"
+                               FontIconFontFamily="{StaticResource fonts}"
+                               SelectionColor="{DynamicResource AppPrimary}"
+                               FontIconFontColor="Gray">
+                <tabView:SfTabItem.Content>
+                    <ContentView x:Name="AppointmentsTabContentView"/>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+        </tabView:SfTabView>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

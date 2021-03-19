@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.AdminManagement.ManageStaff"
+              xmlns:behaviors="clr-namespace:IQB.ControlBehaviors"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+               xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:context="clr-namespace:ContextMenu;assembly=ContextMenu"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+               
+             BackgroundColor="{DynamicResource AppBackground}"
+             Appearing="Content_PageAppering">
+
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <ffimg:CachedImage.Transformations>
+                    <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </ffimg:CachedImage.Transformations>
+            </ffimageloadingsvg:SvgCachedImage>
+            <Label Text="{Binding LabelData}" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid BackgroundColor="{DynamicResource AppBackground}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Grid Grid.ColumnSpan="5" Margin="25,20,25,0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.search.svg"
+                                          WidthRequest="14" HeightRequest="14"
+                                          HorizontalOptions="Center" 
+                                          VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#878787" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                    <custom:BorderlessEntry Placeholder="Filter by Name" Grid.Column="1"
+                                            Style="{DynamicResource SearchBarStyle}"
+                                            TextChanged="SearchBar_TextChanged"/>
+                    <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1" Grid.ColumnSpan="2"></BoxView>
+                </Grid>-->
+                
+                <Frame x:Name="frmHintList"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="5" 
+                   BackgroundColor="{DynamicResource AppBackground}"
+                   BorderColor="{DynamicResource AppPrimary}" 
+                   CornerRadius="5"
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" Padding="0"
+                   Margin="20,20,20,10" HeightRequest="40">
+                    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{DynamicResource contentLabel}" Text="Swipe Left for more options"
+                           FontSize="Small"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,-20,0"/>
+                        <ffimageloadingsvg:SvgCachedImage x:Name="imgCloseHint" Grid.Column="1" WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.cross.svg"
+                                                              HorizontalOptions="Center" VerticalOptions="Center">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="imgCloseHint_Tapped"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </Grid>
+                </Frame>
+                <!--Margin="20,-5,20,20"-->
+                <ListView x:Name="staffList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5" Margin="20,-5,20,50"
+                      RowHeight="80" 
+                      SeparatorVisibility="None"
+                      BackgroundColor="{DynamicResource AppBackground}"
+                     IsRefreshing="{Binding IsRefreshing}"
+                      ItemsSource="{Binding BarberList,Mode=TwoWay}"
+                      IsVisible="True"
+                      >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <context:SideActionBarCell x:Name="st">
+                                <context:SideActionBarCell.Content>
+                                <Grid BackgroundColor="{DynamicResource AppBackground}">
+                                    <Frame BackgroundColor="{DynamicResource AppBackground}" Margin="0, 5" CornerRadius="5" WidthRequest="{Binding Source={x:Reference staffList}, Path=Width}" Padding="0">
+                                        <StackLayout BackgroundColor="#14181B"
+                                             Orientation="Horizontal" Padding="10">
+                                           
+                                                <controls:CircleImage Source="{Binding BarberImage}" 
+                                                                  Aspect="AspectFill"
+                                                                  BorderColor="{DynamicResource AppPrimary}" 
+                                                                  BorderThickness="2" 
+                                                                  HorizontalOptions="Center" 
+                                                                          VerticalOptions="Center">
+                                                <controls:CircleImage.WidthRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30" />
+                                                </controls:CircleImage.WidthRequest>
+                                                <controls:CircleImage.HeightRequest>
+                                                    <OnPlatform x:TypeArguments="x:Double"
+                                                                iOS="35"
+                                                                Android="30"/>
+                                                </controls:CircleImage.HeightRequest>
+                                            </controls:CircleImage>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="3" Margin="5,0,0,0">
+                                                <Label Style="{DynamicResource listContentLabel}"
+                                               VerticalTextAlignment="Center"
+                                           Text="{Binding BarberName}"/>
+                                                
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                                </context:SideActionBarCell.Content>
+                                <!--Side Content Starts-->
+                                <context:SideActionBarCell.ContextTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Margin="0,5">
+                                            <Frame CornerRadius="5" Padding="0" VerticalOptions="FillAndExpand"
+                                                 HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource AppPrimary}">
+                                                <StackLayout Orientation="Horizontal" Spacing="20" Margin="20" >
+                                                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.editIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <ffimg:CachedImage.Transformations>
+                                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                        </ffimg:CachedImage.Transformations>
+                                                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="EditStaff_Tapped" Command="{Binding EditStaff}" CommandParameter="{Binding BarberID,Mode=TwoWay}"></TapGestureRecognizer>
+                                                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                    </ffimageloadingsvg:SvgCachedImage>
+                                                    <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.deleteIcon.svg" WidthRequest="23" HeightRequest="23" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <ffimg:CachedImage.Transformations>
+                                                            <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                                        </ffimg:CachedImage.Transformations>
+                                                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1"  Command="{Binding DeleteStaff}" CommandParameter="{Binding BarberID,Mode=TwoWay}"></TapGestureRecognizer>
+                                                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                    </ffimageloadingsvg:SvgCachedImage>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </context:SideActionBarCell.ContextTemplate>
+                                <!--Side Content Ends-->
+                            </context:SideActionBarCell>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--Margin="-25, 0, 20, 30"-->
+                <Frame Grid.Column="4" Grid.Row="2" Grid.RowSpan="6" Margin="-25, 0, 20, 15"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center" 
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   CornerRadius="30" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CreateStaff_Tapped"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon.svg" WidthRequest="25" HeightRequest="25" HorizontalOptions="Center" VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                </Frame>
+            </Grid>
+            <ActivityIndicator x:Name="actInd"
+                               IsRunning="{Binding IsProfileApiRunning}"
+                               IsVisible="{Binding IsProfileApiRunning}"
+                               MinimumHeightRequest="30"
+                               MinimumWidthRequest="30"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

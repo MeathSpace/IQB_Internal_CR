@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.LoginManagement.AccountActivation"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+              xmlns:custom="clr-namespace:IQB.CustomControl"
+             BackgroundColor="{DynamicResource AppBackground}">
+    <!--BackgroundImage="main_bg.jpg"-->
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ForgotPwdTextboxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="30, 10, 30, 10"
+                WinPhone="20, 20, 20, 20" />
+    </ContentPage.Padding>-->
+    <ContentPage.Content>
+        <!--<StackLayout VerticalOptions="Center" HorizontalOptions="Center">-->
+        <Grid Style="{DynamicResource baseGrid}">
+            <Grid x:Name="gdMain" Margin="0">
+                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid  VerticalOptions="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Spacing="20" Padding="20,0,20,0">
+                            <Label Text="Account Activation" Style="{DynamicResource pageHeadingLabel}"  HorizontalOptions="CenterAndExpand"/>
+
+                            <Label Text="Your account is not activated yet. Please insert the activation code sent to your email." Style="{DynamicResource greyLabel}"/>
+                        </StackLayout>
+                        <Grid Grid.Row="1" Padding="20,0,20,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <custom:BorderlessEntry x:Name="entryActivationCode" 
+                                        Placeholder="Activation Code"                                        
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill" 
+                                        MinimumHeightRequest="40"
+                                        Text="{Binding UserEmail}"
+                                        IsEnabled="{Binding IsEnabled}">
+
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvActivationCode" Message="Please enter a Activation Code"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="1"></BoxView>
+
+                            <Button 
+                        x:Name="btnActivateAccount"
+                        Text="ACTIVATE ACCOUNT" 
+                        HeightRequest="50"
+                        Grid.Row="2"
+                        Margin="0,20"
+                        CornerRadius="3"        
+                        Clicked="ActivateClicked" 
+                        IsEnabled="{Binding IsEnabled}"                             
+                        Style="{DynamicResource actionButtonPrimary}"/>
+
+                            <StackLayout Padding="10,0" Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="3">
+                                
+                              <Label Text="CANCEL" Style="{DynamicResource primaryLabel}"
+                                     Margin="0,0,40,0"
+                                     HorizontalOptions="Start">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Tapped="CancelClick"
+                                    NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <Label Text="RESEND" Style="{DynamicResource primaryLabel}" Margin="40,0,0,0" HorizontalOptions="EndAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Tapped="ResendActivationCode"
+                                    NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                            </StackLayout>
+
+                        </Grid>
+                    </Grid>
+
+                </ScrollView>
+            </Grid>
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+        </Grid>
+        
+        <!--</StackLayout>-->
+    </ContentPage.Content>
+</ContentPage>

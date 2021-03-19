@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+              xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Title="Photo Gallery"
+             BackgroundColor="{DynamicResource AppBackground}"
+             x:Class="IQB.Views.PhotoGallery.PhotoGalleryPage">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <sync:SfListView x:Name="PhotosListView"
+                         Grid.Row="0" Grid.RowSpan="2"
+                         IsScrollBarVisible="False"
+                         SelectionBackgroundColor="Transparent"
+                         >
+            <sync:SfListView.LayoutManager>
+                <sync:GridLayout SpanCount="3" />
+            </sync:SfListView.LayoutManager>
+            
+            <sync:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowSpacing="0" HeightRequest="120">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding ImageID}" IsVisible="False" Grid.Row="0" HorizontalOptions="End"/>
+                        <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding ImagePath}" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ZoomImageClicked"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <forms:SvgCachedImage IsVisible="{Binding IsDeleteVisible}" Grid.Row="0" WidthRequest="{OnPlatform iOS=30, Default=30}" HeightRequest="{OnPlatform iOS=30, Default=30}" Source="resource://IQB.Resources.Image.DeletePhoto.svg" VerticalOptions="FillAndExpand" HorizontalOptions="End">
+                            <!--<forms1:CachedImage.Transformations>
+                                <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </forms1:CachedImage.Transformations>-->
+                            <forms:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DeleteImageClicked"/>
+                            </forms:SvgCachedImage.GestureRecognizers>
+                        </forms:SvgCachedImage>
+                    </Grid>
+                </DataTemplate>
+            </sync:SfListView.ItemTemplate>
+      
+        </sync:SfListView>
+
+        <Frame Grid.Row="1" x:Name="AddImageFrame"
+                   Margin="0,0,15,20" 
+                   HorizontalOptions="EndAndExpand" 
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="{DynamicResource AppPrimary}">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OpenPhotoOptionsClicked" NumberOfTapsRequired="1"></TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+            <forms:SvgCachedImage x:Name="SelectPhotoFrame" Source="resource://IQB.Resources.Image.TakePhoto.svg" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+            </forms:SvgCachedImage>
+        </Frame>
+
+        <StackLayout x:Name="UploadPhotoStack" IsVisible="False" Spacing="7" Padding="0,0,15,10" VerticalOptions="EndAndExpand" HorizontalOptions="End" Grid.Row="0">
+
+            <StackLayout Opacity="0" x:Name="SelectGalleryStack" HorizontalOptions="End" HeightRequest="50" Spacing="10" Orientation="Horizontal">
+
+                <Button x:Name="GalleryBtn" InputTransparent="True" CornerRadius="25" Margin="0,7" Padding="15,0" TextColor="White" BackgroundColor="#282828" Text="Upload From Gallery">
+
+                </Button>
+
+                <Frame Grid.Row="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="#282828">
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.ourPhotos.svg" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                </Frame>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUploadGalleryClicked"
+                                NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+
+            </StackLayout>
+
+            <StackLayout Opacity="0" x:Name="SelectCameraStack" HorizontalOptions="End" HeightRequest="50" Spacing="10" Orientation="Horizontal">
+
+                <Button x:Name="CameraBtn" InputTransparent="True" CornerRadius="25" Margin="0,7" Padding="15,0" TextColor="White" BackgroundColor="#282828" Text="Take a Photo">
+
+                </Button>
+
+                <Frame Grid.Row="1"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Padding="0"
+                   CornerRadius="25" 
+                   HasShadow="true"
+                   BackgroundColor="#282828">
+                    <forms:SvgCachedImage Source="resource://IQB.Resources.Image.TakePhoto.svg" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center">
+                        <forms1:CachedImage.Transformations>
+                            <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                        </forms1:CachedImage.Transformations>
+                    </forms:SvgCachedImage>
+                </Frame>
+
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTakePhotoClicked"
+                                NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+
+            </StackLayout>
+
+        </StackLayout>
+
+        <Grid Grid.Row="0" x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+        </Grid>
+
+    </Grid>
+</ContentPage>

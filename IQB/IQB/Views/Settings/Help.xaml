@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="IQB.Views.Settings.Help"
+             BackgroundColor="{DynamicResource AppBackground}">
+
+    <NavigationPage.TitleView>
+        <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" WidthRequest="20" HeightRequest="20">
+                <forms1:CachedImage.Transformations>
+                    <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                </forms1:CachedImage.Transformations>
+            </forms:SvgCachedImage>
+            <Label Text="Help" TextColor="{DynamicResource AppForeground}" FontSize="16" VerticalTextAlignment="Center" />
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="30" Spacing="20">
+                <!--<Label Font="15" Text="If you are finding any difficulties using this app please contact support using the following contact details" TextColor="Black"/>-->
+                <Label x:Name="lblHelpText" Style="{DynamicResource pageHeadingLabel}" FontSize="14" TextColor="{DynamicResource AppHintText}" Text="{Binding HelpText}" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="1"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Padding="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <forms:SvgCachedImage WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.SalonInfoContact.svg">
+                            <!--<forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>-->
+                            <forms:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapGestureRecognizerTel"
+                                    NumberOfTapsRequired="1" />
+                            </forms:SvgCachedImage.GestureRecognizers>
+                        </forms:SvgCachedImage>
+                        <forms:SvgCachedImage Grid.Column="2" WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Source="resource://IQB.Resources.Image.ProfileMail.svg">
+                            <!--<forms1:CachedImage.Transformations>
+                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                    </forms1:CachedImage.Transformations>-->
+                            <forms:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnEmailClicked"
+                                    NumberOfTapsRequired="1" />
+                            </forms:SvgCachedImage.GestureRecognizers>
+                        </forms:SvgCachedImage>
+
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,20">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapGestureRecognizerTel"
+                                    NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="{Binding ContactTel}" Style="{DynamicResource greyLabelBold}" TextColor="{DynamicResource AppForeground}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" 
+                                   Margin="0,0,5,0"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <forms:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.Phone-2.svg"
+                                                  HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <Label Text="Get in Touch" Margin="0,10,0,20"
+                               Style="{DynamicResource greyLabelBold}"
+                               Grid.Row="1" Grid.Column="2" TextColor="{DynamicResource AppForeground}"
+                               HorizontalOptions="Center" VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                            Tapped="OnEmailClicked"
+                                            NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView Style="{DynamicResource verticalLine}" Grid.Column="1" Grid.RowSpan="2"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+            <Grid x:Name="indicator" BackgroundColor="White" Opacity="0.75" IsVisible="{Binding IsFetchingLoad}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--<Grid.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color"
+                iOS="White"
+                Android="#000000E8"/>
+                </Grid.BackgroundColor>-->
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="True" IsRunning="True"></ActivityIndicator>
+            </Grid>
+            <!--<ActivityIndicator x:Name="actInd"
+                   IsRunning="{Binding IsFetchingLoad}"
+                   IsVisible="{Binding IsFetchingLoad}"
+                   MinimumHeightRequest="30"
+                   MinimumWidthRequest="30"
+                   Color="Black" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

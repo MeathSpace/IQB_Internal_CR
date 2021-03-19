@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.Home.GroupJoin"
+             xmlns:local="clr-namespace:IQB.CustomControl;assembly=IQB"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             BackgroundColor="{DynamicResource AppBackground}"
+              xmlns:converters="clr-namespace:IQB.Converters"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+              xmlns:controls1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+              xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="Group Join"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringToImageConverter x:Key="StringToImageConverterID" />
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HeightRequest" Value="75" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="TextBorderstyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
+            <Style x:Key="TextBoxStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0, 0, 0, 0" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid>
+            <Grid x:Name="gdGroupJoin">
+
+                <!--Main Stack Layout Completed-->
+                <StackLayout x:Name="stGroupJoin">
+
+                    <!--<StackLayout HeightRequest="50" Padding="7" Spacing="15" Orientation="Horizontal">
+
+
+                        <Image Source="back.png"  HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="24" WidthRequest="21">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGroupJoinClosed"
+                                                  NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        --><!--<forms:SvgCachedImage Source="resource://IQB.Resources.Image.addIcon1.svg"
+                                      HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="27" WidthRequest="27" >
+                            <forms1:CachedImage.Transformations>
+                                <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </forms1:CachedImage.Transformations>
+                            <forms:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGroupJoinClosed"
+                                                  NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </forms:SvgCachedImage.GestureRecognizers>
+                        </forms:SvgCachedImage>--><!--
+
+
+                        <Label Text="Group Join" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" TextColor="White" FontSize="20"/>
+
+                    </StackLayout>-->
+                    <BoxView BackgroundColor="{DynamicResource AppHintText}"   HeightRequest="1"/>
+                    
+                    <Grid Margin="5" VerticalOptions="FillAndExpand">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <forms:SvgCachedImage Source="resource://IQB.Resources.Image.info.svg"
+                                              Grid.Column="0" Grid.Row="0"
+                                              HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="27" WidthRequest="27" >
+                            <forms1:CachedImage.Transformations>
+                                <transformations:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                            </forms1:CachedImage.Transformations>
+                        </forms:SvgCachedImage>
+
+                            <Label FontAttributes="Bold" 
+                                   Grid.Column="1" Grid.Row="0"
+                                   TextColor="{DynamicResource AppHintText}" 
+                                   FormattedText="{Binding HintText}" 
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="FillAndExpand"
+                                   HorizontalOptions="Center"
+                                   LineBreakMode="WordWrap"
+                                   FontSize="12">
+                            </Label>
+
+                        
+                    </Grid>
+
+                        <ListView Margin="15,0" SeparatorVisibility="None" x:Name="lstGroupJoin" BackgroundColor="{DynamicResource AppBackground}" ItemsSource="{Binding GroupJoinList}" RowHeight="215">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame Margin="0,5" Padding="0" HeightRequest="210" CornerRadius="8" BackgroundColor="Black">
+                                            <StackLayout BackgroundColor="Black"  Padding="5">
+                                                <StackLayout Padding="10,5" Orientation="Horizontal">
+                                                    <StackLayout VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
+                                                        <StackLayout Padding="10,0,25,0" Orientation="Horizontal">
+                                                            <custom:BorderlessEntry Text="{Binding UserName}"
+                                                                            Placeholder="Enter Full Name" 
+                                                                            PlaceholderColor="{DynamicResource AppHintText}" 
+                                                                            TextColor="White" 
+                                                                            FontSize="14"
+                                                                            HorizontalOptions="FillAndExpand" 
+                                                                            VerticalOptions="Center"
+                                                                            IsEnabled="{Binding NameIsEnabled}">
+                                                                <custom:BorderlessEntry.Behaviors>
+                                                                    <behavior:GroupJoinNameValidatorBehavior x:Name="bhvValidName" />
+                                                                </custom:BorderlessEntry.Behaviors>
+                                                            </custom:BorderlessEntry>
+                                                            <forms:SvgCachedImage Source="{Binding HexDefaultTickImage}"
+                                                                                  HeightRequest="23"  WidthRequest="23" />
+
+                                                            <!--<Image Source="{Binding DefaultTickImage}"   HeightRequest="23"  WidthRequest="23"/>-->
+
+                                                        </StackLayout>
+
+                                                        <BoxView HeightRequest="1"  HorizontalOptions="Fill" Color="LightGray"/>
+
+                                                        <ContentView HorizontalOptions="FillAndExpand"  IsVisible="{Binding Source={x:Reference bhvValidName}, Path=IsShow}">
+                                                            <Label Text="{Binding Source={x:Reference bhvValidName}, Path=Message}" 
+                                                               TextColor="Red"
+                                                               FontSize="12">
+                                                                <Label.FontFamily>
+                                                                    <OnPlatform x:TypeArguments="x:String">
+                                                                        <OnPlatform.iOS>Helvetica-Light</OnPlatform.iOS>
+                                                                        <OnPlatform.Android>Roboto-Light</OnPlatform.Android>
+                                                                    </OnPlatform>
+                                                                </Label.FontFamily>
+                                                            </Label>
+                                                        </ContentView>
+
+                                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+
+                                                            <Button x:Name="JoinLabel" 
+                                                                Text="Select Options"
+                                                                FontAttributes="Bold" 
+                                                                TextColor="White"
+                                                                FontSize="12"
+                                                                HeightRequest="30"
+                                                                WidthRequest="115"
+                                                                BackgroundColor="{DynamicResource AppPrimary}"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="Center"
+                                                                Clicked="SelectOptions_Clicked"
+                                                                CommandParameter="{Binding .}">
+                                                            </Button>
+                                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="0">
+
+                                                                <!--Image="{Binding DefaultJoinImage}"-->
+
+                                                                <Frame BackgroundColor="{Binding AddJoinColor}" IsEnabled="{Binding JoinIsEnabled}" CornerRadius="8" Padding="3" HeightRequest="30" WidthRequest="30">
+                                                                    <StackLayout>
+                                                                    <Label IsVisible="False" Text="{Binding Id}"/>
+                                                                    <Label Text="+" TextColor="White" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <Frame.GestureRecognizers>
+                                                                        <TapGestureRecognizer Tapped="OnJoinGroup"/>
+                                                                    </Frame.GestureRecognizers>
+                                                                    
+                                                                </Frame>
+
+                                                                <Frame BackgroundColor="{Binding RemoveJoinColor}" IsEnabled="{Binding RemoveJoinIsEnabled}" CornerRadius="8" Padding="3" HeightRequest="30" WidthRequest="30">
+                                                                    <StackLayout>
+                                                                        <Label IsVisible="False" Text="{Binding Id}"/>
+                                                                        <Label Text="-" TextColor="White" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                                    </StackLayout>
+                                                                    <Frame.GestureRecognizers>
+                                                                        <TapGestureRecognizer Tapped="OnRemoveGroup"/>
+                                                                    </Frame.GestureRecognizers>
+
+                                                                </Frame>
+
+                                                                <!--<Button  
+                                                                    Text=" + "
+                                                                    TextColor="{Binding AddJoinColor}"
+                                                                    IsEnabled="{Binding JoinIsEnabled}" 
+                                                                    BackgroundColor="Transparent" 
+                                                                    Clicked="OnJoinGroup" 
+                                                                    CornerRadius="5"
+                                                                    VerticalOptions="Center"
+                                                                    CommandParameter="{Binding Id}" 
+                                                                    HeightRequest="35"
+                                                                    WidthRequest="35"/>
+
+                                                                <Button   Image="{Binding DefaultRemoveJoinImage}"
+                                                                        Text=" - "
+                                                                        TextColor="{Binding RemoveJoinColor}"
+                                                                    IsEnabled="{Binding RemoveJoinIsEnabled}" 
+                                                                    BackgroundColor="Transparent" 
+                                                                    Clicked="OnRemoveGroup" 
+                                                                    CornerRadius="5"
+                                                                    VerticalOptions="Center" 
+                                                                    CommandParameter="{Binding Id}" 
+                                                                    HeightRequest="35"
+                                                                    WidthRequest="35"/>-->
+                                                       
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+
+                                                </StackLayout>
+
+                                                <Frame  Padding="8" CornerRadius="8" Margin="5,0,10,5" BackgroundColor="#0D0D0D" >
+
+                                                    <Grid Padding="10,0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="1"/>
+                                                            <ColumnDefinition Width="100"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <StackLayout Padding="7,2" Grid.Column="0">
+
+                                                            <Label Text="Barber Name"   TextColor="{DynamicResource AppHintText}" FontSize="12"/>
+
+                                                            <Label Text="{Binding BarberNameForPanel}" TextColor="White" FontSize="12"/>
+
+                                                            <Label Text="Service" TextColor="{DynamicResource AppHintText}" FontSize="12"/>
+
+                                                            <Label Text="{Binding ServiceNameForPanel}" TextColor="White" FontSize="12"/>
+
+                                                        </StackLayout>
+
+                                                        <BoxView Grid.Column="1" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AppHintText}"/>
+
+                                                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="7" VerticalOptions="CenterAndExpand" Grid.Column="2">
+
+                                                            <Label Text="Price" TextColor="{DynamicResource AppHintText}" FontSize="12"/>
+
+                                                            <Label Text="{Binding ServicePriceForPanel}" TextColor="{DynamicResource AppPrimary}" FontSize="12"/>
+                                                        </StackLayout>
+
+
+                                                    </Grid>
+
+                                                </Frame>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    <StackLayout HeightRequest="50" BackgroundColor="{DynamicResource AppPrimary}" Padding="5">
+                        <Label Text="+ JOIN QUEUE " FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGroupJoinQueue"
+                                          NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </StackLayout>
+                <!--Main Stack Layout Completed-->
+
+                <Grid HeightRequest="270" 
+                  WidthRequest="300"
+                  Padding="1" 
+                  BackgroundColor="Gray" 
+                  HorizontalOptions="CenterAndExpand" 
+                  VerticalOptions="CenterAndExpand"
+                  x:Name="gdGroupJoinPopup" 
+                  IsVisible="False">
+                    <Grid HeightRequest="270" 
+                      WidthRequest="300" 
+                      BackgroundColor="White" 
+                      HorizontalOptions="CenterAndExpand" 
+                      VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--Bekaar Header-->
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="10"
+                                         BackgroundColor="#696969"
+                                         HorizontalOptions="FillAndExpand">
+                                <Image Source="CancelPositionNew.png" 
+                                       HeightRequest="23" 
+                                       WidthRequest="23" 
+                                       HorizontalOptions="Start" 
+                                       VerticalOptions="CenterAndExpand" 
+                                       Margin="7,7,7,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Cancel_Tapped"
+                                                              NumberOfTapsRequired="1">
+                                        </TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Select Option" 
+                                       FontSize="18"
+                                       TextColor="White"
+                                       Margin="-30,5,0,0" 
+                                       HorizontalOptions="CenterAndExpand"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <!--Bekaar Header-->
+
+                        <StackLayout Orientation="Horizontal" 
+                             VerticalOptions="CenterAndExpand" 
+                             WidthRequest="260" 
+                             Grid.Row="1" 
+                             Padding="4,10,2,0">
+
+                            <Button BackgroundColor="Black" Clicked="SelectBarber_Clicked" Text="{Binding barberBtnText}" TextColor="White">
+                                <Button.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>143</OnPlatform.iOS>
+                                        <OnPlatform.Android>145</OnPlatform.Android>
+                                    </OnPlatform>
+                                </Button.WidthRequest>
+                                <Button.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>35</OnPlatform.iOS>
+                                        <OnPlatform.Android>47</OnPlatform.Android>
+                                    </OnPlatform>
+                                </Button.HeightRequest>
+                            </Button>
+
+                            <Button x:Name="btnServicePopup" BackgroundColor="Black" Clicked="Service_Clicked" Text="{Binding btnText}" TextColor="White" IsEnabled="False">
+                                <Button.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>143</OnPlatform.iOS>
+                                        <OnPlatform.Android>145</OnPlatform.Android>
+                                    </OnPlatform>
+                                </Button.WidthRequest>
+                                <Button.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>35</OnPlatform.iOS>
+                                        <OnPlatform.Android>47</OnPlatform.Android>
+                                    </OnPlatform>
+                                </Button.HeightRequest>
+                            </Button>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2">
+                            <BoxView BackgroundColor="Black" 
+                             HeightRequest="1" ></BoxView>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" x:Name="stPriceBlank" IsVisible="False" HeightRequest="30"></StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" x:Name="stPrice">
+                                <Label Text="Price :" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"
+                               VerticalOptions="CenterAndExpand"
+                               VerticalTextAlignment="Center"
+                           FontSize="14" 
+                               HeightRequest="25"
+                           FontAttributes="None" IsVisible="{Binding PriceBlankOrNot}"></Label>
+                                <Label Text="{Binding SelectedServicePrice}" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               VerticalTextAlignment="Center"
+                           FontSize="14" 
+                               HeightRequest="25"
+                           FontAttributes="None"></Label>
+                            </StackLayout>
+                            <BoxView BackgroundColor="Black"
+                             HeightRequest="1"></BoxView>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="EndAndExpand"
+                             Grid.Row="3"
+                                 Margin="0,0,5,0">
+
+                            <Label x:Name="CancelLabel" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="3" 
+                           HeightRequest="30" 
+                           WidthRequest="70" 
+                           Text="Cancel" 
+                           FontAttributes="Bold" 
+                           TextColor="White"
+                           BackgroundColor="Black" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Cancel_Tapped"
+                                                  NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label x:Name="OkLabel" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="3" 
+                           HeightRequest="30" 
+                           WidthRequest="50" 
+                           Text="OK" 
+                           FontAttributes="Bold" 
+                           TextColor="White"
+                           BackgroundColor="Black">
+                                <Grid.Margin>
+
+                                    <OnPlatform x:TypeArguments="Thickness">
+
+                                        <On Platform="iOS" Value="0,0,5,0" />
+
+                                    </OnPlatform>
+
+                                </Grid.Margin>
+                                <!--<Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Ok_Tapped"
+                                                  NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>-->
+                            </Label>
+                        </StackLayout>
+
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gdPopup" 
+                  IsVisible="False" 
+                  BackgroundColor="{DynamicResource AppBackground}"
+                  HorizontalOptions="CenterAndExpand" 
+                  VerticalOptions="CenterAndExpand">
+
+                    <!--<Grid x:Name="gdJoinQueuePopup"
+                  BackgroundColor="White" 
+                  HorizontalOptions="CenterAndExpand" 
+                  VerticalOptions="CenterAndExpand">-->
+
+                    <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>-->
+
+                    <!--<StackLayout Orientation="Horizontal" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="#696969">
+                            <Image Source="CancelPositionNew.png" HeightRequest="23" WidthRequest="23" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Margin="7,7,7,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="gdPopupCancel_Tapped"
+                                                          NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="Select Service" FontSize="18" TextColor="White" Margin="-30,10,0,0" HorizontalOptions="CenterAndExpand"></Label>
+                        </StackLayout>-->
+
+                    <!--<Grid Grid.Row="1" Padding="0,0,0,0">
+                            
+                            <StackLayout BackgroundColor="White"  Padding="20,5,0,0">
+                                <Label Text="{Binding SelectBarberName}" TextColor="Black" VerticalOptions="Center" FontSize="Medium"></Label>
+
+                                <Label Text="{Binding EstimatedWaitTime}" VerticalOptions="Center" TextColor="Black" FontSize="14"></Label>
+                            </StackLayout>
+                    
+                        </Grid>-->
+
+                    <StackLayout Padding="10" x:Name="spServiceList">
+
+                        <!--<StackLayout Orientation="Horizontal">
+                                <Label Text="Select service" TextColor="Black" FontSize="12"></Label>
+                                <Label x:Name="lblServiceCount" TextColor="Black" FontSize="12"></Label>
+                            </StackLayout>-->
+
+                        <StackLayout Padding="20,0,5,0" HeightRequest="80" Orientation="Horizontal">
+                            <Label FontSize="18" FontAttributes="Bold" Margin="0,10,0,0" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Text="Select Service"/>
+
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+
+                                <forms:SvgCachedImage Source="resource://IQB.Resources.Image.cross.svg"
+                                      HeightRequest="18" WidthRequest="18" >
+                                    <forms1:CachedImage.Transformations>
+                                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                    </forms1:CachedImage.Transformations>
+                                </forms:SvgCachedImage>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="gdPopupCancel_Tapped" NumberOfTapsRequired="1"/>
+                                </StackLayout.GestureRecognizers>
+
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+                        <ListView x:Name="ServiceListPopup"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  SeparatorVisibility="None"
+                                  RowHeight="120"
+                                  BackgroundColor="{DynamicResource AppBackground}"
+                                  ItemSelected="ServiceListPopup_ItemSelected"
+                                  IsRefreshing="{Binding IsRefreshing}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <!--<StackLayout Padding="5" HeightRequest="55">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="5*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Text="{Binding ServiceName}" 
+                                                       HeightRequest="30"
+                                                       TextColor="Black"
+                                                       FontSize="12"></Label>
+                                                    <Button x:Name="ServiceButton" 
+                                                        Grid.Column="1"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        CommandParameter="{Binding .}"
+                                                        WidthRequest="75"
+                                                        HeightRequest="30"
+                                                        FontSize="8"
+                                                        TextColor="White"
+                                                        BackgroundColor="Transparent"
+                                                        Image="{Binding Status, Converter={StaticResource StringToImageConverterID}}"
+                                                        Clicked="ServiceButton_Clicked">
+                                                     
+                                                    </Button>
+                                                </Grid>
+                                                <StackLayout Orientation="Horizontal" Margin="0,-10,0,0">
+                                                    <StackLayout WidthRequest="120"
+                                                             Grid.Row="1">
+                                                        <StackLayout Orientation="Horizontal">
+                                                          
+                                                            <Label Text="{Binding ServicePrice}" 
+                                                               TextColor="Black" 
+                                                                HorizontalTextAlignment="Start"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                VerticalOptions="CenterAndExpand"
+                                                                VerticalTextAlignment="Center"
+                                                                WidthRequest="60"
+                                                                FontSize="12" 
+                                                                HeightRequest="30"
+                                                                FontAttributes="None"></Label>
+                                                        </StackLayout>
+                                                        <BoxView Style="{StaticResource BoxViewStyle}">
+                                                            <BoxView.Margin>
+                                                                <OnPlatform x:TypeArguments="Thickness">
+                                                                    <On Platform="iOS" Value="0,0,0,0" />
+                                                                    <On Platform="Android" Value="0,-8,0,0" />
+                                                                </OnPlatform>
+                                                            </BoxView.Margin>
+                                                        </BoxView>
+                                                    </StackLayout>
+                                                    <StackLayout  WidthRequest="120"
+                                                      Grid.Row="1" 
+                                                      Grid.Column="1">
+                                                        <StackLayout Orientation="Horizontal">
+
+                                                            <Label Text="{Binding ServiceEstimatedTime}" 
+                                                               TextColor="Black" 
+                                                               Margin="3,0,-20,0"
+                                                                HorizontalTextAlignment="Start"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                VerticalOptions="CenterAndExpand"
+                                                                VerticalTextAlignment="Center"
+                                                                WidthRequest="110"
+                                                                FontSize="12" 
+                                                                HeightRequest="30"
+                                                                FontAttributes="None"></Label>
+                                                        </StackLayout>
+                                                        <BoxView Style="{StaticResource BoxViewStyle}">
+                                                            <BoxView.Margin>
+                                                                <OnPlatform x:TypeArguments="Thickness">
+                                                                    <On Platform="iOS" Value="0,0,0,0" />
+                                                                    <On Platform="Android" Value="0,-8,0,0" />
+                                                                </OnPlatform>
+                                                            </BoxView.Margin>
+                                                        </BoxView>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <BoxView BackgroundColor="LightGray" HeightRequest="2" Margin="-5,0,-5,0"></BoxView>
+                                            </StackLayout>-->
+
+
+
+                                        <StackLayout Padding="10" HeightRequest="120">
+
+                                            <Label TextColor="White" Text="{Binding ServiceName}" HorizontalOptions="StartAndExpand"/>
+
+                                            <StackLayout HeightRequest="35" Spacing="15" Orientation="Horizontal">
+                                             
+                                                <Label WidthRequest="80" VerticalOptions="CenterAndExpand" TextColor="Gray" Text="{Binding ServicePrice}"/>
+                                              
+                                                <BoxView Margin="5" WidthRequest="1" BackgroundColor="Gray" HeightRequest="30"/>
+
+                                                <forms:SvgCachedImage Source="resource://IQB.Resources.Image.HEstWaitTime.svg" HeightRequest="30" WidthRequest="30" />
+
+                                                <Label VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" TextColor="White" Text="{Binding ServiceEstimatedTime}"/>
+
+                                            </StackLayout>
+
+                                            <BoxView HeightRequest="1" BackgroundColor="Gray" VerticalOptions="EndAndExpand"/>
+
+                                        </StackLayout>
+
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="spNoService" IsVisible="False" BackgroundColor="#eeedef" WidthRequest="250">
+                        <Label HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Text="No services found" 
+                           TextColor="Black">
+                        </Label>
+                    </StackLayout>
+
+                    <!--<Label x:Name="ConnectLabel" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="3" 
+                           HeightRequest="30" 
+                           WidthRequest="260" 
+                           Text="OK" 
+                           FontAttributes="Bold" 
+                           TextColor="White"
+                           BackgroundColor="Black" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="selectServiceOk_Tapped"
+                                                  NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>-->
+
+                    <!--</Grid>-->
+
+                </Grid>
+
+                <Grid x:Name="gdBarberPopup" 
+                  IsVisible="False" 
+                  BackgroundColor="{DynamicResource AppBackground}"
+                  >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--<StackLayout HeightRequest="290" 
+                  WidthRequest="300" 
+                  BackgroundColor="White" 
+                  HorizontalOptions="CenterAndExpand" 
+                  VerticalOptions="CenterAndExpand">-->
+
+                    <!--<StackLayout Orientation="Horizontal" Padding="10" HorizontalOptions="FillAndExpand" BackgroundColor="#696969">
+                            <Image Source="CancelPositionNew.png" HeightRequest="23" WidthRequest="23" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Margin="7,7,7,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="gdBarberPopupCancel_Tapped"
+                                                          NumberOfTapsRequired="1"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Text="Select Barber" FontSize="18" TextColor="White" Margin="-30,0,0,0" HorizontalOptions="CenterAndExpand"></Label>
+                        </StackLayout>-->
+
+                    <!--<StackLayout Grid.Row="2" Padding="20,10,20,5">
+                          
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Select barber" TextColor="Black" FontSize="12"></Label>
+                                <Label x:Name="lblBarberCount" TextColor="Black" FontSize="12"></Label>
+                            </StackLayout>-->
+
+                        <StackLayout Grid.Row="0" Padding="20,0,0,0" HeightRequest="70" Orientation="Horizontal">
+                            <Label FontSize="16" Margin="0,20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Text="Select Barber"/>
+
+                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Padding="20">
+
+                                <forms:SvgCachedImage Source="resource://IQB.Resources.Image.cross.svg"
+                                      HeightRequest="18" WidthRequest="18" >
+                                    <forms1:CachedImage.Transformations>
+                                        <transformations:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                    </forms1:CachedImage.Transformations>
+                                </forms:SvgCachedImage>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="gdBarberPopupCancel_Tapped" NumberOfTapsRequired="1"/>
+                                </StackLayout.GestureRecognizers>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    
+                    <ListView x:Name="BarberListPopup"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                              SeparatorVisibility="None"
+                                  BackgroundColor="{DynamicResource AppBackground}"
+                                  RowHeight="75"
+                                  Margin="10"
+                              Grid.Row="1"
+                              Footer=""
+                                  ItemSelected="BarberListPopup_ItemSelected"
+                                  ItemsSource="{Binding BarberListForPopup}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <!--<StackLayout Padding="5" HeightRequest="30">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding BarberName}" 
+                                                           HeightRequest="30"
+                                                           TextColor="Black"
+                                                           FontSize="12"></Label>
+                                                    <Button x:Name="ServiceButton" 
+                                                            Grid.Column="1"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            CommandParameter="{Binding .}"
+                                                            WidthRequest="75"
+                                                            HeightRequest="30"
+                                                            FontSize="8"
+                                                            TextColor="White"
+                                                            BackgroundColor="Transparent"
+                                            Clicked="ServiceButton_Clicked_1"
+                                                            Image="{Binding Status, Converter={StaticResource StringToImageConverterID}}">
+                                                    </Button>
+                                                    <Button Grid.Column="1"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            VerticalOptions="Center"
+                                                            WidthRequest="75"
+                                                            HeightRequest="30"
+                                                            FontSize="8"
+                                                            TextColor="White"
+                                                            IsVisible="{Binding IsBarberOffline}"
+                                                            BackgroundColor="Transparent">
+                                                        <Button.Image>
+                                                            <OnPlatform x:TypeArguments="FileImageSource"
+                                                                        iOS="red_tick.png"
+                                                                        Android="red_tick_15.png" />
+                                                        </Button.Image>
+                                                    </Button>
+                                                </Grid>
+                                                <BoxView BackgroundColor="LightGray" HeightRequest="2" Margin="-5,0,-5,0"></BoxView>
+                                            </StackLayout>-->
+
+                                    <Frame Margin="5" CornerRadius="8" BackgroundColor="#14181B" Padding="15,5" HeightRequest="65">
+
+                                        <Grid BackgroundColor="Transparent" Padding="0,2,0,8">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="55"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                            </Grid.ColumnDefinitions>
+                                        
+                                            <controls1:CircleImage HorizontalOptions="Start" Margin="20,7" Grid.Row="0" Grid.Column="0"
+                                                                      WidthRequest="40" HeightRequest="40"
+                                                                      BorderThickness="2" BorderColor="{Binding CircleImageBorderColor}" 
+                                                                      Source="{Binding BarberImage}" Aspect="Fill">
+                                            </controls1:CircleImage>
+
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding BarberName}" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"/>
+
+                                            <forms:SvgCachedImage Source="resource://IQB.Resources.Image.roundArrow.svg" Grid.Row="0" Grid.Column="2" HorizontalOptions="EndAndExpand" WidthRequest="18" HeightRequest="18">
+                                            </forms:SvgCachedImage>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                        
+                    <!--<Label x:Name="BtnBarberOk" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="3" 
+                           HeightRequest="30" 
+                           WidthRequest="270" 
+                           Text="OK" 
+                           FontAttributes="Bold" 
+                           TextColor="White"
+                           BackgroundColor="Black" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BtnBarberOk_Tapped"
+                                                  NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                      
+                        </StackLayout>
+                    </StackLayout>-->
+
+                </Grid>
+
+            </Grid>
+
+            <ActivityIndicator x:Name="actIndBarber"
+                               IsRunning="{Binding IsLoaderEnabled}"
+                               IsVisible="{Binding IsLoaderEnabled}"
+                               MinimumHeightRequest="30"
+                               MinimumWidthRequest="30"
+                               Color="Black" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

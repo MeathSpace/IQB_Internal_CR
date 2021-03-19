@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IQB.Views.LoginManagement.RegisterAdminSalon"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:behavior="clr-namespace:IQB.ControlBehaviors;assembly=IQB"
+             xmlns:custom="clr-namespace:IQB.CustomControl"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:tvs="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{DynamicResource AppBackground}"
+             Title="Create Salon">
+    <ContentPage.Content>
+        <Grid>
+            <Grid Style="{DynamicResource baseGrid}" x:Name="gdCreateSalon">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="1" HorizontalOptions="Center" Padding="20,0,20,0">
+                    <controls:CircleImage x:Name="ProfileImage" BorderThickness="2" BorderColor="{DynamicResource AppPrimary}" Aspect="AspectFill" HorizontalOptions="Start"  IsEnabled="{Binding IsEnabled}" Margin="10,10,10,10">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        iOS="85"
+                                        Android="85" />
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double"
+                                        iOS="85"
+                                        Android="85" />
+                        </controls:CircleImage.HeightRequest>
+                        <controls:CircleImage.Source>
+                            <UriImageSource x:Name="profileImageURI"			                   
+			                    CachingEnabled="False" />
+                        </controls:CircleImage.Source>
+                        <controls:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="PickPictureTapped"
+                                NumberOfTapsRequired="1" />
+                        </controls:CircleImage.GestureRecognizers>
+                    </controls:CircleImage>
+                    <Frame VerticalOptions="End" Margin="-60,-45,0,0"
+                           HorizontalOptions="End"
+                           HeightRequest="30" WidthRequest="30"
+                           Padding="0"
+                           CornerRadius="15" 
+                           HasShadow="true"
+                           BackgroundColor="{DynamicResource AppPrimary}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PickPictureTapped"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                        <ffimageloadingsvg:SvgCachedImage Source="resource://IQB.Resources.Image.TakePhoto.svg" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center" VerticalOptions="Center">
+                            <ffimg:CachedImage.Transformations>
+                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                            </ffimg:CachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Grid.Row="2" Margin="20,10,20,0">
+                    <ScrollView>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="1"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <custom:BorderlessEntry Placeholder="Salon Name" Grid.Row="1" Grid.ColumnSpan="2"
+                                        x:Name="entrySalonName"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill"
+                                        MinimumHeightRequest="40">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonName" Message="Please enter a Salon Name"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="2" Grid.ColumnSpan="2"></BoxView>
+                            <custom:BorderlessEntry x:Name="entryCustomerName" Grid.Row="3" Grid.ColumnSpan="2"
+                                        Placeholder="Customer Name" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}"
+                                        HorizontalOptions="Fill">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvCustomerName" Message="Please enter a Customer Name"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="4" Grid.ColumnSpan="2"></BoxView>
+                            <custom:BorderlessEntry x:Name="entryEmail" Placeholder="Email" Grid.Row="5" Grid.ColumnSpan="2"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        HorizontalOptions="Fill">
+                                <Entry.Behaviors>
+                                    <behavior:EmailValidatorBehavior x:Name="bhvIsValidEmail" Message="Please enter a valid Email Id"/>
+                                </Entry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="6" Grid.ColumnSpan="2"></BoxView>
+                            <custom:BorderlessEntry x:Name="entryTel" Placeholder="Phone Number" Grid.Row="7" Grid.ColumnSpan="2"
+                                                Keyboard="Telephone"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:PhoneNumberBehavior x:Name="bhvMobileNo" Message="Please enter a valid Phone Number"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="8" Grid.ColumnSpan="2"></BoxView>
+                            <Grid Grid.Row="9" Grid.ColumnSpan="2" MinimumHeightRequest="40" Margin="5,20" HorizontalOptions="Fill">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectCountry_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Country" x:Name="lblCountry"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                                <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.expand-button.svg" Grid.Column="1">
+                                    <ffimg:CachedImage.Transformations>
+                                        <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                                    </ffimg:CachedImage.Transformations>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <Picker x:Name="pickerCountry" IsVisible="False" Title="Country" ItemDisplayBinding="{Binding CountryName}"/>
+
+                            </Grid>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="10" Grid.ColumnSpan="2"></BoxView>
+
+
+                            <Grid Grid.Row="11" Grid.ColumnSpan="2" MinimumHeightRequest="40" Margin="5,20" HorizontalOptions="Fill">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SelectCurrency_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Currency" x:Name="lblCurrency"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                                <ffimageloadingsvg:SvgCachedImage WidthRequest="10" HeightRequest="10" Source="resource://IQB.Resources.Image.expand-button.svg" Grid.Column="1">
+                                    <ffimg:CachedImage.Transformations>
+                                        <fftrans:TintTransformation HexColor="#0DA5B7" EnableSolidColor="true"/>
+                                    </ffimg:CachedImage.Transformations>
+                                </ffimageloadingsvg:SvgCachedImage>
+                                <Picker x:Name="pickerCurrency" IsVisible="False" Title="Currency" ItemDisplayBinding="{Binding currency_string}"/>
+
+                            </Grid>
+
+
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="12" Grid.ColumnSpan="2"></BoxView>
+
+                            <custom:BorderlessEntry x:Name="entryAddr" Placeholder="Address" Grid.Row="13" Grid.ColumnSpan="2"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldAddressValidatorBehavior x:Name="bhvAddress" Message="Please enter a valid Address"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="14" Grid.ColumnSpan="2"></BoxView>
+                            <custom:BorderlessEntry x:Name="entryCity" Placeholder="City" Grid.Row="15"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvCity" Message="Please enter a City"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <custom:BorderlessEntry x:Name="entryZip" Placeholder="Post Code" Grid.Row="15" Grid.Column="1"
+                                        Style="{DynamicResource RegisterTextboxStyle}" 
+                                        IsEnabled="{Binding IsEnabled}"
+                                        HorizontalOptions="Fill">
+                                <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvZip" Message="Please enter a Post Code"/>
+                                </custom:BorderlessEntry.Behaviors>
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="16"></BoxView>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="16" Grid.Column="1"></BoxView>
+                            <custom:BorderlessEntry Placeholder="Website" Grid.Row="17" Grid.ColumnSpan="2"
+                                                    Keyboard="Url"
+                                                    x:Name="entrySalonWebsite"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                                <!--<custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonWebsite" Message="Please enter a Salon Website"/>
+                                </custom:BorderlessEntry.Behaviors>-->
+                            </custom:BorderlessEntry>
+                            <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="18" Grid.ColumnSpan="2"></BoxView>
+
+                            <Grid Margin="0,10" Grid.Row="19" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="Payment Gateway Details(Paypal)"
+                                           TextColor="White"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+
+                                <BoxView HeightRequest="1" BackgroundColor="White" Grid.Row="1"></BoxView>
+
+
+                                <custom:BorderlessEntry Placeholder="Merchant Email ID" Grid.Row="2" 
+                                                    x:Name="MerchantEmail"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                                    
+
+                            <!--<custom:BorderlessEntry.Behaviors>
+                                <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonWebsite" Message="Please enter a Salon Website"/>
+                            </custom:BorderlessEntry.Behaviors>-->
+                            </custom:BorderlessEntry>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="3"></BoxView>
+                            </Grid>
+                            <!--<custom:BorderlessEntry Placeholder="Public Key" Grid.Row="4" 
+                                                    x:Name="PublicKey"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                                    <custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonWebsite" Message="Please enter a Salon Website"/>
+                                </custom:BorderlessEntry.Behaviors>--><!--
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="5"></BoxView>
+
+                                <custom:BorderlessEntry Placeholder="Private Key" Grid.Row="6" 
+                                                    x:Name="PrivateKey"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                                    --><!--<custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonWebsite" Message="Please enter a Salon Website"/>
+                                </custom:BorderlessEntry.Behaviors>--><!--
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="7"></BoxView>
+
+                                <custom:BorderlessEntry Placeholder="Tokenization Key" Grid.Row="8"
+                                                    x:Name="TokenizationKey"
+                                                    IsEnabled="{Binding IsEnabled}"
+                                                    Style="{DynamicResource RegisterTextboxStyle}"
+                                                    HorizontalOptions="Fill"
+                                                    MinimumHeightRequest="40">
+                                    --><!--<custom:BorderlessEntry.Behaviors>
+                                    <behavior:EmptyFieldValidatorBehavior x:Name="bhvSalonWebsite" Message="Please enter a Salon Website"/>
+                                </custom:BorderlessEntry.Behaviors>--><!--
+                                </custom:BorderlessEntry>
+                                <BoxView Style="{DynamicResource horizontalLine}" Grid.Row="9"></BoxView>
+
+
+                            -->
+
+                            <Grid Margin="0,10" Grid.Row="20" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.ColumnSpan="3" Text="Upload Social media Link"
+                                           TextColor="{DynamicResource AppHintText}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"/>
+                                <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#38A1F3" Padding="0,10">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadTwitterLinkTapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.twitter.svg">
+                                            <ffimg:CachedImage.Transformations>
+                                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                            </ffimg:CachedImage.Transformations>
+                                        </ffimageloadingsvg:SvgCachedImage>
+                                        <Label Text="Twitter"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#4267B2" Padding="0,10">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadFacebookLinkTapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.facebook.svg">
+                                            <ffimg:CachedImage.Transformations>
+                                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                            </ffimg:CachedImage.Transformations>
+                                        </ffimageloadingsvg:SvgCachedImage>
+                                        <Label Text="Facebook"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#C536A2" Padding="0,10">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadInstagramLinkTapped"/>
+                                    </Grid.GestureRecognizers>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <ffimageloadingsvg:SvgCachedImage WidthRequest="15" HeightRequest="15" Source="resource://IQB.Resources.Image.instagram.svg">
+                                            <ffimg:CachedImage.Transformations>
+                                                <fftrans:TintTransformation HexColor="#FFFFFF" EnableSolidColor="true"/>
+                                            </ffimg:CachedImage.Transformations>
+                                        </ffimageloadingsvg:SvgCachedImage>
+                                        <Label Text="Instagram"
+                                           TextColor="{DynamicResource AppForeground}"
+                                           FontSize="10"
+                                           VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </ScrollView>
+                </StackLayout>
+                <Button Grid.Row="3" x:Name="btnRegisterSalon" Clicked="BtnRegister_Clicked"
+                    Text="Next"
+                    IsEnabled="{Binding IsEnabled}"
+                    Style="{DynamicResource actionButtonPrimary}"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage> 
